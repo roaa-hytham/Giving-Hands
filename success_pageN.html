@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidebar menu With Sub-menus | Using HTML, CSS & JQuery</title>
+  <link rel="stylesheet" href="style3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+     .top-menu {
+      position: fixed;
+      top: 20px;
+      right: 0;
+      background-color: #404181;
+      padding: 10px 20px;
+      display: flex;
+      z-index: 1000;
+    }
+
+    .top-menu a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .top-menu .dropdown {
+      position: relative;
+    }
+
+    .top-menu .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 0;
+      background-color: #404181;
+      min-width: 120px;
+      z-index: 1000;
+    }
+
+    .top-menu .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .top-menu .dropdown-content a {
+      padding: 10px;
+      display: block;
+    }
+    body {
+    font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .success-container {
+      text-align: center;
+    }
+    .success-icon {
+      font-size: 72px;
+      color: green;
+      margin-bottom: 20px;
+    }
+    .success-message {
+      font-size: 24px;
+      color: green;
+      margin-bottom: 20px;
+    }
+    .back-link {
+      color: #404181;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .img {
+      position: absolute;
+      top: 10px;
+      right: 15px; /* Adjust as needed */
+      width: 65px; /* Adjust width as needed */
+      height: auto;
+    }
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; /* Adjust font weight as needed */
+      position: absolute;
+      top: 5px;
+      width: 20px;
+      right: 175px; /* Adjust as needed */
+      color: white;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+
+      <!-- End Top Menu -->
+      <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="header-content"></div>
+      <h1>Giving Hands</h1>
+      <img src="img/logo2.png" alt="logo" class="img">
+  </header>
+
+  <body>
+    <div class="success-container">
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <div class="success-message">
+        Application Submitted Successfully!
+      </div>
+      <a href="homedonorloggedin.html" class="back-link">Back to Home</a>
+    </div>
+  </body>
+
+  <div class="side-bar">
+    <div class="menu-btn"></div>
+    <div class="menu">
+      <div class="item">
+        <a href="indexM.html"><i class="fas fa-home"></i>Home</a>
+      </div>
+      <div class="item">
+        <a href="DonorProfileN.html"><i class="fas fa-user"></i>My Profile</a>
+      </div>
+      <div class="item">
+        <a class="sub-btn"
+          ><i class="fas fa-gift"></i>Donation Requests<i
+            class="fas fa-angle-right dropdown"
+          ></i
+        ></a>
+        <div class="sub-menu">
+          <a href="donor.html" class="sub-item">All Requests</a>
+          <a href="School.html" class="sub-item">School Supplies</a>
+          <a href="Medical.html" class="sub-item">Medical Supplies</a>
+          <a href="Blood.html" class="sub-item">Blood Donations</a>
+          <a href="Clothes.html" class="sub-item">Clothes Donations</a>
+          <a href="Food.html" class="sub-item">Food Donations</a>
+          <a href="Toy.html" class="sub-item">Toys Donations</a>
+        </div>
+      </div>
+      <div class="item">
+        <a class="sub-btn"
+          ><i class="fas fa-heart"></i>Volunteer Now<i
+            class="fas fa-angle-right dropdown"
+          ></i
+        ></a>
+        <div class="sub-menu">
+          <a href="medicalPosts.html" class="sub-item">Doctor</a>
+          <a href="educational_posts.html" class="sub-item">Teacher</a>
+        </div>
+      </div>
+      <div class="item">
+        <a href="OrganizationsDonorN.html"
+          ><i class="fas fa-building"></i>View All Organizations</a
+        >
+      </div>
+      <div class="item">
+        <a href="DonorHistoryN.html"
+          ><i class="fas fa-history"></i> MyDonations</a
+        >
+      </div>
+      <div class="item">
+        <a href="password.html"><i class="fas fa-lock"></i>Change Password</a>
+      </div>
+      <div class="item">
+        <a href="HomepageGeneral.html"><i class="fas fa-sign-out-alt"></i>LogOut</a>
+      </div>
+      <div class="item">
+        <a href="homedonorloggedin.html #contact"
+          ><i class="fas fa-info-circle"></i>Contact Us</a
+        >
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      // jquery for toggle sub menus
+      $(".sub-btn").click(function () {
+        $(this).next(".sub-menu").slideToggle();
+        $(this).find(".dropdown").toggleClass("rotate");
+      });
+  // jquery for expand and collapse the sidebar on menu button click
+  $(".menu-btn").click(function () {
+          $(".side-bar").toggleClass("active");
+          $(".menu-btn i").toggleClass("fa-bars fa-times"); // Toggle the menu icon class
+          $(".menu-btn").css("visibility", "visible");
+        });
+
+
+      // Function to show password change form when "Change Password" is clicked
+      $("#change-password-btn").click(function () {
+        $(".password-form").show();
+        $(".background-title").show();
+      });
+
+      // Add event listener to "Education" link to navigate to educational posts page
+      $(".menu .item:nth-child(2) .sub-item:nth-child(1)").click(function () {
+        window.location.href = "educational_posts.html"; // Replace with the URL of your educational posts page
+      });
+    });
+  </script>
+</body>
+</html>

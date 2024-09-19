@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar menu With Sub-menus | Using HTML, CSS & JQuery</title>
+    <link rel="stylesheet" href="style3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+      * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+      .search-container {
+  position: fixed;
+  top: 100px; /* Adjust top distance according to your design */
+  right: 20px;
+  z-index: 1000;
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+#searchInput {
+  padding: 10px 35px 10px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 250px;
+}
+
+.fa-search {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #888;
+  cursor: pointer;
+}
+
+      /* Styles for posts */
+      .posts {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start; /* Align items to the top */
+        margin-top: 100px; /* Adjust margin-top as needed */
+        text-align: left;
+       
+      }
+
+      .post {
+        width: 900px; /* Adjust width as needed */
+        margin: 20px;
+        padding: 20px;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+
+      }
+   
+      .post img {
+        float: left; /* Align image to the left */
+        margin-right: 20px; /* Add spacing between image and text */
+        width: 145px; /* Adjust image width as needed */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 5px;
+      }
+
+      .post h2 {
+        margin-bottom: 10px;
+      }
+
+      .post p {
+        margin-bottom: 20px;
+      }
+      .post p.location a {
+        color: #404181; /* Adjust link color as needed */
+        text-decoration: none;
+}
+
+.post p.location a:hover {
+
+  text-decoration: underline; /* Add underline on hover */
+}
+
+     
+      .filter-form {
+        text-align: center;
+      }
+
+      .filter-form label,
+      .filter-form select,
+      .filter-form button {
+        margin-right: 10px;
+        font-size: 16px; /* Increase font size */
+        
+      }
+
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+      .modal-content p {
+     margin-bottom: 7px; /* Set the margin between lines */
+    }
+
+      /* Close button style */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      #filterButton {
+  background-color: #404181; /* Match color with apply button */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Increase padding for larger button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px; /* Adjust margin as needed */
+}
+
+
+.apply-btn,
+.view-details-btn,
+.accept,
+.reject {
+  background-color: #404181;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;/* Adjust margin as needed */
+  align-self: flex-end; /* Align buttons to the right */
+  font-size: 15px;
+  bottom: 10px !important;
+
+}
+
+.view-details-btn {
+  position: absolute;
+   margin-left: 15px;
+    bottom: 0;
+    right: 12px;
+    padding: 8px 16px;
+    background-color: #404181;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    top: 166px;
+}
+
+
+#map {
+    height: 200px;
+    width: 100%;
+  }
+  .bold-text {
+  font-weight: bold;
+}
+.img {
+      position: absolute;
+      top: 10px;
+      right: 15px; /* Adjust as needed */
+      width: 65px; /* Adjust width as needed */
+      height: auto;
+    }
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; /* Adjust font weight as needed */
+      position: absolute;
+      top: 5px;
+      width: 20px;
+      right: 175px; /* Adjust as needed */
+      color: white;
+      margin: 0;
+    }
+      header {
+      text-align: center;
+      margin-bottom: 0px; /* Adjust spacing between title and filter form */
+    }
+    #title{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+    }
+   .delete-icon {
+    margin-left: 15px; /* Space between the view button and icon */
+    color: red; /* Make the icon red for better visibility as a delete button */
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+    top: 166px; /* Change the cursor to indicate it's clickable */
+}
+#confirmDialog {
+    display: none;
+}
+.pdfIcon{
+  cursor: pointer;
+}
+.post {
+  position: relative;
+}
+
+.card-actions {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+}
+
+.card-actions button {
+    bottom: 0;
+    padding: 8px 16px;
+    background-color: #404181;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.container {
+  /* Set container to flex and center items horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.accepted-requests {
+  /* Set container to flex and center items horizontally */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px; /* Adjust as needed */
+}
+
+.post {
+  /* Add your styling for the post cards here */
+}
+/* Styles for Confirmation Modal */
+    </style>
+    <style>
+        #confirmationModal {
+  z-index: 1001; /* Ensure the confirmation modal appears above other modals */
+}
+
+#confirmationModal .button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+.cancel-donation-btn ,
+.confirm-donation-btn {
+    padding: 10px 20px;
+    background-color: #404181;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 16px;
+}
+modal-content {
+    background-color: #fff;
+    width: 50%;
+    margin: 10% auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    position: relative;
+}
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="header-content"></div>
+      <h1 style="font-size: 2em;">Giving Hands</h1>
+      <img id="give" src="img/logo2.png" alt="logo" class="img" />
+    </header>
+     <div class="search-container">
+  <div class="search-wrapper">
+    <input type="text" style="border: none; outline: none;" id="searchInput" placeholder="Search  by name...">
+    <i class="fas fa-search"></i>
+  </div>
+</div>
+
+<h2 id="title" style="text-align: center; font-weight: bold; position: relative; bottom:-55px ;">Pending Requests Of Organizations</h2>
+   <div class="side-bar">
+      <div class="menu-btn"></div>
+      <div class="menu">
+        <div class="item">
+          <a href="adminHomepageN.html"><i class="fas fa-home"></i>Home</a>
+        </div>
+        <div class="item">
+          <a href="adminprofile.html"><i class="fas fa-user"></i>My Profile</a>
+        </div>
+        <div class="item">
+          <a href="dashboard.html"><i class="fas fa-desktop"></i>Dashboard</a>
+        </div>
+        <div class="item">
+          <a class="sub-btn"
+            ><i class="fas fa-eye"></i>View Requests<i
+              class="fas fa-angle-right dropdown"
+            ></i
+          ></a>
+          <div class="sub-menu">
+            <a href="orgReq.html" class="sub-item"
+              ><i class="fas fa-user-group"></i>Organizations</a
+            >
+            <a href="donorreq.html" class="sub-item"
+              ><i class="fas fa-user"></i>Donors</a
+            >
+          </div>
+        </div>
+        <div class="item">
+          <a class="sub-btn"
+            ><i class="fas fa-eye"></i>View Registered<i
+              class="fas fa-angle-right dropdown"
+            ></i
+          ></a>
+          <div class="sub-menu">
+            <a href="organizations.html" class="sub-item"
+              ><i class="fas fa-user-group"></i>Organizations</a
+            >
+            <a href="donors.html" class="sub-item"
+              ><i class="fas fa-user"></i>Donors</a
+            >
+          </div>
+        </div>
+        <div class="item">
+          <a href="password.html"><i class="fas fa-lock"></i>Change Password</a>
+        </div>
+        <div class="item">
+          <a href="HomepageGeneral.html" class="sub-item">
+            <i class="fas fa-sign-out-alt"></i>Log Out
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="posts">
+      <div class="post" data-subject="Mosque" data-area="El Sayeda Zeinab" data-governorate="Cairo">
+          <div class="card-actions">
+      <button class="accept" data-target="#acceptModal1"  style="background-color: rgb(15, 131, 15); color: white;">Accept</button>
+          <button class="btn cancel-donation-btn" style="background-color: rgb(159, 19, 19); color: white;">Reject</button>
+    </div>
+        <img src="img/mosque.png" alt="edu5" />
+        <h2>Ibn Tulun</h2>
+        <p><strong>Governorate:</strong> Cairo</p>
+        <p><strong>Area:</strong> El Sayeda Zeinab</span></p>
+        <p><strong>Type:</strong> Mosque</p>
+        <button class="view-details-btn" data-target="#postDetailsModal1">View Details</button>
+      </div>
+      <div class="post" data-subject="School" data-area="New Cairo" data-governorate="Cairo">
+          <div class="card-actions">
+      <button class="accept" data-target="#acceptModal1"  style="background-color: rgb(15, 131, 15); color: white;">Accept</button>
+          <button class="btn cancel-donation-btn" style="background-color: rgb(159, 19, 19); color: white;">Reject</button>
+    </div>
+        <img src="img/school.png" alt="edu5" />
+        <h2>Modern English School</h2>
+        <p><strong>Governorate:</strong> Cairo</p>
+        <p><strong>Area:</strong> New Cairo</span></p>
+        <p><strong>Type:</strong> School</p>
+        <button class="view-details-btn" data-target="#postDetailsModal2">View Details</button>
+      </div>
+      <div class="post" data-subject="School" data-area="New Cairo" data-governorate="Cairo">
+          <div class="card-actions">
+      <button class="accept" data-target="#acceptModal1"  style="background-color: rgb(15, 131, 15); color: white;">Accept</button>
+         <button class="btn cancel-donation-btn" style="background-color: rgb(159, 19, 19); color: white;">Reject</button>
+    </div>
+        <img src="img/school.png" alt="edu5" />
+        <h2>Merryland International School</h2>
+        <p><strong>Governorate:</strong>Cairo</p>
+        <p><strong>Area:</strong> New Cairo</span></p>
+        <p><strong>Type:</strong> School</p>
+        <button class="view-details-btn" data-target="#postDetailsModal3">View Details</button>
+      </div>
+      <div class="post" data-subject="Hospital" data-area="New Cairo" data-governorate="Cairo">
+          <div class="card-actions">
+      <button class="accept" data-target="#acceptModal1"  style="background-color: rgb(15, 131, 15); color: white;">Accept</button>
+        <button class="btn cancel-donation-btn" style="background-color: rgb(159, 19, 19); color: white;">Reject</button>
+    </div>
+        <img src="img/hospital.png" alt="edu5" />
+        <h2>Queens Hospital</h2>
+        <p><strong>Governorate:</strong>  Cairo </p>
+        <p><strong>Area:</strong>  New Cairo </span></p>
+        <p><strong>Type:</strong> Hospital </p>
+        <button class="view-details-btn" data-target="#postDetailsModal4">View Details</button>
+      </div>
+      <div class="post" data-subject="Church" data-area="Old Cairo" data-governorate="Cairo">
+          <div class="card-actions">
+      <button class="accept" data-target="#acceptModal1"  style="background-color: rgb(15, 131, 15); color: white;">Accept</button>
+        <button class="btn cancel-donation-btn" style="background-color: rgb(159, 19, 19); color: white;">Reject</button>
+    </div>
+        <img src="img/church.png" alt="edu5" />
+        <h2>St. George's Church</h2>
+        <p><strong>Governorate:</strong> Cairo </p>
+        <p><strong>Area:</strong> Old Cairo </span></p>
+        <p><strong>Type:</strong> Church</p>
+        <button class="view-details-btn" data-target="#postDetailsModal5">View Details</button>
+      </div>
+      <div class="post" data-subject="Non Profit" data-area="New Cairo" data-governorate="Cairo">
+          <div class="card-actions">
+      <button class="accept" data-target="#acceptModal1"  style="background-color: rgb(15, 131, 15); color: white;">Accept</button>
+        <button class="btn cancel-donation-btn" style="background-color: rgb(159, 19, 19); color: white;">Reject</button>
+    </div>
+        <img src="img/ngo.png" alt="edu5" />
+        <h2>Ahl Masr</h2>
+        <p><strong>Governorate:</strong> Cairo </p>
+        <p><strong>Area:</strong> New Cairo </span></p>
+        <p><strong>Type:</strong> Non Profit Organization</p>
+        <button class="view-details-btn" data-target="#postDetailsModal6">View Details</button>
+      </div>
+      <div class="post" data-subject="Mosque" data-area="Sidi Gaber" data-governorate="Alexandria">
+          <div class="card-actions">
+      <button class="accept" data-target="#acceptModal1"  style="background-color: rgb(15, 131, 15); color: white;">Accept</button>
+        <button class="btn cancel-donation-btn" style="background-color: rgb(159, 19, 19); color: white;">Reject</button>
+    </div>
+        <img src="img/mosque.png" alt="edu5" />
+        <h2>Naser Mosque</h2>
+        <p><strong>Governorate:</strong> Alexandria </p>
+        <p><strong>Area:</strong> Sidi Gaber </span></p>
+        <p><strong>Type:</strong> Mosque</p>
+        <button class="view-details-btn" data-target="#postDetailsModal7">View Details</button>
+      </div>
+      <div class="post" data-subject="Hospital" data-area="Haram" data-governorate="Giza">
+          <div class="card-actions">
+      <button class="accept" data-target="#acceptModal1"  style="background-color: rgb(15, 131, 15); color: white;">Accept</button>
+         <button class="btn cancel-donation-btn" style="background-color: rgb(159, 19, 19); color: white;">Reject</button>
+    </div>
+        <img src="img/hospital.png" alt="edu5" />
+        <h2>Cleopatra Specialized Hospital</h2>
+        <p><strong>Governorate:</strong> Giza </p>
+        <p><strong>Area:</strong> Haram </span></p>
+        <p><strong>Type:</strong> Hospital</p>
+        <button class="view-details-btn" data-target="#postDetailsModal8">View Details</button>
+      </div>
+      </div>
+
+      <div id="postDetailsModal1" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>Ibn Tulun</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01234567800</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">IbnTulun@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/7SgRUSsdet1aPJx47" target="_blank">  Ahmed Ibn Tolon Sq., Tolon, El Sayeda Zeinab, Cairo Governorate 4261342</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> The Mosque of Ibn Tulun (Arabic: مسجد إبن طولون, romanized: Masjid Ibn Ṭūlūn) is located in Cairo, Egypt. It is one of the oldest mosques in Egypt as well as the whole of Africa surviving in its full original form, and is the largest mosque in Cairo in terms of land area. It is built around an open square courtyard which allows natural light to travel through. Ibn Tulun Mosque features ancient architecture styles of Egypt, its decorations being created from carved stucco and wood.This mosque is a popular tourist attraction.</span>
+                      <br>
+                    </p>
+                     <p>Certificate Of Incorporation: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/Incorporation.pdf" /></p>
+                         <p>Business License: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/BiLicense.pdf" /></p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+      <div id="postDetailsModal2" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>Modern English  School</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01234789800</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">MES@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/VmQHoMKanfCLm4mD7" target="_blank"> New Cairo 1, Cairo Governorate 11835</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis numquam alias laboriosam nulla explicabo accusantium omnis quidem, earum quam harum eius nostrum eum facere ducimus, necessitatibus officiis nihil inventore commodi.</span>
+                      <br>
+                    </p>
+                     <p>Certificate Of Incorporation: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/Incorporation.pdf" /></p>
+                         <p>Business License: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/BiLicense.pdf" /></p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+      <div id="postDetailsModal3" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>MerryLand International School</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01914567800</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">MerryLand@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/1xix2rAcjSS4sHWBA" target="_blank"> 2 El Nakhil Compound, Ring Rd, 11865</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum nihil doloribus consectetur vitae atque ipsum labore perferendis, voluptatum sed veritatis minus commodi harum. Esse necessitatibus dolore distinctio rem odio.</span>
+                      <br>
+                    </p>
+                     <p>Certificate Of Incorporation: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/Incorporation.pdf" /></p>
+                         <p>Business License: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/BiLicense.pdf" /></p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+      <div id="postDetailsModal4" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>Queens Hospital</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01910567800</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">Queens@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/hk7ZgGezhFkvfQfBA" target="_blank"> HCC bldg., Tesaeen St, (behind Air Force Hospital، 90 N Teseen St, New Cairo 1</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum nihil doloribus consectetur vitae atque ipsum labore perferendis, voluptatum sed veritatis minus commodi harum. Esse necessitatibus dolore distinctio rem odio.</span>
+                      <br>
+                    </p>
+                     <p>Certificate Of Incorporation: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/Incorporation.pdf" /></p>
+                         <p>Business License: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/BiLicense.pdf" /></p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+      <div id="postDetailsModal5" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>St. George's Church</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01914567853</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">St.GeorgeChurch@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/vP3WCsoNHGxNLKjn7" target="_blank"> 264J+G28، مار جرجس، كوم غراب، مصر القديمة، محافظة القاهرة‬،, Old Cairo</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum nihil doloribus consectetur vitae atque ipsum labore perferendis, voluptatum sed veritatis minus commodi harum. Esse necessitatibus dolore distinctio rem odio.</span>
+                      <br>
+                    </p>
+                     <p>Certificate Of Incorporation: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/Incorporation.pdf" /></p>
+                         <p>Business License: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/BiLicense.pdf" /></p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+      </div>
+      <div id="postDetailsModal6" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>Ahl Masr</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01914569800</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">AhlMasr@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/PCeJt5BgvL4LxLiMA" target="_blank">المجاورة 4،5 اسكان الشباب بجوار مسجد السويدي, Cairo Governorate </a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum nihil doloribus consectetur vitae atque ipsum labore perferendis, voluptatum sed veritatis minus commodi harum. Esse necessitatibus dolore distinctio rem odio.</span>
+                      <br>
+                    </p>
+                     <p>Certificate Of Incorporation: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/Incorporation.pdf" /></p>
+                         <p>Business License: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/BiLicense.pdf" /></p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+            <div id="postDetailsModal7" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>Naser Mosque</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01914567805</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">NaserMosque@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/JdA21M8gahKbty7H8" target="_blank"> 6W7V+W9H, Izbat Saed, Qesm Sidi Gaber, Alexandria Governorate 5432064</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum nihil doloribus consectetur vitae atque ipsum labore perferendis, voluptatum sed veritatis minus commodi harum. Esse necessitatibus dolore distinctio rem odio.</span>
+                      <br>
+                    </p>
+                        <p>Certificate Of Incorporation: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/Incorporation.pdf" /></p>
+                         <p>Business License: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/BiLicense.pdf" /></p>
+          <!-- Add more details as needed -->
+        </div>
+          </div>
+      <div id="postDetailsModal8" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>Cleopatra Specialized Hospital</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01284567800</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">CSH@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/Gkjsum2KnshPgaoL8" target="_blank"> 3 rokn el safa الهرم, street, Giza Governorate</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum nihil doloribus consectetur vitae atque ipsum labore perferendis, voluptatum sed veritatis minus commodi harum. Esse necessitatibus dolore distinctio rem odio.</span>
+                      <br>
+                    </p>
+                        <p>Certificate Of Incorporation: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/Incorporation.pdf" /></p>
+                         <p>Business License: <img class="pdfIcon" src="img/pdf.png" style="width: 30px;" data-pdf="img/BiLicense.pdf" /></p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+ </div>
+   <!-- <section id="acceptedRequests">
+  <h2 class="my-5 red text-center" style="display: flex;align-items: center;justify-content: center;">Accepted Requests</h2>
+</section> -->
+<div class="container">
+  <h2 class="my-5 red text-center">Accepted Requests</h2>
+  <div class="accepted-requests" id="acceptedRequests">
+    <!-- Cards will be appended here -->
+  </div>
+</div>
+<div id="confirmationModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 style="margin-bottom: 15px;">Confirm Cancellation</h2>
+    <p>Are you sure you want to Reject this Request?</p>
+    <div class="button-container">
+      <button id="confirmCancelBtn" class="btn confirm-donation-btn">Confirm</button>     
+      <button id="cancelCancelBtn" class="btn cancel-donation-btn">Cancel</button>
+    </div>
+  </div>
+</div>
+ <script type="text/javascript">
+      $(document).ready(function () {
+        //jquery for toggle sub menus
+        $(".sub-btn").click(function () {
+          $(this).next(".sub-menu").slideToggle();
+          $(this).find(".dropdown").toggleClass("rotate");
+        });
+
+        //jquery for expand and collapse the sidebar
+        $(".menu-btn").click(function () {
+          $(".side-bar").addClass("active");
+          $(".menu-btn").css("visibility", "hidden");
+        });
+
+        $(".close-btn").click(function () {
+          $(".side-bar").removeClass("active");
+          $(".menu-btn").css("visibility", "visible");
+        });
+      });
+      </script>
+ <script>
+  $(document).ready(function () {
+    // Function to open the modal for viewing post details
+    $(".view-details-btn").click(function () {
+        var targetModalId = $(this).data("target");
+        $(targetModalId).fadeIn();
+    });
+
+    // Function to close the modal
+    $(".close").click(function () {
+        $(".modal").fadeOut();
+    });
+
+    // Event listener for clicking the "Cancel Donation" button
+    $(".cancel-donation-btn").click(function () {
+        var card = $(this).closest(".post");
+        $("#confirmationModal").data("card", card);
+        $("#confirmationModal").fadeIn();
+    });
+
+    // Event listener for clicking the "Confirm" button in the confirmation modal
+    $("#confirmCancelBtn").click(function () {
+        // Perform action to cancel donation
+        // For example, hide the confirmation modal
+        closeModal();
+
+        // Remove the card
+        var cardToRemove = $("#confirmationModal").data("card");
+        cardToRemove.remove();
+    });
+
+    // Event listener for clicking the "Cancel" button in the confirmation modal
+    $("#cancelCancelBtn").click(function () {
+        closeModal();
+    });
+});
+
+// Function to close the modal
+function closeModal() {
+    $(".modal").fadeOut();
+}
+
+ </script>
+  <script>
+      $(document).ready(function () {
+  function filterDonors(searchTerm) {
+    // Convert the search term to lowercase for case-insensitive matching
+    var searchText = searchTerm.toLowerCase();
+
+    // Loop through each donor card
+    $(".content").each(function () {
+      var card = $(this);
+      var name = card.find(".card-title.name").text().toLowerCase();
+
+      // Check if the donor name contains the search term
+      if (name.includes(searchText)) {
+        card.show();
+      } else {
+        card.hide();
+      }
+    });
+  }
+
+  $("#searchInput").keydown(function (event) {
+  if (event.key === "Enter") {
+    filterPostsByName($(this).val()); // Change filterDonors to filterPostsByName
+  }
+});
+
+// Event listener for search button click
+$(".fa-search").click(function () {
+  filterPostsByName($("#searchInput").val()); // Change filterDonors to filterPostsByName
+});
+
+function filterPostsByName(name) {
+  var searchTerm = name.toLowerCase();
+
+  $(".post").each(function () {
+    var post = $(this);
+    var postName = post.find("h2").text().toLowerCase(); // Get the name from the post
+
+    if (postName.includes(searchTerm)) {
+      post.show();
+    } else {
+      post.hide();
+    }
+  });
+}
+      });
+    </script>
+ <script>
+   $(document).ready(function() {
+    // Function to close the modal
+    function closeModal() {
+        $(".modal").fadeOut();
+    }
+
+    // Event listener for closing the modal when the close button is clicked
+    $(".close").click(function () {
+        closeModal();
+    });
+
+    // Event listener for clicking the "Apply" button
+    $(".apply-btn").click(function () {
+        window.location.href = "AfterApplyPostN.html";
+    });
+
+    // Initialize confirmation dialog for deleting posts
+    $("#confirmDialog").dialog({
+        autoOpen: false,
+        resizable: false,
+        height: "auto",
+        width: 400,
+        modal: true,
+        buttons: {
+            "Delete Post": function() {
+                $(this).data('clickedItem').closest(".post").remove(); // Assuming the trash icon is within a post element
+                $(this).dialog("close");
+            },
+            Cancel: function() {
+                $(this).dialog("close");
+            }
+        }
+    });
+
+    // Event listener for clicking the PDF icon to download
+    $(".pdfIcon").click(function() {
+        var pdfSrc = $(this).data("pdf");
+        var link = document.createElement("a");
+        link.href = pdfSrc;
+        link.download = pdfSrc.split("/").pop();
+        link.click();
+    });
+
+
+    // Function to move post to accepted requests and remove accept/reject buttons
+    function moveToAccepted(post) {
+        // Remove accept/reject buttons
+        post.find('.card-actions').remove();
+        // Append the post to the accepted requests section
+        $('#acceptedRequests').append(post);
+        // Scroll to the newly appended post
+        $('html, body').animate({
+            scrollTop: post.offset().top
+        }, 1000);
+    }
+
+    // Event listener for clicking the accept button
+    $('.accept').click(function () {
+        var post = $(this).closest('.post');
+        // Move the post to the accepted requests section
+        moveToAccepted(post);
+    });
+});
+
+</script>
+<script>
+$(document).ready(function () {
+  // Function to move post to accepted requests and remove accept/reject buttons
+  function moveToAccepted(post) {
+    // Remove accept/reject buttons
+    post.find('.card-actions').remove();
+    // Append the post to the accepted requests section
+    $('#acceptedRequests').append(post);
+    // Scroll to the newly appended post
+    $('html, body').animate({
+      scrollTop: post.offset().top
+    }, 1000);
+  }
+
+  // Event listener for clicking the accept button
+  $('.accept').click(function () {
+    var post = $(this).closest('.post');
+    // Move the post to the accepted requests section
+    moveToAccepted(post);
+  });
+});
+</script>
+  </body>
+</html>

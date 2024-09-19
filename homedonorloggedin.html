@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet2" href="style2.css" />
+    <link rel="stylesheet" href="style3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      charset="utf-8"
+    ></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+  
+      .top-menu {
+        position: fixed;
+        top: 20px;
+        right: 0;
+        background-color: #404181;
+        padding: 10px 20px;
+        display: flex;
+        z-index: 1000;
+      }
+      .top-menu a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+      }
+      .top-menu .dropdown {
+        position: relative;
+      }
+      .top-menu .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 30px;
+        right: 0;
+        background-color: #404181;
+        min-width: 120px;
+        z-index: 1000;
+      }
+      .top-menu .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .top-menu .dropdown-content a {
+        padding: 10px;
+        display: block;
+      }
+      .img {
+      position: absolute;
+      top: 10px;
+      right: 15px; /* Adjust as needed */
+      width: 65px; /* Adjust width as needed */
+      height: auto;
+    }
+    .header-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700px; /* Adjust font weight as needed */
+      position: absolute;
+      top: 5px;
+      width: 20px;
+      right: 175px; /* Adjust as needed */
+      color: white;
+      margin: 0;
+      font-size: 32px;
+    }
+    .section-title {
+  
+  font-size: 4rem;
+  font-weight: 200;
+  color: black;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  text-align: center;
+}
+.section-title span {
+  color: rgba(251, 131, 61, 255);
+}
+  
+    </style>
+    <title>GivingHands</title>
+  </head>
+ 
+  <body>
+    <!-- Header -->
+    <!-- <section id="header">
+      <div class="header container">
+        <div class="nav-bar">
+          <div class="brand">
+            <a href="#hero"><h1>Donate</h1></a>
+          </div>
+          <div class="nav-list">
+            <div class="hamburger"><div class="bar"></div></div>
+            <ul>
+              <li><a href="#hero" data-after="Home">Home</a></li>
+              <li><a href="#services" data-after="Service">Mission</a></li>
+              <li><a href="#contact" data-after="Contact">Contact</a></li>
+              <li><a href="register.html" data-after="Login">Register</a></li>
+              <li><a href="login.html" data-after="Login">Login</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <!-- End Header -->
+    <header>
+      <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="header-content">
+      </div>
+      <div class="header-content"></div>
+      <h2 class="header-title" >Giving Hands</h2>
+      <img src="img/logo2.png" alt="logo" class="img">
+  </header>
+    <!-- Hero Section  -->
+    <section id="hero">
+      <div class="hero container">
+        <div></div>
+        <div class="dropdown">
+          <!-- <button class="dropbtn">Choose Your Role</button> -->
+          <div class="dropdown-content">
+            <!-- <a href="donor.html">Donor</a>
+            <a href="representative.html">Organization Representative</a>
+            <a href="admin.html">Admin</a> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="side-bar">
+      <div class="menu-btn"></div>
+      <div class="menu">
+        <div class="item">
+          <a href="homedonorloggedin.html"><i class="fas fa-home"></i>Home</a>
+        </div>
+        <div class="item">
+          <a href="DonorProfileN.html"><i class="fas fa-user"></i>My Profile</a>
+        </div>
+        <div class="item">
+          <a class="sub-btn"
+            ><i class="fas fa-gift"></i>Donation Requests<i
+              class="fas fa-angle-right dropdown"
+            ></i
+          ></a>
+          <div class="sub-menu">
+            <a href="donor.html" class="sub-item">All Requests</a>
+            <a href="School.html" class="sub-item">School Supplies</a>
+            <a href="Medical.html" class="sub-item">Medical Supplies</a>
+            <a href="Blood.html" class="sub-item">Blood Donations</a>
+            <a href="Clothes.html" class="sub-item">Clothes Donations</a>
+            <a href="Food.html" class="sub-item">Food Donations</a>
+            <a href="Toy.html" class="sub-item">Toys Donations</a>
+          </div>
+        </div>
+        <div class="item">
+          <a class="sub-btn"
+            ><i class="fas fa-heart"></i>Volunteer Now<i
+              class="fas fa-angle-right dropdown"
+            ></i
+          ></a>
+          <div class="sub-menu">
+            <a href="medicalPosts.html" class="sub-item">Doctor</a>
+            <a href="educational_posts.html" class="sub-item">Teacher</a>
+          </div>
+        </div>
+        <div class="item">
+          <a href="OrganizationsDonorN.html"
+            ><i class="fas fa-building"></i>View All Organizations</a
+          >
+        </div>
+        <div class="item">
+          <a href="DonorHistoryN.html"
+            ><i class="fas fa-history"></i> MyDonations</a
+          >
+        </div>
+        <div class="item">
+          <a href="password.html"><i class="fas fa-lock"></i>Change Password</a>
+        </div>
+        <div class="item">
+          <a href="indexM.html"><i class="fas fa-sign-out-alt"></i>LogOut</a>
+        </div>
+        <div class="item">
+          <a href="#contact"><i class="fas fa-info-circle"></i>Contact Us</a>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        // jquery for toggle sub menus
+        $(".sub-btn").click(function () {
+          $(this).next(".sub-menu").slideToggle();
+          $(this).find(".dropdown").toggleClass("rotate");
+        });
+
+           // jquery for expand and collapse the sidebar on menu button click
+           $(".menu-btn").click(function () {
+          $(".side-bar").toggleClass("active");
+          $(".menu-btn i").toggleClass("fa-bars fa-times"); // Toggle the menu icon class
+          $(".menu-btn").css("visibility", "visible");
+        });
+
+
+
+        // Function to show password change form when "Change Password" is clicked
+        $("#change-password-btn").click(function () {
+          $(".password-form").show();
+          $(".background-title").show();
+        });
+
+        // Add event listener to "Education" link to navigate to educational posts page
+        $(".menu .item:nth-child(2) .sub-item:nth-child(1)").click(function () {
+          window.location.href = "educational_posts.html"; // Replace with the URL of your educational posts page
+        });
+      });
+    </script>
+    <!-- End Hero Section  -->
+
+    <!--Service Section -->
+    <section id="services">
+      <div class="services container">
+        <div class="service-top">
+          <h1 class="section-title">Mission</h1>
+        </div>
+        <div class="service-bottom">
+          <div class="service-item">
+            <p>
+              At our nonprofit organization , we are committed to bridging the
+              gap between those who have resources to give and those who can
+              benefit the most. Through our transparent and efficient platform ,
+              donors can confidently contribute to causes they care about ,
+              while receivers can access the vital assistance they thrive .
+              Together , we strive to build a more compassionate and resilient
+              society , where everyone has the opportunity to reach their full
+              potential
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Service Section -->
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="contact container">
+        <div>
+          <h1 class="section-title">Contact <span>info</span></h1>
+        </div>
+        <br />
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="icon">
+              <img src="https://img.icons8.com/bubbles/100/000000/phone.png" />
+            </div>
+            <div class="contact-info">
+              <h1>Phone</h1>
+              <h2>0123456789</h2>
+              <h2>0106412367</h2>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon">
+              <img
+                src="https://img.icons8.com/bubbles/100/000000/new-post.png"
+              />
+            </div>
+            <div class="contact-info">
+              <h1>Email</h1>
+              <h2>M123@gmail.com</h2>
+              <h2>Arst@yahoo.com</h2>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon">
+              <img
+                src="https://img.icons8.com/bubbles/100/000000/map-marker.png"
+              />
+            </div>
+            <div class="contact-info">
+              <h1>Address</h1>
+              <h2>5th settlement</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- End Contact Section -->
+    <!-- End Footer -->
+    <script src="./app.js"></script>
+  </body>
+</html>

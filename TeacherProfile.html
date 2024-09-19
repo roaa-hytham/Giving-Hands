@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidebar menu With Sub-menus | Using HTML, CSS & JQuery</title>
+  <link rel="stylesheet" href="style3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <style>
+     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+    /* Add your custom styles here */
+    .top-menu {
+      position: fixed;
+      top: 20px;
+      right: 0;
+      background-color: #404181;
+      padding: 10px 20px;
+      display: flex;
+      z-index: 1000;
+    }
+
+    .top-menu a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .top-menu .dropdown {
+      position: relative;
+    }
+
+    .top-menu .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 0;
+      background-color: #404181;
+      min-width: 120px;
+      z-index: 1000;
+    }
+
+    .top-menu .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .top-menu .dropdown-content a {
+      padding: 10px;
+      display: block;
+    }
+
+    .profile-container {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      margin-left: 20px; /* Add left margin */
+      margin-right: 20px; /* Add right margin */
+      padding: 20px;
+      background-color: rgba(244, 244, 244, 0.85);
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-picture {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin-right: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-details p {
+      margin: 10px 0;
+    }
+
+    .profile-details .title {
+    color: #333; /* Dark gray color for text */
+    font-weight: bold;
+    }
+
+    .profile-details .title i {
+    color: #274071; /* Blue color for icons */
+    }
+
+    .profile-details .description {
+    color: #777; /* Lighter gray color for description text */
+    }
+
+    .profile-details p span.title {
+        font-weight: bold;
+        color: #333; /* Color for titles */
+     }
+
+        .profile-details p span.description {
+         color: #777; /* Color for description */
+        }
+
+    .edit-profile-btn {
+      background-color: #4267B2;
+      color: #fff;
+      border: none;
+      padding: 5px 30px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .button-style {
+    background-color: #ccc;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .success-message {
+      color: green;
+      font-size: 16px;
+      display: none; /* Initially hidden */
+      margin-top: 10px;
+    }
+    .profile-image-container {
+    display: flex;
+    align-items: center; /* Centers items vertically */
+    justify-content: center; /* Centers items horizontally */
+}
+
+.profile-image-container {
+    position: relative; /* Containing block for the absolute positioning of the pen icon */
+    display: inline-block; /* Aligns the container inline with other elements */
+    margin-right: 20px; /* Space between the image and the details */
+}
+
+
+    .edit-profile-btn:hover {
+      background-color: #405d9b;
+    }
+
+    .edit-field {
+      font-size: smaller; /* Make the pen sign smaller */
+      color: #333; /* Text color */
+      background-color: transparent; /* Transparent background */
+      border: none; /* Remove border */
+      cursor: pointer; /* Cursor style */
+      display:none;
+      margin-left: 5px; /* Add some space to the left of the pen */
+    }
+
+    .edit-field:hover {
+      text-decoration: underline; /* Underline on hover */
+    }
+
+    .edit-profile-btn-done {
+      background-color: #ccc;
+      color: #333;
+      border: 1px solid #ccc;
+    }
+    .post-btn {
+    background-color: #ccc;
+    color: #333;
+    border: 1px solid #ccc;
+    }
+
+    .edit-picture-icon {
+    position: absolute;
+    right:20px;
+    bottom: 10px;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: smaller; /* Make the pen sign smaller */
+      color: #333; /* Text color */
+      background-color: transparent; /* Transparent background */
+      border: none; /* Remove border */
+      cursor: pointer; /* Cursor style */
+      display:none;
+
+}
+      /* Styles for notifications */
+      .notifications-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      max-width: 300px;
+      z-index: 10000;
+    }
+
+    .notification {
+  background-color: #f2f2f2;
+  border-left: 4px solid #404181; /* Green border on the left */
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+.notification-title {
+  font-size: 18px;
+  color: #f6f2f2;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.notification-body {
+  font-size: 16px;
+  color: #555;
+}
+
+.close-notification {
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #777;
+}
+.green-notification-container {
+  background-color: #404181; /* Green background color */
+  padding: 10px; /* Add padding for spacing */
+  border-radius: 5px; /* Optional: Rounded corners */
+}
+    .img {
+      position: absolute;
+      top: 10px;
+      right: 15px; /* Adjust as needed */
+      width: 65px; /* Adjust width as needed */
+      height: auto;
+    }
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; /* Adjust font weight as needed */
+      position: absolute;
+      top: 5px;
+      width: 20px;
+      right: 175px; /* Adjust as needed */
+      color: white;
+      margin: 0;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="wallpaper"></div>
+  <header>
+   
+
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="header-content">
+    </div>
+    <div class="header-content"></div>
+    <h1>Giving Hands</h1>
+    <img src="img/logo2.png" alt="logo" class="img">
+  </header>
+
+
+  <div class="side-bar">
+    <div class="menu-btn"></div>
+    <div class="menu">
+      <div class="item">
+        <a href="adminhome.html"><i class="fas fa-home"></i>Home</a>
+      </div>
+      <div class="item">
+        <a href="CreatePost.html"><i class="fas fa-user"></i>My Profile</a>
+      </div>
+      <div class="item">
+        <a class="sub-btn"><i class="fas fa-file-alt"></i>My Posts<i class="fas fa-angle-right dropdown"></i></a>
+        <div class="sub-menu">
+          <a href="ShowAllPosts.html" class="sub-item">Covered</a>
+          <a href="uncovPosts.html" class="sub-item">Uncovered</a>
+        </div>
+      </div> 
+      <div class="item">
+        <a href="changePassORG.html"><i class="fas fa-lock"></i>Change Password</a>
+      </div>
+      <div class="item">
+        <a href="HomepageGeneral.html" class="sub-item">
+          <i class="fas fa-sign-out-alt"></i>Log Out
+        </a>
+      </div>
+      <div class="item">
+        <a href="OrgRepHome.html#contact"
+          ><i class="fas fa-info-circle"></i>Contact Us</a
+        >
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- Profile Picture and Details -->
+<!-- Profile Picture and Details -->
+<div class="profile-container">
+  <div class="profile-image-container" style="position: relative; display: inline-block;">
+    <img src="img/teacher-female-1024.webp" alt="Profile Picture" class="profile-picture" id="profileImage" />
+    <input type="file" id="profileImageInput" style="display: none;" accept="image/*" />
+    <i class="fas fa-pen edit-picture-icon" id="edit-profilePic"></i> <!-- Pen icon -->
+</div>  <div class="profile-details">
+  <p><strong><span class="title"><i class="fas fa-user"></i> Name:</span></strong> <span class="description" id="firstName">Gamila Awad</span> <i class="fas fa-pen edit-field" id="edit-firstName"></i></p>
+  <p><strong><span class="title"><i class="fas fa-venus-mars"></i> Gender:</span></strong> <span class="description" id="gender">Female</span> <i class="fas fa-pen edit-field" id="edit-gender"></i></p>
+  <p><strong><span class="title"><i class="fas fa-envelope"></i> Email:</span></strong> <span class="description" id="email">Gamila1@gmail.com</span> <i class="fas fa-pen edit-field" id="edit-email"></i></p>
+  <p><strong><span class="title"><i class="fas fa-phone-alt"></i> Contact Number:</span></strong> <span class="description" id="contact">0123456789</span> <i class="fas fa-pen edit-field" id="edit-contact"></i></p>
+    
+</div>
+
+  <script type="text/javascript">
+
+    
+    $(document).ready(function () {
+      // Toggle sub-menus on click
+      $(".sub-btn").click(function () {
+        $(this).next(".sub-menu").slideToggle();
+        $(this).find(".dropdown").toggleClass("rotate");
+      });
+      
+      
+    // jquery for expand and collapse the sidebar on menu button click
+    $(".menu-btn").click(function () {
+        $(".side-bar").addClass("active");
+        $(".menu-btn").css("visibility", "hidden");
+
+        // Add event listener to close sidebar when clicking or hovering outside of it
+        $(document).on('click.sidebarClose mouseover.sidebarClose', function (e) {
+          if (!$(e.target).closest('.side-bar').length && !$(e.target).hasClass('menu-btn')) {
+            $('.side-bar').removeClass('active');
+            $('.menu-btn').css('visibility', 'visible');
+            $(document).off('click.sidebarClose mouseover.sidebarClose');
+          }
+        });
+      });
+      
+      // Expand sidebar when hovering over menu button
+      $(".menu-btn").mouseover(function () {
+        if (!$(".side-bar").hasClass("active")) {
+          $(".side-bar").addClass("active");
+        }
+      });
+
+      
+       // Event listener for the close button
+       $(".close-btn").click(function () {
+        $(".side-bar").removeClass("active");
+        $(".menu-btn").css("visibility", "visible");
+      });
+            // Function to show password change form when "Change Password" is clicked
+            $("#change-password-btn").click(function () {
+        $(".password-form").show();
+        $(".background-title").show();
+      });
+    // Add event listener to "Education" link to navigate to educational posts page
+    $(".menu .item:nth-child(2) .sub-item:nth-child(1)").click(function () {
+        window.location.href = "educational_posts.html"; // Replace with the URL of your educational posts page
+      });
+  
+        // Enable field editing when "Edit Profile" is clicked
+        $(".edit-profile-btn").click(function () {
+      if ($(this).text().includes("Edit Profile")) {
+        // Show edit pens next to fields
+        $("#edit-profilePic").click(function() {
+        $("#profileImageInput").click();
+    });
+        $(".edit-field, #edit-profilePic").show();
+        $(this).text('Done').addClass('edit-profile-btn-done').removeClass('edit-profile-btn'); // Change button text to "Done"
+        $(this).html('<i class="fas fa-save"></i> Save Changes');
+        $('.success-message').hide(); // Ensure the success message is hidden when starting edits
+      } else {
+        // "Done" button functionality
+        $(".edit-field, #edit-profilePic").each(function () {
+          var fieldId = $(this).attr("id").replace("edit-", "");
+          if ($("#input-" + fieldId).length > 0) {
+            var value = $("#input-" + fieldId).val();
+            $("#" + fieldId).text(value);
+            $("#input-" + fieldId).remove();
+          }
+          $(this).hide();
+        });
+        $(this).html('<i class="fas fa-pencil-alt"></i> Edit Profile').addClass('edit-profile-btn').removeClass('edit-profile-btn-done');
+    // Show success message
+        // Show success message
+        $('.success-message').text("Edit Done Successfully").fadeIn(500).delay(3000).fadeOut(500);
+      }
+    });
+      // Convert span to input for editing on pen click
+      $(document).on("click", ".edit-field", function () {
+      var fieldId = $(this).attr("id").replace("edit-", "");
+      var content = $("#" + fieldId).text();
+      $("#" + fieldId).html('<input type="text" id="input-' + fieldId + '" value="' + content + '">');
+      $(this).hide();
+    });
+    $("#profileImageInput").change(function() {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+                $('#profileImage').attr('src', e.target.result); // Update the profile picture
+            };
+            
+            reader.readAsDataURL(this.files[0]); // Convert image file to base64 string
+        }
+    });
+
+    let notificationCount = 0; // Counter for notifications
+
+$(".show-notifications-btn").click(function () {
+  notificationCount = 5; // Increment notification count
+  updateNotificationCounter(); // Update the counter display
+
+  // Array of different notification messages
+var notificationMessages = [
+  '<span class="notification-title" style="color: black;">Driver Arrival: </span>The driver has arrived to pick up your donation. Please be ready.',
+  '<span class="notification-title" style="color: black;">Delivery Confirmation: </span>Your donation has been successfully delivered to the recipient.',
+  '<span class="notification-title" style="color: black;">Thank You Message: </span>Thank you for your generous donation! It will make a difference.',
+  '<span class="notification-title" style="color: black;">New Request: </span>A new donation request has been received. Check it out!',
+  '<span class="notification-title" style="color: black;">Reminder: </span>Don\'t forget to schedule your next donation pickup.'
+];
+
+
+  // Define the number of notifications to show
+  var numberOfNotifications = 5;
+
+  // Loop to create and append multiple notifications
+  for (var i = 0; i < numberOfNotifications; i++) {
+    // Randomly select a message from the array
+    var randomIndex = Math.floor(Math.random() * notificationMessages.length);
+    var randomMessage = notificationMessages[randomIndex];
+
+    // Create each notification
+    var notification = $('<div class="notification">' +
+      '<span class="notification-body">' + randomMessage + '</span>' +
+      '<span class="close-notification">&times;</span>' +
+      '</div>');
+
+    // Append each notification to the notifications container
+    $(".notifications-container").append(notification);
+  }
+});
+
+      // Close notification on click (outside the "Show Notifications" button click handler)
+      $(document).on("click", ".close-notification", function () {
+        $(this).parent().remove();
+        notificationCount--; // Decrement notification count
+        updateNotificationCounter(); // Update the counter display
+      });
+        // Function to update the notification counter display
+        function updateNotificationCounter() {
+        $(".notification-counter").text(notificationCount);
+
+        // Check if there are no notifications remaining, then reset the counter
+        if (notificationCount === 0) {
+          resetNotificationCounter();
+        }
+      }
+      // Function to reset the notification counter
+      function resetNotificationCounter() {
+        notificationCount = 0;
+        $(".notification-counter").text(notificationCount);
+      }
+
+  });
+  </script> 
+</body></html>

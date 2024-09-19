@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidebar menu With Sub-menus | Using HTML, CSS & JQuery</title>
+  <link rel="stylesheet" href="style3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  <style>
+     .top-menu {
+      position: fixed;
+      top: 20px;
+      right: 0;
+      background-color: #404181;
+      padding: 10px 20px;
+      display: flex;
+      z-index: 1000;
+    }
+
+    .top-menu a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .top-menu .dropdown {
+      position: relative;
+    }
+
+    .top-menu .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 0;
+      background-color: #404181;
+      min-width: 120px;
+      z-index: 1000;
+    }
+
+    .top-menu .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .top-menu .dropdown-content a {
+      padding: 10px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+
+      <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="header-content">
+        <div class="search-item">
+          <input type="text" id="searchInput" placeholder="Search...">
+          <button id="searchButton"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+   
+  </header>
+
+  <div class="side-bar">
+    <div class="close-btn">
+      <i class="fas fa-times"></i>
+    </div>
+    <div class="menu">
+      <div class="item">
+        <a href="#"><i class="fas fa-desktop"></i>Dashboard</a>
+      </div>
+      <div class="item">
+        <a class="sub-btn"><i class="fas fa-table"></i>Donation Categories<i class="fas fa-angle-right dropdown"></i></a>
+        <div class="sub-menu">
+          <a href="educational_posts.html" class="sub-item">Education</a>
+          <a href="#" class="sub-item">Health</a>
+          <a href="#" class="sub-item">Refugee</a>
+          <a href="#" class="sub-item">Orphanage</a>
+          <a href="#" class="sub-item">Delivery Donations</a>
+        </div>
+      </div>
+      <div class="item">
+        <a href="#"><i class="fas fa-th"></i>Forms</a>
+      </div>
+      <div class="item">
+        <a class="sub-btn"><i class="fas fa-cogs"></i>Settings<i class="fas fa-angle-right dropdown"></i></a>
+        <div class="sub-menu">
+          <a href="password.html" class="sub-item" id="change-password-btn"><i class="fas fa-lock"></i> Change Password</a>
+          <a href="#" class="sub-item">Sub Item 02</a>
+        </div>
+      </div>
+      <div class="item">
+        <a href="about.html"><i class="fas fa-info-circle"></i>About</a>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      // jquery for toggle sub menus
+      $(".sub-btn").click(function () {
+        $(this).next(".sub-menu").slideToggle();
+        $(this).find(".dropdown").toggleClass("rotate");
+      });
+
+      // jquery for expand and collapse the sidebar on menu button click
+      $(".menu-btn").click(function () {
+        $(".side-bar").addClass("active");
+        $(".menu-btn").css("visibility", "hidden");
+
+        // Add event listener to close sidebar when clicking or hovering outside of it
+        $(document).on('click.sidebarClose mouseover.sidebarClose', function (e) {
+          if (!$(e.target).closest('.side-bar').length && !$(e.target).hasClass('menu-btn')) {
+            $('.side-bar').removeClass('active');
+            $('.menu-btn').css('visibility', 'visible');
+            $(document).off('click.sidebarClose mouseover.sidebarClose');
+          }
+        });
+      });
+
+      // Expand sidebar when hovering over menu button
+      $(".menu-btn").mouseover(function () {
+        if (!$(".side-bar").hasClass("active")) {
+          $(".side-bar").addClass("active");
+        }
+      });
+
+      // Event listener for the close button
+      $(".close-btn").click(function () {
+        $(".side-bar").removeClass("active");
+        $(".menu-btn").css("visibility", "visible");
+      });
+
+      // Function to show password change form when "Change Password" is clicked
+      $("#change-password-btn").click(function () {
+        $(".password-form").show();
+        $(".background-title").show();
+      });
+
+      // Add event listener to "Education" link to navigate to educational posts page
+      $(".menu .item:nth-child(2) .sub-item:nth-child(1)").click(function () {
+        window.location.href = "educational_posts.html"; // Replace with the URL of your educational posts page
+      });
+    });
+  </script>
+</body>
+</html>

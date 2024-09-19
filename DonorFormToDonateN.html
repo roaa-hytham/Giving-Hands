@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidebar menu With Sub-menus | Using HTML, CSS & JQuery</title>
+  <link rel="stylesheet" href="style3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+     .top-menu {
+      position: fixed;
+      top: 20px;
+      right: 0;
+      background-color: #404181;
+      padding: 10px 20px;
+      display: flex;
+      z-index: 1000;
+    }
+
+    .top-menu a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .top-menu .dropdown {
+      position: relative;
+    }
+
+    .top-menu .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 0;
+      background-color: #404181;
+      min-width: 120px;
+      z-index: 1000;
+    }
+
+    .top-menu .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .top-menu .dropdown-content a {
+      padding: 10px;
+      display: block;
+    }
+    .img {
+      position: absolute;
+      top: 10px;
+      right: 15px; /* Adjust as needed */
+      width: 65px; /* Adjust width as needed */
+      height: auto;
+    }
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; /* Adjust font weight as needed */
+      position: absolute;
+      top: 5px;
+      width: 20px;
+      right: 175px; /* Adjust as needed */
+      color: white;
+      margin: 0;
+    }
+      /* Add your custom styles here */
+      body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            
+        }
+        .container {
+    max-width: 600px;
+    margin: auto; /* Center horizontally */
+    margin-top: 115px; /* Adjust the top margin for vertical centering */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #404181;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px; /* Adjust the font size as needed */
+            font-weight: bold;
+        }
+        input[type="submit"]:hover {
+            background-color: #2c2c6f;
+        }
+        input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 30px; /* Increased margin */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+select {
+    width: 100%;
+    padding: 12px; /* Match padding with input fields */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 20px; /* Match spacing with input fields */
+}
+.required {
+    color: red;
+    margin-left: 5px;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+
+      <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="header-content"></div>
+      <h1>Giving Hands</h1>
+      <img src="img/logo2.png" alt="logo" class="img">
+  </header>
+
+  <div class="side-bar">
+    <div class="menu-btn"></div>
+    <div class="menu">
+      <div class="item">
+        <a href="indexM.html"><i class="fas fa-home"></i>Home</a>
+      </div>
+
+      <div class="item">
+        <a href="DonorProfileN.html"><i class="fas fa-user"></i>My Profile</a>
+      </div>
+      <div class="item">
+        <a class="sub-btn"
+          ><i class="fas fa-gift"></i>Donation Requests<i
+            class="fas fa-angle-right dropdown"
+          ></i
+        ></a>
+        <div class="sub-menu">
+          <a href="donor.html" class="sub-item">All Requests</a>
+          <a href="School.html" class="sub-item">School Supplies</a>
+          <a href="Medical.html" class="sub-item">Medical Supplies</a>
+          <a href="Blood.html" class="sub-item">Blood Donations</a>
+          <a href="Clothes.html" class="sub-item">Clothes Donations</a>
+          <a href="Food.html" class="sub-item">Food Donations</a>
+          <a href="Toy.html" class="sub-item">Toys Donations</a>
+        </div>
+      </div>
+      <div class="item">
+        <a class="sub-btn"
+          ><i class="fas fa-heart"></i>Volunteer Now<i
+            class="fas fa-angle-right dropdown"
+          ></i
+        ></a>
+        <div class="sub-menu">
+          <a href="medicalPosts.html" class="sub-item">Doctor</a>
+          <a href="educational_posts.html" class="sub-item">Teacher</a>
+        </div>
+      </div>
+      <div class="item">
+        <a href="OrganizationsDonorN.html"
+          ><i class="fas fa-building"></i>View All Organizations</a
+        >
+      </div>
+      <div class="item">
+        <a href="DonorHistoryN.html"
+          ><i class="fas fa-history"></i> MyDonations</a
+        >
+      </div>
+      <div class="item">
+        <a href="password.html"><i class="fas fa-lock"></i>Change Password</a>
+      </div>
+      <div class="item">
+        <a href="indexM.html"><i class="fas fa-sign-out-alt"></i>LogOut</a>
+      </div>
+      <div class="item">
+        <a href="homedonorloggedin.html #contact"
+          ><i class="fas fa-info-circle"></i>Contact Us</a
+        >
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Application For Donation</h2>
+    <form id="applicationForm" action="submit_application.php" method="POST">
+        <label for="name">Name: <span class="required">*</span></label>
+        <input type="text" id="name" name="name" required>
+    
+        <label for="email">Email: <span class="required">*</span></label>
+        <input type="email" id="email" name="email" required>
+    
+        <label for="phone">Phone Number: <span class="required">*</span></label>
+        <input type="text" id="phone" name="phone">
+        <div id="phoneError" style="display: none; color: red;">Please enter only numbers.</div>
+        
+        <label for="transportation">Type of Transportation: <span class="required">*</span></label>
+<select id="transportation" name="transportation" required>
+  <option value="" disabled selected>Select Transportation</option>
+  <option value="truck">Truck</option>
+  <option value="car">Car</option>
+  <option value="motorcycle">Motorcycle</option>
+  <option value="others">Others</option> <!-- Added "Others" option -->
+</select>
+<!-- Empty input field for "Others" -->
+<input type="text" id="otherTransportation" name="otherTransportation" placeholder="Specify Other Transportation" style="display: none;">
+
+<label for="time-slot">Preferred Time Slot: <span class="required">*</span></label>
+<select id="time-slot" name="time-slot" required>
+  <option value="" disabled selected>Select Time Slot</option>
+  <option value="morning">Morning (8:00 AM - 12:00 PM)</option>
+  <option value="afternoon">Afternoon (12:00 PM - 4:00 PM)</option>
+  <option value="evening">Evening (4:00 PM - 8:00 PM)</option>
+</select>
+
+
+        <label for="message">Additional Message (optional):</label>
+        <textarea id="message" name="message" rows="3"></textarea>
+    
+        <input type="submit" value="Submit Application">
+    </form>
+    <div id="errorMessage" style="display: none; color: red;">Please fill in all required fields.</div>
+   
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+      // jquery for toggle sub menus
+      $(".sub-btn").click(function () {
+        $(this).next(".sub-menu").slideToggle();
+        $(this).find(".dropdown").toggleClass("rotate");
+      });
+  
+            // jquery for expand and collapse the sidebar on menu button click
+            $(".menu-btn").click(function () {
+          $(".side-bar").toggleClass("active");
+          $(".menu-btn i").toggleClass("fa-bars fa-times"); // Toggle the menu icon class
+          $(".menu-btn").css("visibility", "visible");
+        });
+  
+      // Function to show password change form when "Change Password" is clicked
+      $("#change-password-btn").click(function () {
+        $(".password-form").show();
+        $(".background-title").show();
+      });
+  
+      // Add event listener to "Education" link to navigate to educational posts page
+      $(".menu .item:nth-child(2) .sub-item:nth-child(1)").click(function () {
+        window.location.href = "educational_posts.html"; // Replace with the URL of your educational posts page
+      });
+      
+    // Handle form submission
+$("form").submit(function (event) {
+  // Prevent default form submission
+  event.preventDefault();
+  
+  // Perform form validation here
+  var name = $("#name").val();
+  var email = $("#email").val();
+  var phone = $("#phone").val();
+  var transportation = $("#transportation").val();
+  var timeSlot = $("#time-slot").val();
+
+  // Check if all required fields are filled
+  if (name === "" || email === "" || phone === "" || transportation === "" || timeSlot === "") {
+    $("#errorMessage").text("Please fill in all required fields.").show();
+    return;
+  }
+
+  // Phone number validation
+  if (!(/^\d+$/.test(phone))) {
+    $("#phoneError").show();
+    return;
+  }
+
+     // If all fields are filled, show success message and redirect
+     $("#success-message").show();
+      setTimeout(function () {
+        window.location.href = "success_pageN.html"; // Replace with the URL of your success page
+      }, 1000); // Redirect after 2 seconds (2000 milliseconds)
+    });
+
+
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+  var transportationSelect = document.getElementById("transportation");
+  var otherTransportationInput = document.getElementById("otherTransportation");
+
+  // Add event listener to the dropdown list
+  transportationSelect.addEventListener("change", function () {
+    if (transportationSelect.value === "others") {
+      otherTransportationInput.style.display = "block"; // Show the input field
+    } else {
+      otherTransportationInput.style.display = "none"; // Hide the input field
+    }
+  });
+});
+    
+
+  </script>
+  
+</body>
+</html>

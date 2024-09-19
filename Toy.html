@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giving Hands | Toy Requests</title>
+  <link rel="stylesheet" href="style3.css" />
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+  <!-- Font Nunito -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <!-- CSS Stylesheet -->
+  <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+  <link rel="shortcut icon" href="imgs/favicon.ico" />
+  <link rel="stylesheet" href="style3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+    #give {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      /* Adjust as needed */
+      width: 65px;
+      /* Adjust width as needed */
+      height: auto;
+    }
+
+    .top-menu {
+      position: fixed;
+      top: 20px;
+      right: 0;
+      background-color: #404181;
+      padding: 10px 20px;
+      display: flex;
+      z-index: 1000;
+    }
+
+    .top-menu a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .top-menu .dropdown {
+      position: relative;
+    }
+
+    .top-menu .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 0;
+      background-color: #404181;
+      min-width: 120px;
+      z-index: 1000;
+    }
+
+    .top-menu .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .top-menu .dropdown-content a {
+      padding: 10px;
+      display: block;
+    }
+
+    h1 {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      /* Adjust font weight as needed */
+      position: absolute;
+      top: 5px;
+      width: 20px;
+      right: 175px;
+      /* Adjust as needed */
+      color: white;
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    img {
+      width: 115px;
+    }
+
+    .card-body {
+      position: relative;
+      /* Set position relative for the card body */
+    }
+
+    .apply-btn,
+    .view-details-btn {
+      background-color: #404181;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      /* Adjust margin as needed */
+      align-self: flex-end;
+      /* Align buttons to the right */
+      position: absolute;
+      /* Position the buttons absolutely */
+      bottom: 20px;
+      /* Distance from the bottom */
+      right: 20px;
+      font-size: 15px;
+
+    }
+
+    .view-details-btn {
+      margin-left: 10px;
+      /* Add some space between the buttons */
+      bottom: 20px;
+      /* Distance from the bottom */
+      right: 175px;
+      /* Distance from the right */
+    }
+
+
+    .filter-form {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .filter-form label,
+    .filter-form select,
+    .filter-form button {
+      margin-right: 10px;
+      font-size: 16px;
+      /* Increase font size */
+
+    }
+
+    #filterButton {
+      background-color: #404181;
+      /* Match color with apply button */
+      color: white;
+      /* Text color */
+      padding: 10px 20px;
+      /* Increase padding for larger button */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      /* Adjust margin as needed */
+    }
+
+
+
+    #filterButton:hover {
+      background-color: #2c2c6e;
+      /* Change the background color on hover */
+    }
+
+    .donation-quantity {
+      margin-top: 10px;
+    }
+
+    .donation-quantity label {
+      margin-right: 10px;
+    }
+
+    .donation-quantity input {
+      width: 60px;
+      padding: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .donate-button {
+      margin-top: 10px;
+    }
+
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 20% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      text-align: left;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      right: 10px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .details {
+      font-weight: bold;
+    }
+
+    .posts {
+      position: relative;
+      word-wrap: break-word;
+
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      /* Align items to the top */
+      margin-top: 20px;
+      /* Adjust margin-top as needed */
+      text-align: left;
+
+    }
+
+    .post {
+      width: 900px;
+      /* Adjust width as needed */
+      margin: 20px;
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+
+    }
+
+    .post img {
+      float: left;
+      /* Align image to the left */
+      margin-right: 20px;
+      /* Add spacing between image and text */
+      width: 145px;
+      /* Adjust image width as needed */
+      height: auto;
+      /* Maintain aspect ratio */
+      border-radius: 5px;
+    }
+
+    .post h2 {
+      margin-bottom: 10px;
+    }
+
+    .post p {
+      margin-bottom: 20px;
+    }
+
+    .post p.location a {
+      color: #404181;
+      /* Adjust link color as needed */
+      text-decoration: none;
+    }
+
+    .post p.location a:hover {
+
+      text-decoration: underline;
+      /* Add underline on hover */
+    }
+
+    .required {
+      color: red;
+      font-weight: bold;
+    }
+
+    .search-container {
+      position: fixed;
+      top: 100px;
+      /* Adjust top distance according to your design */
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .search-wrapper {
+      position: relative;
+    }
+
+    #searchInput {
+      padding: 10px 35px 10px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 250px;
+      color: black;
+    }
+
+    .fa-search {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #888;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="search-container">
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" placeholder="Search for category..." autocomplete="off">
+        <i class="fas fa-search"></i>
+      </div>
+    </div>
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="header-content"></div>
+    <h1 style="font-size: 2em;">Giving Hands</h1>
+    <img id="give" src="img/logo2.png" alt="logo" class="img" />
+
+
+  </header>
+
+  <div class="side-bar">
+    <div class="menu-btn"></div>
+    <div class="menu">
+      <div class="item">
+        <a href="homedonorloggedin.html"><i class="fas fa-home"></i>Home</a>
+      </div>
+      <div class="item">
+        <a href="DonorProfileN.html"><i class="fas fa-user"></i>My Profile</a>
+      </div>
+      <div class="item">
+        <a class="sub-btn"
+          ><i class="fas fa-gift"></i>Donation Requests<i
+            class="fas fa-angle-right dropdown"
+          ></i
+        ></a>
+        <div class="sub-menu">
+          <a href="donor.html" class="sub-item">All Requests</a>
+          <a href="School.html" class="sub-item">School Supplies</a>
+          <a href="Medical.html" class="sub-item">Medical Supplies</a>
+          <a href="Blood.html" class="sub-item">Blood Donations</a>
+          <a href="Clothes.html" class="sub-item">Clothes Donations</a>
+          <a href="Food.html" class="sub-item">Food Donations</a>
+          <a href="Toy.html" class="sub-item">Toys Donations</a>
+        </div>
+      </div>
+      <div class="item">
+        <a class="sub-btn"
+          ><i class="fas fa-heart"></i>Volunteer Now<i
+            class="fas fa-angle-right dropdown"
+          ></i
+        ></a>
+        <div class="sub-menu">
+          <a href="medicalPosts.html" class="sub-item">Doctor</a>
+          <a href="educational_posts.html" class="sub-item">Teacher</a>
+        </div>
+      </div>
+      <div class="item">
+        <a href="OrganizationsDonorN.html"
+          ><i class="fas fa-building"></i>View All Organizations</a
+        >
+      </div>
+      <div class="item">
+        <a href="DonorHistoryN.html"
+          ><i class="fas fa-history"></i> MyDonations</a
+        >
+      </div>
+      <div class="item">
+        <a href="password.html"><i class="fas fa-lock"></i>Change Password</a>
+      </div>
+      <div class="item">
+        <a href="HomepageGeneral.html"><i class="fas fa-sign-out-alt"></i>LogOut</a>
+      </div>
+      <div class="item">
+        <a href="homedonorloggedin.html#contact"><i class="fas fa-info-circle"></i>Contact Us</a>
+
+      </div>
+
+    </div>
+  </div>
+
+  <section id="list">
+    <section id="list" class="gap-bottom">
+      <div class="container">
+        <h2 id="title" style="text-align: center; font-weight: bold; position: relative;">Toy Requests</h2>
+        <div class="row justify-content-center" style="
+          width: 780px;
+          display: flex; /* flex-direction: column; / / align-items: center; */
+          margin-left: auto;
+          margin-right: auto;
+        ">
+
+
+          <div class="filter-form">
+            <label for="agel">Age:</label>
+            <select id="age">
+              <option value="all">Select Age</option>
+              <option value="2">0-2</option>
+              <option value="5">3-5</option>
+              <option value="8">6-8</option>
+              <option value="12">9-12</option>
+              <option value="18">12+</option>
+            </select>
+            <!-- Add more options as needed -->
+            </select>
+            <label for="genderl">Gender:</label>
+            <select id="gender">
+              <option value="all">Select Gender</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <!-- Add more options as needed -->
+            </select>
+            <label for="categoryl">Category:</label>
+            <select id="category">
+              <option value="all">Select Categotry</option>
+              <option value="board games">Board Games</option>
+              <option value="stuffed toys">Stuffed Toys</option>
+              <option value="dolls">Dolls</option>
+              <option value="sports">Sports</option>
+              <option value="cars">Cars</option>
+              <option value="outdoor">Outdoor</option>
+              <!-- Add more options as needed -->
+            </select>
+            <button id="filterButton">Filter</button>
+          </div>
+
+
+          <div class="posts">
+
+            <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+            <div class="post" data-age="3" data-gender="female" data-category="stuffed toys">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <i class="fas fa-gamepad fa-5x mr-2"></i>
+                </div>
+                <div class="col">
+
+                  <h2>Rahma Orphanage </h2>
+                  <p><strong>Age :</strong> 3 </p>
+                  <p><strong>Gender :</strong> Female </span></p>
+                  <p><strong>Category :</strong> Stuffed Toys</p>
+                  <div class="donation-quantity">
+                    <label for="quantity"><strong><span class="required">*</span> Quantity :</strong></label>
+                    <input type="number" id="quantity1" name="quantity" min="1" required>
+                  </div>
+                  <p class="donateNow alert" id="alert1"></p>
+                  <button class="view-details-btn" data-target="#postDetailsModal1">View Details</button>
+                  <button class="apply-btn" onclick="donateNow(1)">Donate Now</button>
+                </div>
+              </div>
+            </div>
+
+            <div id="postDetailsModal1" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>
+                <h2>Rahma Orphanage</h2>
+                </p>
+                <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                  <span class="mt-1">01234567800</span>
+                  <br>
+                </p>
+                <p>
+                  <i class="far fa-envelope mr-2 mt-1"></i>
+                  <span class="mt-1">Rahma@gmail.com</span>
+                  <br>
+                </p>
+                <p>
+                  <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                  <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+                  <br>
+                </p>
+                <img src="img/animToy.png" alt="Animal toys" class="details-img">
+                <p><span class="details">Type: </span>Animal toys</p>
+                <!-- <p><span class="details">Age: </span>3 years old</p>
+                  <p><span class="details">Gender: </span>Female</p>
+                  <p><span class="details">Category: </span>Exploratory toys</p> -->
+                <p><span class="details">Quantity needed: </span><span id="num1">3</span> toys</p>
+
+                </p>
+              </div>
+
+            </div>
+
+            <div class="posts">
+
+              <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+              <div class="post" data-age="6" data-gender="male" data-category="cars">
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <i class="fas fa-gamepad fa-5x mr-2"></i>
+                  </div>
+                  <div class="col">
+
+                    <h2>Kawthar Orphanage</h2>
+                    <p><strong>Age :</strong> 6 </p>
+                    <p><strong>Gender :</strong> Male </span></p>
+                    <p><strong>Category :</strong> Cars</p>
+                    <div class="donation-quantity">
+                      <label for="quantity"><strong><span class="required">*</span> Quantity :</strong></label>
+                      <input type="number" id="quantity2" name="quantity" min="1" required>
+                    </div>
+                    <p class="donateNow alert" id="alert2"></p>
+                    <button class="view-details-btn" data-target="#postDetailsModal2">View Details</button>
+                    <button class="apply-btn" onclick="donateNow(2)">Donate Now</button>
+
+                  </div>
+                </div>
+              </div>
+
+              <div id="postDetailsModal2" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <p>
+                  <h2>Kawthar Orphanage</h2>
+                  </p>
+                  <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                    <span class="mt-1">01234537800</span>
+                    <br>
+                  </p>
+                  <p>
+                    <i class="far fa-envelope mr-2 mt-1"></i>
+                    <span class="mt-1">Kawthar@gmail.com</span>
+                    <br>
+                  </p>
+                  <p>
+                    <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                    <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+                    <br>
+                  </p>
+                  <img src="img/cars.png" alt="Cars" class="details-img">
+                  <p><span class="details">Type : </span> Cars</p>
+                  <!-- <p><span class="details">Age: </span>3 years old</p>
+                    <p><span class="details">Gender: </span>Female</p>
+                    <p><span class="details">Category: </span>Exploratory toys</p> -->
+                  <p><span class="details">Quantity needed : </span><span id="num2"> 2</span> toys</p>
+                  </p>
+                </div>
+
+              </div>
+
+
+              <!--
+                                            <div id="postDetailsModal2" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <img src="img/Cars.png" alt="Cars" class="details-img">
+                  <p><span class="details">Type: </span>Cars</p>
+                  <p><span class="details">Age: </span>6 years old</p>
+                  <p><span class="details">Gender: </span>Male</p>
+                  <p><span class="details">Category: </span>Cars</p>
+                  <p><span class="details">Quantity needed: </span><span id="num">2</span> toys</p>
+                </div>
+              </div>
+
+                            -->
+
+
+              <div class="posts">
+
+                <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                <div class="post" content" data-age="8" data-gender="male" data-category="board games">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <i class="fas fa-gamepad fa-5x mr-2"></i>
+                    </div>
+                    <div class="col">
+
+                      <h2>Dar El Tarbiah Orphanage</h2>
+                      <p><strong>Age :</strong> 8 </p>
+                      <p><strong>Gender :</strong> Male </span></p>
+                      <p><strong>Category :</strong> Board Games</p>
+                      <div class="donation-quantity">
+                        <label for="quantity"><strong><span class="required">*</span> Quantity :</strong></label>
+                        <input type="number" id="quantity3" name="quantity" min="1" required>
+                      </div>
+                      <p class="donateNow alert" id="alert3"></p>
+                      <button class="view-details-btn" data-target="#postDetailsModal3">View Details</button>
+                      <button class="apply-btn" onclick="donateNow(3)">Donate Now</button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div id="postDetailsModal3" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <p>
+                  <h2>Dar El Tarbiah Orphanage</h2>
+                  </p>
+                  <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                    <span class="mt-1">01134567800</span>
+                    <br>
+                  </p>
+                  <p>
+                    <i class="far fa-envelope mr-2 mt-1"></i>
+                    <span class="mt-1">Tarbiah@gmail.com</span>
+                    <br>
+                  </p>
+                  <p>
+                    <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                    <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+                    <br>
+                  </p>
+                  <img src="img/BuildBcks.png" alt="Building Blocks" class="details-img">
+                  <p><span class="details">Type : </span>Building Blocks</p>
+                  <!-- <p><span class="details">Age: </span>3 years old</p>
+                    <p><span class="details">Gender: </span>Female</p>
+                    <p><span class="details">Category: </span>Exploratory toys</p> -->
+                  <p><span class="details">Quantity needed : </span><span id="num3">4</span> toys</p>
+                  </p>
+                </div>
+
+              </div>
+
+              <!--
+
+              <div id="postDetailsModal3" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <img src="img/BuildBcks.png" alt="Building blocks" class="details-img">
+                  <p><span class="details">Type: </span>Building blocks</p>
+                  <p><span class="details">Age: </span>8 years old</p>
+                  <p><span class="details">Gender: </span>Male</p>
+                  <p><span class="details">Category: </span>Building toys</p>
+                  <p><span class="details">Quantity needed: </span><span id="num">4</span> toys</p>
+                </div>
+              </div>
+                              
+                              -->
+
+
+
+    </section>
+  </section>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      //jquery for toggle sub menus
+      $(".sub-btn").click(function () {
+        $(this).next(".sub-menu").slideToggle();
+        $(this).find(".dropdown").toggleClass("rotate");
+      });
+
+      //jquery for expand and collapse the sidebar
+      $(".menu-btn").click(function () {
+                  $(".side-bar").toggleClass("active");
+                  $(".menu-btn i").toggleClass("fa-bars fa-times"); // Toggle the menu icon class
+                  $(".menu-btn").css("visibility", "visible");
+                });
+      $(".close-btn").click(function () {
+        $(".side-bar").removeClass("active");
+        $(".menu-btn").css("visibility", "visible");
+      });
+
+      // Function to show password change form when "Change Password" is clicked
+      $("#change-password-btn").click(function () {
+        $(".password-form").show();
+        $(".background-title").show();
+      });
+    });
+
+    // Function to change password (you can implement the logic here)
+    function changePassword() {
+      // Validate if new password matches confirm password
+      var newPassword = $("#new-password").val();
+      var confirmPassword = $("#confirm-password").val();
+      if (newPassword !== confirmPassword) {
+        alert("New password and confirm password must match!");
+        return;
+      }
+      if (newPassword.length < 8) {
+        alert("New password must be at least 8 characters long!");
+        return;
+      }
+      // Add your password change logic here
+      $("#success-message").text("Password changed successfully!");
+    }
+
+
+    $("#filterButton").click(function () {
+      // Get selected filter values
+      var ageFilter = $("#age").val();
+      var genderFilter = $("#gender").val();
+      var categoryFilter = $("#category").val();
+
+      // Filter posts based on selected values
+      $(".post").each(function () {
+        var request = $(this);
+        var ageRequest = parseInt(request.data("age"));
+        var genderRequest = request.data("gender");
+        var categoryRequest = request.data("category");
+
+        // Check if the post matches the selected filters
+        var ageMatch = false;
+        switch (ageFilter) {
+          case "all": ageMatch = true; break;
+          case "2": ageMatch = ageRequest <= 2 && ageRequest >= 0; break;
+          case "5": ageMatch = ageRequest <= 5 && ageRequest >= 3; break;
+          case "8": ageMatch = ageRequest <= 8 && ageRequest >= 6; break;
+          case "12": ageMatch = ageRequest <= 12 && ageRequest >= 9; break;
+          case "18": ageMatch = ageRequest > 12; break;
+
+          default: ageMatch = false;
+
+        }
+        var genderMatch = genderFilter === "all" || genderRequest === genderFilter;
+        var categoryMatch = categoryFilter === "all" || categoryRequest === categoryFilter;
+
+
+        // Show or hide the post based on the filter match
+        if (ageMatch && genderMatch && categoryMatch) {
+          request.show();
+        } else {
+          request.hide();
+        }
+      });
+    });
+
+    function donateNow(number) {
+      var paragraph = document.getElementById("alert" + number);
+      paragraph.textContent = "";
+      var quantityInput = document.getElementById("quantity" + number);
+      var quantity = parseInt(quantityInput.value);
+      var spanElement = document.getElementById("num" + number);
+      var maxquantity = parseInt(spanElement.textContent);
+      if (quantity <= maxquantity & quantity > 0) {
+        paragraph.textContent = "Thank you for donating " + quantity + " toys!";
+        paragraph.style.color = "green";
+        window.location.href = 'DonorFormToDonateN.html';
+      }
+      else {
+        if (quantity > maxquantity) {
+          paragraph.textContent = "Sorry, you can't donate more than " + maxquantity + " toys.";
+          paragraph.style.color = "red";
+        }
+        else {
+          paragraph.textContent = "Please enter a valid quantity (atleast 1).";
+          paragraph.style.color = "red";
+        }
+      }
+    }
+
+
+    $(".view-details-btn").click(function () {
+      // Get the target modal
+      var targetModal = $(this).data("target");
+
+      // Display the target modal
+      $(targetModal).fadeIn();
+    });
+
+    // Event listener for closing the modal
+    $(".close").click(function () {
+      $(".modal").fadeOut();
+    });
+
+    // Modal script
+    // Get the modal
+    const modals = document.querySelectorAll(".modal");
+
+    // Get the <span> element that closes the modal
+    const spans = document.getElementsByClassName("close");
+
+    // When the user clicks the button, open the modal
+    const viewDetailsButtons = document.querySelectorAll(".view-details-btn");
+
+    const viewDetailsButtonsArray = Array.from(viewDetailsButtons);
+
+    viewDetailsButtonsArray.forEach((button, index) => {
+      button.onclick = () => {
+        modals[index].style.display = "block";
+      };
+    });
+
+    const spansArray = Array.from(spans);
+
+    // When the user clicks on <span> (x), close the modal
+    spansArray.forEach((span, index) => {
+      span.onclick = () => {
+        modals[index].style.display = "none";
+      };
+    });
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = (event) => {
+      modals.forEach((modal) => {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+    };
+
+    $("#searchInput").keydown(function (event) {
+      if (event.key === "Enter") {
+        searchCategory($(this).val());
+      }
+    });
+    // Event listener for Enter key press in search input
+    $(".fa-search").click(function () {
+      searchCategory($("#searchInput").val());
+    });
+
+
+    function searchCategory() {
+      const searchInputValue = document.getElementById('searchInput').value.trim().toLowerCase();
+      if (searchInputValue == "toy") {
+        // Redirect to the selected fruit's page
+        window.location.href = "Toy.html";
+      }
+      else if (searchInputValue == "food") {
+        // Redirect to the selected fruit's page
+        window.location.href = "Food.html";
+      }
+      else if (searchInputValue == "clothes") {
+        // Redirect to the selected fruit's page
+        window.location.href = "Clothes.html";
+      }
+      else if (searchInputValue == "medical") {
+        // Redirect to the selected fruit's page
+        window.location.href = "Medical.html";
+      }
+      else if (searchInputValue == "school") {
+        // Redirect to the selected fruit's page
+        window.location.href = "School.html";
+      }
+      else if (searchInputValue == "blood") {
+        // Redirect to the selected fruit's page
+        window.location.href = "Blood.html";
+      }
+      else {
+        $(".post").each(function () {
+          var request = $(this);
+          request.hide();
+        })
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>

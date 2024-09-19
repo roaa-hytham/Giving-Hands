@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    />
+    <!-- Font Nunito -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Animate CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="styleN.css" />
+    <link rel="shortcut icon" href="imgs/favicon.ico" />
+    <title>Login As Recipient - Bleed To Save</title>
+    <style>
+      /* Style for successful login message */
+      #loginMessage.success {
+        color: green !important;
+      }
+
+      /* Style for unsuccessful login message */
+      #loginMessage.error {
+        color: red !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Login As A Recipient -->
+    <h1 class="display-4 section-heading form-gap mb-5 text-center">Login</h1>
+    <section id="login-form" class="container">
+      <div class="col-lg-5 col-md-7 login-form card">
+        <div class="card-body my-4">
+          <div class="container">
+            <form class="mb-4" onsubmit="return validateLogin()">
+              <div class="form-group">
+                <label for="Username">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="Username"
+                  placeholder="Username"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Password"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                class="mt-3 btn btn-lg btn-primary slide-btn"
+              >
+                Login
+              </button>
+              <p id="loginMessage" class="text-success"></p>
+            </form>
+            <p class="d-inline">Haven't registered yet?</p>
+            <span class="a-underline"
+              ><a href="register.html">Register now</a></span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <script type="text/javascript">
+      function validateLogin() {
+        var username = document.getElementById("Username").value;
+        var password = document.getElementById("password").value;
+        var loginMessage = document.getElementById("loginMessage");
+
+        // Check if username and password are correct
+        if (username === "Amira" && password === "1234567888") {
+          loginMessage.classList.add("success"); // Add success class
+          loginMessage.textContent = "Login successful!";
+          loginMessage.style.color = "green";
+          setTimeout(function () {
+            window.location.href = "dashboard.html";
+          }, 2000); // 5 seconds delay
+          return false; // Prevent form submission
+        } else if (username === "Mariam" && password === "1234567889") {
+          loginMessage.classList.add("success"); // Add success class
+          loginMessage.textContent = "Login successful!";
+          loginMessage.style.color = "green";
+          setTimeout(function () {
+            window.location.href = "veiw1.html";
+          }, 2000); // 5 seconds delay
+          return false; // Prevent form submission
+        } else if (username === "Sara" && password === "1234567887") {
+          loginMessage.classList.add("success"); // Add success class
+          loginMessage.textContent = "Login successful!";
+          loginMessage.style.color = "green";
+          setTimeout(function () {
+            window.location.href = "ORGrep.html";
+          }, 2000); // 5 seconds delay
+          return false; // Prevent form submission
+        } else {
+          loginMessage.classList.add("error");
+          loginMessage.textContent = "Invalid username or password";
+          return false; // Prevent form submission
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar menu With Sub-menus | Using HTML, CSS & JQuery</title>
+    <link rel="stylesheet" href="style3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+      /* Add your custom styles here */
+
+      .top-menu {
+      position: fixed;
+      top: 20px;
+      right: 0;
+      background-color: #404181;
+      padding: 10px 20px;
+      display: flex;
+      z-index: 1000;
+    }
+    .top-menu a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+    .top-menu .dropdown {
+      position: relative;
+    }
+    .top-menu .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 0;
+      background-color: #404181;
+      min-width: 120px;
+      z-index: 1000;
+    }
+    .top-menu .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .top-menu .dropdown-content a {
+      padding: 10px;
+      display: block;
+    }
+    .img {
+      position: absolute;
+      top: 10px;
+      right: 15px; /* Adjust as needed */
+      width: 65px; /* Adjust width as needed */
+      height: auto;
+    }
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; /* Adjust font weight as needed */
+      position: absolute;
+      top: 5px;
+      width: 20px;
+      right: 175px; /* Adjust as needed */
+      color: white;
+      margin: 0;
+    }
+
+      /* Styles for posts */
+      .posts {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start; /* Align items to the top */
+        margin-top: 100px; /* Adjust margin-top as needed */
+        text-align: left;
+       
+      }
+
+      .post {
+        width: 900px; /* Adjust width as needed */
+        margin: 20px;
+        padding: 20px;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+
+      }
+
+      .post img {
+        float: left; /* Align image to the left */
+        margin-right: 20px; /* Add spacing between image and text */
+        width: 300px; /* Adjust image width as needed */
+        height: 200px; /* Maintain aspect ratio */
+        border-radius: 5px;
+      }
+
+      .post h2 {
+        margin-bottom: 10px;
+      }
+
+      .post p {
+        margin-bottom: 20px;
+      }
+
+      .post p.location a {
+        color: #404181; /* Adjust link color as needed */
+        text-decoration: none;
+      }   
+
+      .post p.location a:hover {
+        text-decoration: underline; /* Add underline on hover */
+      } 
+
+      .post p span.title {
+        font-weight: bold;
+        color: #0b0a0a; /* Color for titles */
+     }
+
+        .post p span.description {
+         color: #181616; /* Color for description */
+        }
+        
+
+        .filter-form {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .filter-form label,
+      .filter-form select,
+      .filter-form button {
+        margin-right: 10px;
+        font-size: 16px; /* Increase font size */
+        /* Use the same text color as the posts */
+      }
+      #filterButton {
+        padding: 8px 16px;
+        background-color: #404181;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        }
+        .post p.description {
+        color: #333; /* Change the color to match the post text color */
+        }
+
+        #filterButton:hover {
+        background-color: #2c2c6e; /* Change the background color on hover */
+        }
+
+        .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+      .modal-content p {
+     margin-bottom: 7px; /* Set the margin between lines */
+    }
+
+    #map {
+    height: 200px;
+    width: 100%;
+  }
+  .bold-text {
+  font-weight: bold;
+}
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; /* Adjust font weight as needed */
+      position: absolute;
+      top: 5px;
+      width: 20px;
+      right: 175px; /* Adjust as needed */
+      color: white;
+      margin: 0;
+    }
+
+      /* Close button style */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      /* view details button */
+      .view-details-btn {
+        padding: 12px 25px; /* Add padding for better clickability */
+        background-color: #404181; /* Button background color */
+        color: white; /* Button text color */
+        border: none; /* Remove border */
+        border-radius: 5px; /* Add border radius for rounded corners */
+        cursor: pointer; /* Change cursor to pointer on hover */
+        transition: background-color 0.3s; /* Add transition for smoother hover effect */
+        font-size: 15px;
+        }
+
+        .fulfill-btn {
+        padding: 12px 25px; /* Add padding for better clickability */
+        background-color: #404181; /* Button background color */
+        color: white; /* Button text color */
+        border: none; /* Remove border */
+        border-radius: 5px; /* Add border radius for rounded corners */
+        cursor: pointer; /* Change cursor to pointer on hover */
+        transition: background-color 0.3s; /* Add transition for smoother hover effect */
+        font-size: 15px;
+        }
+
+        .post-buttons {
+        display: flex;
+        justify-content: flex-end; /* Align buttons to the right */
+        margin-top: 10px; /* Add some top margin for spacing */
+      }
+
+      .post-buttons .view-details-btn {
+        margin-right: 10px; /* Add right margin to separate buttons */
+      }
+
+        .view-details-btn:hover {
+         background-color: #2c2c6e; /* Darker background color on hover */
+        }
+    </style>
+  </head>
+  <body>
+    <header>
+        <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+          <div class="header-content"></div>
+          <h1>Giving Hands</h1>
+          <img src="img/logo2.png" alt="logo" class="img">
+      </header>
+      
+      <div class="side-bar">
+        <div class="menu-btn"></div>
+        <div class="menu">
+          <div class="item">
+            <a href="indexM.html"><i class="fas fa-home"></i>Home</a>
+          </div>
+          <div class="item">
+            <a href="DonorProfileN.html"><i class="fas fa-user"></i>My Profile</a>
+          </div>
+          <div class="item">
+            <a class="sub-btn"
+              ><i class="fas fa-gift"></i>Donation Requests<i
+                class="fas fa-angle-right dropdown"
+              ></i
+            ></a>
+            <div class="sub-menu">
+              <a href="donor.html" class="sub-item">All Requests</a>
+              <a href="School.html" class="sub-item">School Supplies</a>
+              <a href="Medical.html" class="sub-item">Medical Supplies</a>
+              <a href="Blood.html" class="sub-item">Blood Donations</a>
+              <a href="Clothes.html" class="sub-item">Clothes Donations</a>
+              <a href="Food.html" class="sub-item">Food Donations</a>
+              <a href="Toy.html" class="sub-item">Toys Donations</a>
+            </div>
+          </div>
+          <div class="item">
+            <a class="sub-btn"
+              ><i class="fas fa-heart"></i>Volunteer Now<i
+                class="fas fa-angle-right dropdown"
+              ></i
+            ></a>
+            <div class="sub-menu">
+              <a href="medicalPosts.html" class="sub-item">Doctor</a>
+              <a href="educational_posts.html" class="sub-item">Teacher</a>
+            </div>
+          </div>
+          <div class="item">
+            <a href="OrganizationsDonorN.html"
+              ><i class="fas fa-building"></i>View All Organizations</a
+            >
+          </div>
+          <div class="item">
+            <a href="DonorHistoryN.html"
+              ><i class="fas fa-history"></i> MyDonations</a
+            >
+          </div>
+          <div class="item">
+            <a href="password.html"><i class="fas fa-lock"></i>Change Password</a>
+          </div>
+          <div class="item">
+            <a href="HomepageGeneral.html"><i class="fas fa-sign-out-alt"></i>LogOut</a>
+          </div>
+          <div class="item">
+            <a href="homedonorloggedin.html #contact"
+              ><i class="fas fa-info-circle"></i>Contact Us</a
+            >
+          </div>
+  
+        </div>
+      </div>
+  
+
+        <h3 style="text-align: center; margin-top: 40px; font-weight: bold;">Registered Organizations</h3>
+    <!-- Filter Form -->
+    <div class="filter-form">
+      <label for="specialty">Specialty:</label>
+      <select id="specialty">
+        <option value="all">Select Speciality</option>
+        <option value="Cardiology">Cardiology</option>
+        <option value="Orthopedics">Orthopedics</option>
+        <option value="Burn Surgery">Burn Surgery</option>
+        <option value="Pediatric Oncology">Pediatric Oncology</option>
+  </select>
+     <!-- Add more options as needed -->
+      </select>
+      <label for="organizationname">Organization:</label>
+      <select id="organizationname">
+        <option value="all">Select Organization</option>
+         <option value="Magdi Yacoub Heart Foundation">Magdi Yacoub Heart Foundation</option>
+        <option value="Resala Charity Association">Resala Charity Association</option>
+        <option value="Misr El-Kheir Foundation">Misr El-Kheir Foundation</option>
+        <option value="57357 Children Cancer Hospital">57357 Children Cancer Hospital</option>
+        <!-- Add more options as needed -->
+      </select>
+      <label for="area">Area:</label>
+      <select id="area">
+        <option value="all">Select Area</option>
+        <option value="Zamalek">Zamalek</option>
+        <option value="Bab Sharqi">Bab Sharqi</option>
+        <option value="Agouza">Agouza</option>
+        <option value="Nasr City">Nasr City</option>
+        <!-- Add more options as needed -->
+      </select>
+      <label for="governorate">Governorate:</label>
+      <select id="governorate">
+        <option value="all">Select Governorate</option>
+        <option value="Cairo">Cairo</option>
+        <option value="Giza">Giza</option>
+        <option value="Alexandria">Alexandria</option>
+        <!-- Add more options as needed -->
+      </select>
+      <button id="filterButton">Filter</button>
+    </div>
+
+    <!-- Posts -->
+    <div class="posts">        
+        <!-- Post1 -->
+        <div class="post" data-specialty="Cardiology" data-organization="Magdi Yacoub Heart Foundation" data-area="Zamalek" data-governorate="Cairo">
+            <img src="img/w1.webp" alt="Medc1" />
+            <h2>Magdi Yacoub Heart Foundation</h2>
+            <p><strong>Governorate:</strong> Cairo</p>
+            <p><strong>Area:</strong> Zamalek</span></p>
+            <p><strong>Specialty:</strong> Cardiology</p>
+            <div class="post-buttons">
+              <button class="view-details-btn" data-target="#postDetailsModal1">
+                View Details
+              </button>
+              <button class="fulfill-btn" >
+                Fulfill Case
+              </button>
+            </div>
+        </div>
+
+      <div id="postDetailsModal1" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+            <p><h2>Magdi Yacoub Heart Foundation</h2></p>
+              <i class="far fa-user"></i>
+              <span class="mt-1">Rawan Mostafa</span>
+              <br></p>
+              <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+              <span class="mt-1">01234567890</span>
+              <br></p>
+              <i class="fas fa-birthday-cake"></i>
+              <span class="mt-1">25 years old</span>
+              <br></p>
+              <i class="fas fa-venus-mars"></i>
+              <span class="mt-1">Female</span>
+              <br></p>
+              <i class="fas fa-weight"></i>
+              <span class="mt-1">65kg</span>
+              <br></p>
+              <i class="far fa-envelope mr-2 mt-1"></i>
+              <span class="mt-1">magdi@gmail.com</span>
+              <br></p>
+              <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+              <a href="https://www.google.com/maps/place/Zamalek+Art+Gallery/@30.0613676,31.214204,15z/data=!4m10!1m2!2m1!1s15+El-Mathaf+El-Zeraai+St.,+Zamalek,+Cairo,+Egypt!3m6!1s0x145840e6cba9cf13:0xc2f134127d82aeef!8m2!3d30.0613676!4d31.2229587!15sCjAxNSBFbC1NYXRoYWYgRWwtWmVyYWEgU3QuLCBaYW1hbGVrLCBDYWlybywgRWd5cHRaLiIsMTUgZWwgbWF0aGFmIGVsIHplcmFhIHN0IHphbWFsZWsgY2Fpcm8gZWd5cHSSAQthcnRfZ2FsbGVyeZoBI0NoWkRTVWhOTUc5blMwVkpRMEZuU1VNNWRFdHRWbFozRUFF4AEA!16s%2Fg%2F120kn4q1?entry=ttu" 
+              target="_blank">15 El-Mathaf El-Zeraai St., Zamalek, Cairo, Egypt</a>
+              <br></p>
+              <i class="fas fa-info-circle"></i><span class="mt2-1">
+              Rawan is a 25-year-old female with a congenital heart condition.
+              She requires regular check-ups and medication to manage her condition.
+              She is currently seeking a volunteer cardiologist for consultation and ongoing care.
+              <br></p>
+        </div>
+      </div>
+<!-- Post2 -->
+      <div class="post" data-specialty="Orthopedics" data-organization="Resala Charity Association" data-area="Bab Sharqi" data-governorate="Alexandria">
+        <img src="img/w2.webp" alt="Medc2" />
+        <h2>Resala Charity Association</h2>
+          <p><strong>Governorate:</strong> Alexandria</p>
+          <p><strong>Area:</strong> Bab Sharqi</span></p>
+          <p><strong>Specialty:</strong> Orthopedics</p>
+          <div class="post-buttons">
+            <button class="view-details-btn" data-target="#postDetailsModal2">
+            View Details
+            </button>
+            <button class="fulfill-btn">
+            Fulfill Case
+          </button>
+          </div>
+      </div>
+
+      <div id="postDetailsModal2" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+            <p><h2>Resala Charity Association</h2></p>
+              <i class="far fa-user"></i>
+              <span class="mt-1">Tony Moussa</span>
+              <br></p>
+              <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+              <span class="mt-1">01234227890</span>
+              <br></p>
+              <i class="fas fa-birthday-cake"></i>
+              <span class="mt-1">45 years old</span>
+              <br></p>
+              <i class="fas fa-venus-mars"></i>
+              <span class="mt-1">Male</span>
+              <br></p>
+              <i class="fas fa-weight"></i>
+              <span class="mt-1">80Kg</span>
+              <br></p>
+              <i class="far fa-envelope mr-2 mt-1"></i>
+              <span class="mt-1">magdi@gmail.com</span>
+              <br></p>
+              <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+              <a href="https://www.google.com/maps/place/Omar+Lotfy,+Alexandria+Governorate+5424010/@31.2062777,29.9108387,17z/data=!3m1!4b1!4m6!3m5!1s0x14f5c47603e936fd:0x60bcef54bf9e2de0!8m2!3d31.2062777!4d29.9108387!16s%2Fg%2F1wk0b4j3?entry=ttu" 
+              target="_blank">Omar Lotfy, Bab Sharqi, Alexandria, Egypt</a>
+              <br></p>
+              <i class="fas fa-info-circle"></i><span class="mt2-1">
+              Nour is a 45-year-old male who recently suffered a leg injury in a car accident.
+              He requires surgery and post-operative care to recover fully.
+              He is seeking a volunteer orthopedic surgeon to perform the surgery and follow-up care.
+              <br></p>
+        </div>
+      </div>
+
+<!-- Post3 -->
+
+      <div class="post" data-specialty="Burn Surgery" data-organization="Misr El-Kheir Foundation" data-area="Agouza" data-governorate="Giza">
+        <img src="img/w1.webp" alt="Medc2" />
+        <h2>Misr El-Kheir Foundation</h2>
+        <p><strong>Governorate:</strong> Giza</p>
+        <p><strong>Area:</strong> Agouza</span></p>
+        <p><strong>Specialty:</strong> Burn Surgery</p>
+        <div class="post-buttons">
+          <button class="view-details-btn" data-target="#postDetailsModal3">
+          View Details
+          </button>
+          <button class="fulfill-btn">
+          Fulfill Case
+          </button>
+        </div>
+      </div>
+
+      <div id="postDetailsModal3" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+            <p><h2>Misr El-Kheir Foundation</h2></p>
+              <i class="far fa-user"></i>
+              <span class="mt-1">Maria Youssef</span>
+              <br></p>
+              <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+              <span class="mt-1">014434227890</span>
+              <br></p>
+              <i class="fas fa-birthday-cake"></i>
+              <span class="mt-1">22 years old</span>
+              <br></p>
+              <i class="fas fa-venus-mars"></i>
+              <span class="mt-1">Female</span>
+              <br></p>
+              <i class="fas fa-weight"></i>
+              <span class="mt-1">54kg</span>
+              <br></p>
+              <i class="far fa-envelope mr-2 mt-1"></i>
+              <span class="mt-1">magdi@gmail.com</span>
+              <br></p>
+              <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+              <a href="https://www.google.com/maps/place/25+El-Gomhoreya,+%D8%A7%D9%84%D8%B9%D8%AA%D8%A8%D8%A9%D8%8C+El+Mosky,+Cairo+Governorate+4283010%E2%80%AD/@30.0482293,31.2467814,17z/data=!3m1!4b1!4m6!3m5!1s0x145840bc36699f11:0x26256049c5104669!8m2!3d30.0482293!4d31.2467814!16s%2Fg%2F11qh22k_nn?entry=ttu" 
+              target="_blank">25 El-Gomhoreya St., Agouza, Giza, Egypt</a>
+              <br></p>
+              <i class="fas fa-info-circle"></i><span class="mt2-1">
+              Maria is a 22-year-old female who suffered severe burns in a household accident.
+              She requires immediate specialized burn care and surgery.
+              <br></p>
+        </div>
+      </div>
+<!-- Post4 -->
+      <div class="post" data-specialty="Pediatric Oncology" data-organization="57357 Children Cancer Hospital" data-area="Nasr City" data-governorate="Cairo">
+        <img src="img/w2.webp" alt="Medc2" />
+        <h2>57357 Children Cancer Hospital</h2>
+        <p><strong>Governorate:</strong> Cairo</p>
+        <p><strong>Area:</strong> Nasr City</span></p>
+        <p><strong>Specialty:</strong> Pediatric Oncology</p>
+        <div class="post-buttons">
+          <button class="view-details-btn" data-target="#postDetailsModal4">
+          View Details
+          </button>
+          <button class="fulfill-btn" >
+          Fulfill Case
+          </button>
+        </div>
+      </div>
+
+      <div id="postDetailsModal4" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+            <p><h2>57357 Children Cancer Hospital</h2></p>
+              <i class="far fa-user"></i>
+              <span class="mt-1">Ahmed Medhat</span>
+              <br></p>
+              <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+              <span class="mt-1">014434228890</span>
+              <br></p>
+              <i class="fas fa-birthday-cake"></i>
+              <span class="mt-1">8 years old</span>
+              <br></p>
+              <i class="fas fa-venus-mars"></i>
+              <span class="mt-1">Male</span>
+              <br></p>
+              <i class="fas fa-weight"></i>
+              <span class="mt-1">25kg</span>
+              <br></p>
+              <i class="far fa-envelope mr-2 mt-1"></i>
+              <span class="mt-1">magdi@gmail.com</span>
+              <br></p>
+              <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+              <a href="https://www.google.com/maps/place/10+Salah+Salem+St,+Mansh%C3%AEyet+el+Bakri,+Nasr+City,+Cairo+Governorate+4460020/@30.0781337,31.3119785,17z/data=!3m1!4b1!4m6!3m5!1s0x14583e35ad61c075:0xc1a630e86bb6c53b!8m2!3d30.0781337!4d31.3119785!16s%2Fg%2F11hdkgzc_v?entry=ttu"
+               target="_blank">10 Salah Salem St., Nasr City, Cairo, Egypt</a>
+              <br></p>
+              <i class="fas fa-info-circle"></i><span class="mt2-1">
+              Ahmed Medhat is an 8-year-old male child diagnosed with cancer.
+              He requires specialized pediatric oncology treatment and care.
+              <br></p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <script>
+      $(document).ready(function () {
+        // jquery for toggle sub menus
+        $(".sub-btn").click(function () {
+          $(this).next(".sub-menu").slideToggle();
+          $(this).find(".dropdown").toggleClass("rotate");
+        });
+
+           // jquery for expand and collapse the sidebar on menu button click
+           $(".menu-btn").click(function () {
+          $(".side-bar").toggleClass("active");
+          $(".menu-btn i").toggleClass("fa-bars fa-times"); // Toggle the menu icon class
+          $(".menu-btn").css("visibility", "visible");
+        });
+
+    
+        // Function to show password change form when "Change Password" is clicked
+        $("#change-password-btn").click(function () {
+          $(".password-form").show();
+          $(".background-title").show();
+        });
+
+        // Add event listener to "Education" link to navigate to educational posts page
+        $(".menu .item:nth-child(2) .sub-item:nth-child(1)").click(function () {
+          window.location.href = "educational_posts.html"; // Replace with the URL of your educational posts page
+        });
+
+        // Event listener for clicking the "Filter" button
+        $("#filterButton").click(function () {
+      // Get selected filter values
+         var specialtyFilter = $("#specialty").val();
+         var organizationFilter = $("#organizationname").val();
+         var areaFilter = $("#area").val();
+         var governorateFilter = $("#governorate").val();
+
+          // Filter posts based on selected values
+          $(".post").each(function () {
+         var post = $(this);
+            var postSpecialty = post.data("specialty");
+            var postOrganization = post.data("organization");
+            var postArea = post.data("area");
+            var postGovernorate = post.data("governorate");
+
+            // Check if the post matches the selected filters
+            var specialtyMatch = specialtyFilter === "all" || postSpecialty === specialtyFilter;
+            var organizationMatch = organizationFilter === "all" || postOrganization === organizationFilter;
+            var areaMatch = areaFilter === "all" || postArea === areaFilter;
+            var governorateMatch = governorateFilter === "all" || postGovernorate === governorateFilter;
+
+            // Show or hide the post based on the filter match
+            if (specialtyMatch && organizationMatch && areaMatch && governorateMatch) {
+          post.show();
+         } else {
+          post.hide();
+         }
+         });
+          });
+        $(".view-details-btn").click(function () {
+          // Get the target modal
+          var targetModal = $(this).data("target");
+
+          // Display the target modal
+          $(targetModal).fadeIn();
+        });
+
+        // Event listener for closing the modal
+        $(".close").click(function () {
+          $(".modal").fadeOut();
+        });
+      });
+
+      function openGoogleMaps(coordinates) {
+        window.open('https://www.google.com/maps?q=' + coordinates, '_blank');
+        }
+
+        $(".fulfill-btn").click(function () {
+        window.location.href = "AfterFulfillCase.html";    
+        });
+    </script>
+  </body>
+</html>

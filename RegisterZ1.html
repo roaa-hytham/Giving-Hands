@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidebar menu With Sub-menus | Using HTML, CSS & JQuery</title>
+  <link rel="stylesheet" href="style3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-0W9-HXVQC6T1LVojvw9NcKPafVyhtMU&libraries=places"></script>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+  <style>
+     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+     #map-container {
+        display: flex;
+      }
+      #map {
+        flex: 1;
+        height: 400px;
+      }
+     .top-menu {
+      position: fixed;
+      top: 20px;
+      right: 0;
+      background-color: #404181;
+      padding: 10px 20px;
+      display: flex;
+      z-index: 1000;
+    }
+
+    .top-menu a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .top-menu .dropdown {
+      position: relative;
+    }
+
+    .top-menu .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 0;
+      background-color: #404181;
+      min-width: 120px;
+      z-index: 1000;
+    }
+
+    .top-menu .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .top-menu .dropdown-content a {
+      padding: 10px;
+      display: block;
+    }
+    .img {
+      position: absolute;
+      top: 10px;
+      right: 15px; /* Adjust as needed */
+      width: 65px; /* Adjust width as needed */
+      height: auto;
+    }
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; /* Adjust font weight as needed */
+      position: absolute;
+      top: 5px;
+      width: 20px;
+      right: 175px; /* Adjust as needed */
+      color: white;
+      margin: 0;
+    }
+      /* Add your custom styles here */
+      body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            
+        }
+        .container {
+            max-width: 700px;
+    margin: auto; /* Center horizontally */
+    margin-top: 50px; /* Adjust margin-top as needed */
+    margin-bottom: 100px; /* Adjust margin-bottom as needed */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* Change position to relative */
+        }
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    padding: 20px; /* Add some padding to separate from the bottom edge */
+    box-sizing: border-box;
+}
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px; /* Add spacing */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+    display: block;
+    width: 30%; /* Reduce the width */
+    padding: 10px;
+    background-color: #404181;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px; /* Add space at the top */
+    text-align: center;
+}
+
+        input[type="submit"]:hover {
+            background-color: #2c2c6f;
+        }
+        input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 30px; /* Increased margin */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+select {
+    width: 100%;
+    padding: 12px; /* Match padding with input fields */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 20px; /* Match spacing with input fields */
+}
+.required {
+    color: red;
+    margin-left: 5px;
+}
+
+.register-now {
+    width: 100%;
+    text-align: left; /* Align the content to the left */
+    margin-top: 10px; /* Add some top margin for spacing */
+    margin-bottom: 10px; /* Add bottom margin to separate from the container */
+    
+}
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.wallpaper {
+     position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('img/firstpage.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.5; /* Adjust the opacity as needed */
+      z-index: -1; /* Ensure the wallpaper is behind other content */
+    }
+    h3 {
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top: 130px;
+  font-size: 40px; /* Increase the font size */
+  padding: 10px; /* Add padding to increase the size */
+}
+
+.input-style {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px; /* Add spacing */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.input-style:focus {
+    outline: none;
+    border-color: #4051B5; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(64, 81, 181, 0.5); /* Add a subtle box shadow on focus */
+}
+  </style>
+</head>
+<body>
+  <header>
+      <div class="header-content"></div>
+      <h1>Giving Hands</h1>
+      <img src="img/logo2.png" alt="logo" class="img">
+  </header>
+  <h3>Register</h3>
+<div class="container"> 
+    <form id="applicationForm">
+        <label for="first-name">First Name<span class="required">*</span></label>
+        <input type="text" class="form-control" id="first-name" placeholder="First Name" required 
+        title="Enter Letters Only" pattern="[A-Za-z]*"/>
+        <label for="first-name">Last Name<span class="required">*</span></label>
+        <input type="text" class="form-control" id="last-name" placeholder="Last Name" required
+        title="Enter Letters Only" pattern="[A-Za-z]*"/>
+        <label for="gender">Gender<span class="required">*</span></label> 
+            <select class="form-control" id="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <label for="email">Email<span class="required">*</span></label>
+            <input type="email" class="input-style" id="email" placeholder="Email" required />
+            
+            <label for="telephonenumber">Contact<span class="required">*</span></label>
+            <input type="tel" class="input-style" id="telephonenumber" placeholder="Telephone number" required title="Enter Numbers Only" pattern="[0-9]*"/>
+        <label for="governorate">Governorate<span class="required">*</span></label>
+        <select class="form-control" id="governorate" required>
+            <option value="">Select Governorate</option>
+            <option value="Alexandria">Alexandria</option>
+            <option value="Aswan">Aswan</option>
+            <option value="Asyut">Asyut</option>
+            <option value="Beheira">Beheira</option>
+            <option value="Beni Suef">Beni Suef</option>
+            <option value="Cairo">Cairo</option>
+            <option value="Dakahlia">Dakahlia</option>
+            <option value="Damietta">Damietta</option>
+            <option value="Faiyum">Faiyum</option>
+            <option value="Gharbia">Gharbia</option>
+            <option value="Giza">Giza</option>
+            <option value="Helwan">Helwan</option>
+            <option value="Ismailia">Ismailia</option>
+            <option value="Kafr el-Sheikh">Kafr el-Sheikh</option>
+            <option value="Luxor">Luxor</option>
+            <option value="Matruh">Matruh</option>
+            <option value="Minya">Minya</option>
+            <option value="Monufia">Monufia</option>
+            <option value="New Valley">New Valley</option>
+            <option value="North Sinai">North Sinai</option>
+            <option value="Port Said">Port Said</option>
+            <option value="Qalyubia">Qalyubia</option>
+            <option value="Qena">Qena</option>
+            <option value="Red Sea">Red Sea</option>
+            <option value="Sharqia">Sharqia</option>
+            <option value="Sohag">Sohag</option>
+            <option value="South Sinai">South Sinai</option>
+            <option value="Suez">Suez</option>
+            <option value="6th of October">6th of October</option>
+        </select>
+        <label for="area">Area<span class="required">*</span></label>
+        <input type="text" class="form-control" id="area" placeholder="Area" required
+        title="Enter Letters Only" pattern="[A-Za-z]*"/>
+        <label for="address">Address<span class="required">*</span></label>
+        <input type="text" class="form-control" id="address" placeholder="Address" required />
+        <label for="address">Location on Maps:<span class="required">*</span></label>
+        <div id="map" style="width: 100%; height: 400px"></div><div class="form-group">
+        <label for="password">Password<span class="required">*</span></label>
+        <input type="password" class="form-control" id="password" placeholder="Password" minlength="8" required/>
+        <label for="confirm-password">Confirm Password<span class="required">*</span></label>
+        <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password" required oninput="checkPasswordMatch()"/>
+        <div id="passwordMatchError" class="text-danger"></div>
+
+        <label for="role">Role<span class="required">*</span></label><br />
+        <br>
+        <input type="radio" id="regular-donor"name="role" value="regular-donor" required/>
+        <label for="regular-donor">Donor</label><br />
+        <br>
+        <input type="radio" id="organization" name="role" value="organization"/>
+        <label for="organization">Organization Representative</label>
+              <!-- Additional fields for Organization -->
+        <div id="organizationFields" style="display: none">
+            <form id="register-form">
+                <br>
+                <label for="Orgname">Name of the Organization<span class="required">*</span></label>
+                <input type="text" class="form-control" id="Orgntype" placeholder="Name" title="Enter Letters Only" pattern="[A-Za-z]*"/>
+                <label for="Orgntype">Type of the Organization<span class="required">*</span></label>
+                <select class="form-control" id="gender" required>
+                    <option value="">Select Type</option>
+                    <option value="Mosque">Mosque</option>
+                    <option value="Church">Church</option>
+                    <option value="School">School</option>
+                    <option value="Hospital">Hospital</option>
+                    <option value="nonprofit">Non Profit Organization</option>
+                </select>
+                <label for="OrgDocuments">Certificate Of Incorporation:<span class="required">*</span></label>
+                <input type="file" class="form-control-file" id="OrgDocuments" accept=".pdf, .doc, .docx" multiple/>
+
+                <label for="OrgDocuments">Business License:<span class="required">*</span></label>
+                <input type="file" class="form-control-file" id="OrgDocuments" accept=".pdf, .doc, .docx" multiple/>               
+            </form>
+            </div>
+        <input type="submit" id="register-button" value="Register">
+        <div id="errorMessage" class="mt-3 text-danger"></div>
+        <div id="successMessage" class="mt-3 text-success"></div>
+    </form> 
+</div>
+    <div class="col-md-6">
+        <div id="map" style="display: none"></div>
+    </div>
+
+</div>
+ <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var organizationFields = document.getElementById("organizationFields");
+        var organizationRadio = document.getElementById("organization");
+        var regularDonorRadio = document.getElementById("regular-donor");
+
+        // Function to toggle display of organization fields
+        function toggleOrganizationFields() {
+          organizationFields.style.display = organizationRadio.checked
+            ? "block"
+            : "none";
+        }
+
+        // Attach change event listeners to radio buttons
+        organizationRadio.addEventListener("change", toggleOrganizationFields);
+        regularDonorRadio.addEventListener("change", toggleOrganizationFields);
+
+        // Initial toggle based on default checked state
+        toggleOrganizationFields();
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var organizationFields = document.getElementById("organizationFields");
+        var roleRadios = document.querySelectorAll('input[name="role"]');
+        var registerForm = document.getElementById("register-form");
+        var successMessage = document.getElementById("successMessage");
+        var mapDiv = document.getElementById("map");
+        var map = L.map("map").setView([26.8206, 30.8025], 6);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
+        // Add a marker representing the location
+        var marker = L.marker([0, 0]).addTo(map);
+
+        // Function to toggle display of the map
+        function toggleMap() {
+          mapDiv.style.display =
+            mapDiv.style.display === "none" ? "block" : "none";
+        }
+
+        // Function to toggle display of organization fields and set required attribute
+        function toggleOrganizationFields() {
+          organizationFields.style.display =
+            this.value === "organization" ? "block" : "none";
+
+          // If "Organization Representative" role is selected, set fields as required
+          var requiredFields =
+            organizationFields.querySelectorAll("input, select");
+          requiredFields.forEach(function (field) {
+            field.required = this.value === "organization";
+          }, this);
+        }
+
+        // Function to show success message
+        function showSuccessMessage() {
+          successMessage.innerText = "Registration successful!";
+          successMessage.style.display = "block";
+        }
+
+        // Add event listeners to role radios
+        roleRadios.forEach(function (radio) {
+          radio.addEventListener("change", function () {
+            toggleOrganizationFields.call(this);
+          });
+        });
+
+        // Add submit event listener to the form
+        registerForm.addEventListener("submit", function (event) {
+          var password = document.getElementById("password").value;
+          var confirmPassword =
+            document.getElementById("confirm-password").value;
+
+          if (password !== confirmPassword) {
+            event.preventDefault(); // Prevent form submission
+            document.getElementById("password").value = "";
+            document.getElementById("confirm-password").value = "";
+            document.getElementById("successMessage").innerText =
+              "Passwords do not match";
+            document.getElementById("successMessage").style.display = "block";
+          } else {
+            showSuccessMessage();
+          }
+        });
+        document
+          .getElementById("mapPin")
+          .addEventListener("click", function () {
+            toggleMap();
+          });
+      });
+    </script>
+
+    <script>
+      function checkPasswordMatch() {
+        console.log("Function called");
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirm-password");
+
+        if (password != confirmPassword.value) {
+          confirmPassword.setCustomValidity("Passwords do not match");
+        } else {
+          confirmPassword.setCustomValidity("");
+        }
+      }
+    </script>
+    <script>
+      // Initialize Leaflet map centered around Egypt
+      const map = L.map("map").setView([26.8206, 30.8025], 6);
+
+      // Add OpenStreetMap tiles to the map
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      // Add a marker representing your location
+      let marker;
+      map.on("click", function (event) {
+        if (marker) {
+          marker.setLatLng(event.latlng);
+        } else {
+          marker = L.marker(event.latlng).addTo(map);
+        }
+      });
+
+      // Function to redirect to Slots.html
+      function redirectToSlots() {
+        window.location.href = "Slots.html";
+      }
+    </script>
+
+  
+</body>
+</html>

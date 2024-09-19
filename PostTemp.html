@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar menu With Sub-menus | Using HTML, CSS & JQuery</title>
+    <link rel="stylesheet" href="style3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+      .posts {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start; /* Align items to the top */
+        margin-top: 100px; /* Adjust margin-top as needed */
+        text-align: left;
+       
+      }
+      .post {
+        width: 900px; /* Adjust width as needed */
+        margin: 20px;
+        padding: 20px;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+
+      }
+   
+      .post img {
+        float: left; /* Align image to the left */
+        margin-right: 20px; /* Add spacing between image and text */
+        width: 300px; /* Adjust image width as needed */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 5px;
+      }
+
+      .post h2 {
+        margin-bottom: 10px;
+      }
+
+      .post p {
+        margin-bottom: 20px;
+      }
+      .post p.location a {
+        color: #404181; /* Adjust link color as needed */
+        text-decoration: none;
+}
+
+.post p.location a:hover {
+
+  text-decoration: underline; /* Add underline on hover */
+}
+
+     
+      .filter-form {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .filter-form label,
+      .filter-form select,
+      .filter-form button {
+        margin-right: 10px;
+        font-size: 16px; /* Increase font size */
+        
+      }
+
+      #filterButton {
+        background-color: #404181; /* Match color with apply button */
+        color: white; /* Text color */
+        padding: 10px 20px; /* Increase padding for larger button */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px; /* Adjust margin as needed */
+      }
+
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+      .modal-content p {
+     margin-bottom: 7px; /* Set the margin between lines */
+    }
+
+      /* Close button style */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      
+
+
+.apply-btn,
+.view-details-btn {
+  background-color: #404181;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px; /* Adjust margin as needed */
+  align-self: flex-end; /* Align buttons to the right */
+  position: absolute; /* Position the buttons absolutely */
+  bottom: 20px; /* Distance from the bottom */
+  right: 20px; 
+  font-size: 15px;
+
+}
+
+.view-details-btn {
+  margin-left: 10px; /* Add some space between the buttons */
+  bottom: 20px; /* Distance from the bottom */
+  right: 123px; /* Distance from the right */
+}
+
+
+#map {
+    height: 200px;
+    width: 100%;
+  }
+  .bold-text {
+  font-weight: bold;
+}
+.img {
+      position: absolute;
+      top: 10px;
+      right: 15px; /* Adjust as needed */
+      width: 65px; /* Adjust width as needed */
+      height: auto;
+    }
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; /* Adjust font weight as needed */
+      position: absolute;
+      top: 5px;
+      width: 20px;
+      right: 175px; /* Adjust as needed */
+      color: white;
+      margin: 0;
+    }
+
+
+    </style>
+  </head>
+  <body>
+
+    <!-- Filter Form -->
+    <div class="filter-form">
+
+      <label for="subject">Type:</label>
+
+      <select id="subjectFilter">
+        <option value="Select Subject">Select Subject</option>
+        <option value="mathematics">Mathematics</option>
+        <option value="science">Science</option>
+        <option value="arabic">Arabic</option>
+        <option value="religion">Religion</option>
+        <option value="english">English</option>
+        <option value="history">History</option>
+        <option value="geography">Geography</option>
+        <!-- Add more options as needed -->
+      </select>
+      
+      <label for="governorate">Governorate:</label>
+      <select id="governorateFilter" >
+        <option value="Select Governorate">Select Governorate</option>
+        <option value="Alexandria">Alexandria</option>
+        <option value="Aswan">Aswan</option>
+        <option value="Asyut">Asyut</option>
+        <option value="Beheira">Beheira</option>
+        <option value="Cairo">Cairo</option>
+        <option value="Dakahlia">Dakahlia</option>
+        <option value="Damietta">Damietta</option>
+        <option value="Faiyum">Faiyum</option>
+        <option value="Gharbia">Gharbia</option>
+        <option value="Giza">Giza</option>
+  
+    </select>
+
+    <label for="area">Area:</label>
+    <select id="areaFilter">
+      <option value="Select Area">Select Area</option>
+      <!-- Options will be populated dynamically based on the selected governorate -->
+      <option value="Downtown Cairo">Downtown Cairo</option>
+      <option value="El Mokattam">El Mokattam</option>
+      <option value="El Obour City">El Obour City</option>
+      <option value="El Basatin">El Basatin</option>
+      <option value="El Marg">El Marg</option>
+      <option value="El Tagamo' El Khames">El Tagamo' El Khames</option>
+      <option value="Manial">Manial</option>
+      <option value="Nasr City">Nasr City</option>
+      <option value="Shubra">Shubra</option>
+      <option value="Zamalek">Zamalek</option>
+      <option value="Smouha">Smouha</option>
+      <option value="Sporting">Sporting</option>
+      <option value="Miami">Miami</option>
+      <option value="Roushdy">Roushdy</option>
+      <option value="Montaza">Montaza</option>
+      <option value="San Stefano">San Stefano</option>
+      <option value="Sidi Gaber">Sidi Gaber</option>
+      <option value="Agami">Agami</option>
+      <option value="El Mandara">El Mandara</option>
+      <option value="Al Ibrahimia">Al Ibrahimia</option>
+      <option value="6th of October">6th of October</option>
+      <option value="Mohandessin">Mohandessin</option>
+      <option value="Dokki">Dokki</option>
+      <option value="Agouza">Agouza</option>
+      <option value="Imbaba">Imbaba</option>
+      <option value="Haram">Haram</option>
+      <option value="Badrashin">Badrashin</option>
+      <option value="Sheikh Zayed City">Sheikh Zayed City</option>
+
+    </select>
+    <button id="filterButton">Filter</button>
+  </div>
+
+    <!-- Posts -->
+    <div class="posts">
+
+      <div class="post" data-subject="Science" data-area="6th of October" data-governorate="Giza">
+        <img src="img/edu5.jpeg" alt="edu5" />
+        <h2>ORGANIZATION NAME</h2>
+        <p><strong>Governorate:</strong> </p>
+        <p><strong>Area:</strong> </span></p>
+        <p><strong>Filter2:</strong> Science</p>
+        <button class="view-details-btn" data-target="#postDetailsModal1">View Details</button>
+        <button class="apply-btn">Apply</button>
+      </div>
+
+      <div id="postDetailsModal1" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>ORGANIZATION NAME</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01234567800</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">IbnTulun@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Write the address</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1">:Tjjjjjjjjjj</span>
+                      <br>
+                    </p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+  
+    <script>
+      $(document).ready(function () {
+        // jquery for toggle sub menus
+        $(".sub-btn").click(function () {
+          $(this).next(".sub-menu").slideToggle();
+          $(this).find(".dropdown").toggleClass("rotate");
+        });
+
+        // jquery for expand and collapse the sidebar on menu button click
+        $(".menu-btn").click(function () {
+          $(".side-bar").addClass("active");
+          $(".menu-btn").css("visibility", "hidden");
+
+          // Add event listener to close sidebar when clicking or hovering outside of it
+          $(document).on(
+            "click.sidebarClose mouseover.sidebarClose",
+            function (e) {
+              if (
+                !$(e.target).closest(".side-bar").length &&
+                !$(e.target).hasClass("menu-btn")
+              ) {
+                $(".side-bar").removeClass("active");
+                $(".menu-btn").css("visibility", "visible");
+                $(document).off("click.sidebarClose mouseover.sidebarClose");
+              }
+            }
+          );
+        });
+
+        // Expand sidebar when hovering over menu button
+        $(".menu-btn").mouseover(function () {
+          if (!$(".side-bar").hasClass("active")) {
+            $(".side-bar").addClass("active");
+          }
+        });
+
+        // Event listener for the close button
+        $(".close-btn").click(function () {
+          $(".side-bar").removeClass("active");
+          $(".menu-btn").css("visibility", "visible");
+        });
+
+        // Function to show password change form when "Change Password" is clicked
+        $("#change-password-btn").click(function () {
+          $(".password-form").show();
+          $(".background-title").show();
+        });
+
+        // Add event listener to "Education" link to navigate to educational posts page
+        $(".menu .item:nth-child(2) .sub-item:nth-child(1)").click(function () {
+          window.location.href = "educational_posts.html"; // Replace with the URL of your educational posts page
+        });
+        $(window).scroll(function () {
+          if (
+            $(window).scrollTop() + $(window).height() <
+            $(document).height()
+          ) {
+            $(".more-posts-btn").fadeIn();
+          } else {
+            $(".more-posts-btn").fadeOut();
+          }
+        });
+     
+
+        // Function to filter posts based on selected filters
+    function filterPosts() {
+        var subjectFilter = $("#subjectFilter").val().toLowerCase(); // Convert to lowercase
+        var governorateFilter = $("#governorateFilter").val().toLowerCase(); // Convert to lowercase
+        var areaFilter = $("#areaFilter").val().toLowerCase(); // Convert to lowercase
+
+        // Filter posts based on selected values
+        $(".post").each(function () {
+            var post = $(this);
+            var postSubject = post.data("subject").toLowerCase(); // Convert to lowercase
+            var postGovernorate = post.data("governorate").toLowerCase(); // Convert to lowercase
+            var postArea = post.data("area").toLowerCase(); // Convert to lowercase
+
+            // Check if the post matches the selected filters
+            var subjectMatch = subjectFilter === "select subject" || postSubject === subjectFilter;
+            var areaMatch = areaFilter === "select area" || postArea === areaFilter;
+            var governorateMatch = governorateFilter === "select governorate" || postGovernorate === governorateFilter;
+
+            // Show or hide the post based on the filter match
+            if (subjectMatch && governorateMatch && areaMatch) {
+                post.show();
+            } else {
+                post.hide();
+            }
+        });
+    }
+
+        $("#filterButton").click(function () {
+          filterPosts();
+});
+    // Event listener for governorate select change
+ $("#subjectFilter").change(function () {
+       // filterPosts();
+    });
+
+ // Event listener for governorate select change
+ $("#governorateFilter").change(function () {
+       // filterPosts();
+    });
+
+    // Event listener for area select change
+    $("#areaFilter").change(function () {
+       // filterPosts();
+    });
+
+    // Event listener for clearing filters
+    $("#clearFilterButton").click(function () {
+        $("#subjectFilter").val("select subject");
+        $("#governorateFilter").val("select governorate");
+        $("#areaFilter").val("select area");
+        filterPosts();
+    });
+
+    // Initial filtering on page load
+    filterPosts();
+
+
+
+        $(".view-details-btn").click(function () {
+          // Get the target modal
+          var targetModal = $(this).data("target");
+
+          // Display the target modal
+          $(targetModal).fadeIn();
+        });
+
+        // Event listener for closing the modal
+        $(".close").click(function () {
+          $(".modal").fadeOut();
+        });
+
+        // Event listener for clicking the "Apply" button
+$(".apply-btn").click(function () {
+  // Add your logic here for applying to the post
+  // For example, you can show a confirmation message
+  window.location.href = "AfterApplyPostN.html";
+});
+
+     
+});
+ // Call the initMap function after the DOM is fully loaded
+
+   // Sample data for areas in Alexandria and Cairo
+   const areasData = {
+        
+        Alexandria: ["Select Area", "Smouha", "Sporting", "Miami", "Roushdy", "Montaza", "San Stefano", "Sidi Gaber", "Agami", "El Mandara", "Al Ibrahimia"],
+        Cairo: ["Select Area", "Downtown Cairo", "El Mokattam", "El Obour City", "El Basatin", "El Marg", "El Tagamo' El Khames", "Manial","Maadi", "Nasr City", "Shubra", "Zamalek"],
+        Aswan:["Select Area", "No Available Areas"],
+        Asyut:["Select Area", "No Available Areas"],
+        Beheira:["Select Area", "No Available Areas"],
+        Dakahlia:["Select Area", "No Available Areas"],
+        Damietta:["Select Area", "No Available Areas"],
+        Faiyum:["Select Area", "No Available Areas"],
+        Gharbia:["Select Area", "No Available Areas"],
+        Giza:["Select Area", "6th of October", "Mohandessin", "Dokki", "Agouza", "Imbaba", "Haram","Badrashin", "Sheikh Zayed City"],
+        
+      };
+    // Function to populate areas based on selected governorate
+  function populateAreas() {
+    const governorateSelect = document.getElementById("governorateFilter");
+    const areaSelect = document.getElementById("areaFilter");
+    const selectedGovernorate = governorateSelect.options[governorateSelect.selectedIndex].value;
+
+    // Clear existing options
+    areaSelect.innerHTML = "";
+
+   // Check if "Select Governorate" is selected
+  if (selectedGovernorate === "Select Governorate") {
+    // Add default option for "Select Area"
+    const defaultOption = document.createElement("option");
+    defaultOption.value = "Select Area";
+    defaultOption.textContent = "Select Area";
+    areaSelect.appendChild(defaultOption);
+  } else {
+    // Populate options based on selected governorate
+    areasData[selectedGovernorate].forEach((area) => {
+      const option = document.createElement("option");
+      option.value = area;
+      option.textContent = area;
+      areaSelect.appendChild(option);
+    });
+  }
+}
+
+  // Event listener for governorate select change
+  document.getElementById("governorateFilter").addEventListener("change", populateAreas);
+
+      // Modal script
+      // Get the modal
+      const modals = document.querySelectorAll(".modal");
+
+      // Get the <span> element that closes the modal
+      const spans = document.getElementsByClassName("close");
+
+      // When the user clicks the button, open the modal
+      const viewDetailsButtons = document.querySelectorAll(".view-details-btn");
+
+      viewDetailsButtons.forEach((button, index) => {
+        button.onclick = () => {
+          modals[index].style.display = "block";
+        };
+      });
+
+      // When the user clicks on <span> (x), close the modal
+      spans.forEach((span, index) => {
+        span.onclick = () => {
+          modals[index].style.display = "none";
+        };
+      });
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = (event) => {
+        modals.forEach((modal) => {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        });
+      };
+
+      
+    </script>
+
+  </body>
+</html>

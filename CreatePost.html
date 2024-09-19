@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidebar menu With Sub-menus | Using HTML, CSS & JQuery</title>
+  <link rel="stylesheet" href="style3.css" />
+  <link rel="stylesheet" href="StyleZ.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <style> 
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+    .edit-field {
+      font-size: smaller; /* Make the pen sign smaller */
+      color: #333; /* Text color */
+      background-color: transparent; /* Transparent background */
+      border: none; /* Remove border */
+      cursor: pointer; /* Cursor style */
+      display:none;
+      margin-left: 5px; /* Add some space to the left of the pen */
+    }
+    .edit-picture-icon {
+    position: absolute;
+    right:20px;
+    bottom: 10px;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: smaller; /* Make the pen sign smaller */
+      color: #333; /* Text color */
+      background-color: transparent; /* Transparent background */
+      border: none; /* Remove border */
+      cursor: pointer; /* Cursor style */
+      display:none;
+}
+
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="header-content"></div>
+    <h1>Giving Hands</h1>
+    <img src="img/logo2.png" alt="logo" class="img" />
+  </header>
+
+  <div class="side-bar">
+    <div class="menu-btn"></div>
+    <div class="menu">
+      <div class="item">
+        <a href="adminhome.html"><i class="fas fa-home"></i>Home</a>
+      </div>
+      <div class="item">
+        <a href="CreatePost.html"><i class="fas fa-user"></i>My Profile</a>
+      </div>
+      <div class="item">
+        <a class="sub-btn"><i class="fas fa-file-alt"></i>My Posts<i class="fas fa-angle-right dropdown"></i></a>
+        <div class="sub-menu">
+          <a href="ShowAllPosts.html" class="sub-item">Covered</a>
+          <a href="uncovPosts.html" class="sub-item">Uncovered</a>
+        </div>
+      </div> 
+      <div class="item">
+        <a href="changePassORG.html"><i class="fas fa-lock"></i>Change Password</a>
+      </div>
+      <div class="item">
+        <a href="OrgRepHome.html" class="sub-item">
+          <i class="fas fa-sign-out-alt"></i>Log Out
+        </a>
+      </div>
+      <div class="item">
+        <a href="OrgRepHome.html#contact"
+          ><i class="fas fa-info-circle"></i>Contact Us</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- notifications -->
+  <div class="notifications-container">
+    <div class="green-notification-container">
+      <div class="notification-title">
+        <i class="fas fa-bell"></i> Notifications (<span class="notification-counter">5</span>)
+      </div>
+    </div>
+  </div>
+
+<!-- Profile Picture and Details -->
+<div class="profile-container">
+    <div class="profile-image-container" style="position: relative; display: inline-block;">
+      <img src="img/org.jpg" alt="Profile Picture" class="profile-picture" id="profileImage" />
+      <input type="file" id="profileImageInput" style="display: none;" accept="image/*" />
+      <i class="fas fa-pen edit-picture-icon" id="edit-profilePic"></i> 
+    </div>
+    <div class="profile-details">
+    <p><strong><span class="title"><i class="fas fa-user"></i> First Name:</span></strong> <span class="description" id="firstName">Ahmed</span> <i class="fas fa-pen edit-field" id="edit-firstName"></i></p>
+    <p><strong><span class="title"><i class="fas fa-user"></i> Last Name:</span></strong> <span class="description" id="lastName">Ezz</span> <i class="fas fa-pen edit-field" id="edit-lastName"></i></p>
+    <p><strong><span class="title"><i class="fas fa-venus-mars"></i> Gender:</span></strong> <span class="description" id="gender">Male</span> <i class="fas fa-pen edit-field" id="edit-gender"></i></p>
+    <p><strong><span class="title"><i class="fas fa-envelope"></i> Email:</span></strong> <span class="description" id="email">ahmed.ezz@gmail.com</span> <i class="fas fa-pen edit-field" id="edit-email"></i></p>
+    <p><strong><span class="title"><i class="fas fa-phone-alt"></i> Contact Number:</span></strong> <span class="description" id="contact">0123456789</span> <i class="fas fa-pen edit-field" id="edit-contact"></i></p>
+    <p><strong><span class="title"><i class="fas fa-building"></i> Organization Name:</span></strong> <span class="description" id="orgName">Misr El-Kheir Foundation</span> <i class="fas fa-pen edit-field" id="edit-orgName"></i></p>
+    <p><strong><span class="title"><i class="fas fa-sitemap"></i> Organization Type:</span></strong> <span class="description" id="orgType">Nonprofit</span> <i class="fas fa-pen edit-field" id="edit-orgType"></i></p>
+    <p><strong><span class="title"><i class="fas fa-map-marker-alt"></i> Organization Address:</span></strong> <span class="description" id="orgAddress">123 Charity St.</span> <i class="fas fa-pen edit-field" id="edit-orgAddress"></i></p>
+    <p><strong><span class="title"><i class="fas fa-map-marked-alt"></i> Area:</span></strong> <span class="description" id="area">Central Cairo</span> <i class="fas fa-pen edit-field" id="edit-area"></i></p>
+    <p><strong><span class="title"><i class="fas fa-map"></i> Governorate:</span></strong> <span class="description" id="governorate">Cairo</span> <i class="fas fa-pen edit-field" id="edit-governorate"></i></p>
+      <button class="edit-profile-btn" style="background-color: #ccc; color: #333; border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; cursor: pointer;"><i class="fas fa-pencil-alt"></i> Edit Profile</button>
+      <button class="add-post-btn" style="background-color: #ccc; color: #333; border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; cursor: pointer;">
+        <i class="fas fa-plus"></i> Add Post
+    </button>
+    <button class="show-notifications-btn" style="background-color: #ccc; color: #333; border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; cursor: pointer;">
+      <i class="fas fa-bell"></i> Show Notifications
+    </button>
+      <div class="success-message"></div>
+    </div>
+</div>
+
+<!-- ADD Post -->
+<div id="postContainer" href="#AddPost" style="display: none;">
+  <div class="post-container">
+      <div class="container">
+        <h2>Add New Post</h2>
+
+        <form id="applicationForm" action="submit_application.php" method="POST">
+        <label for="name">Organization Name: <span class="required">*</span></label>
+        <input type="text" id="name" name="name" required>
+        <label for="phone">Phone Number: <span class="required">*</span></label>
+        <input type="text" id="phone" name="phone">
+        <div id="phoneError" style="display: none; color: red;">Please enter only numbers.</div>
+
+        <div class="form-group">
+          <p class="category-title">Category:</p>
+
+            <input type="radio" id="medicalSupplies" name="role" value="medicalSupplies" required/>
+            <label for="medicalSupplies">Medical supplies</label><br /><br>
+            <!-- Placeholder for Medical additional fields, initially hidden -->
+          <div id="medicalSuppliesFields" class="field-container" style="display: none;">
+            <label for="deviceType">Device Type:</label>
+            <input type="text" id="deviceType" name="deviceType">
+            <label for="use">Use:</label>
+            <input type="text" id="use" name="use">
+            <label for="foodQuantity">Quantity (in units):</label><br>
+            <input type="number" id="foodQuantity" name="foodQuantity" min="1" value="1"><br><br>
+            <label for="imageUpload">Image:</label>
+            <input type="file" id="imageUpload" name="imageUpload">
+          </div>
+
+            <input type="radio" id="schoolsupplies" name="role" value="schoolsupplies" />
+            <label for="schoolsupplies">School supplies</label><br /><br>         
+            <!-- Placeholder for School additional fields, initially hidden -->
+          <div id="schoolSuppliesFields" class="field-container" style="display: none;">
+            <label for="itemType">Item Type:</label>
+            <input type="text" id="itemType" name="itemType">
+            <label for="itemQuantity">Quantity:</label><br>
+            <input type="number" id="itemQuantity" name="itemQuantity" min="1" value="1"><br><br>
+            <label for="itemDescription">Description:</label>
+            <textarea id="itemDescription" name="itemDescription" rows="2"></textarea>
+          </div>
+
+            <input type="radio" id="blooddonations" name="role" value="blooddonations" />
+            <label for="blooddonations">Blood donations</label><br /><br>
+            <!-- Placeholder for Blood additional fields, initially hidden -->
+          <div id="bloodDonationsFields" class="field-container" style="display: none;">
+            <label for="bloodType">Blood Type:</label>
+            <select id="bloodType" name="bloodType">
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+            <label for="bloodQuantity">Quantity (units):</label><br>
+            <input type="number" id="bloodQuantity" name="bloodQuantity" min="1" value="1"><br><br>
+            <label for="specialInstructions">Special Instructions:</label>
+            <textarea id="specialInstructions" name="specialInstructions" rows="2"></textarea>
+          </div>
+
+            <input type="radio" id="clothes" name="role" value="clothes"/>
+            <label for="clothes">Clothes</label><br /><br>
+            <!-- Placeholder for Cloths additional fields, initially hidden -->
+          <div id="clothesFields" class="field-container" style="display: none;">
+            <label for="clothesSize">Size:</label>
+            <input type="text" id="clothesSize" name="clothesSize">
+            <label for="clothesGender">Gender:</label>
+            <select id="clothesGender" name="clothesGender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Unisex">Unisex</option>
+            </select>
+            <label for="clothesType">Type:</label>
+            <input type="text" id="clothesType" name="clothesType">
+          </div>
+
+            <input type="radio" id="toys" name="role" value="toys" />
+            <label for="toys">Toys</label><br /><br>
+            <!-- Placeholder for Toys additional fields, initially hidden -->
+          <div id="toysFields" class="field-container" style="display: none;">
+            <label for="toyType">Type of Toy:</label>
+            <input type="text" id="toyType" name="toyType">
+            <label for="toyAgeGroup">Age Group:</label>
+            <select id="toyAgeGroup" name="toyAgeGroup">
+              <option value="0-2">0-2 years</option>
+              <option value="3-5">3-5 years</option>
+              <option value="6-8">6-8 years</option>
+              <option value="9-12">9-12 years</option>
+              <option value="13+">13+ years</option>
+            </select>
+            <label for="toyCondition">Condition:</label>
+            <select id="toyCondition" name="toyCondition">
+              <option value="new">New</option>
+              <option value="used_good">Used - Good</option>
+              <option value="used_fair">Used - Fair</option>
+            </select>
+            <label for="toyEnvironment">Environment:</label>
+            <select id="toyEnvironment" name="toyEnvironment">
+              <option value="Indoor">Indoor</option>
+              <option value="Outdoor">Outdoor</option>
+            </select>
+          </div>         
+
+            <input type="radio" id="food" name="role" value="food" />
+            <label for="food">Food</label><br /><br>
+            <!-- Placeholder for Food additional fields, initially hidden -->
+          <div id="foodFields" class="field-container" style="display: none;">
+            <label for="foodType">Type of Food:</label>
+            <input type="text" id="foodType" name="foodType">
+            <label for="foodQuantity">Quantity (in units):</label>
+            <input type="number" id="foodQuantity" name="foodQuantity" min="1" value="1">
+            <label for="expiryDate">Expiry Date:</label>
+            <input type="date" id="expiryDate" name="expiryDate">
+            <label for="dietInfo">Dietary Information:</label>
+            <input type="text" id="dietInfo" name="dietInfo" placeholder="e.g., gluten-free, vegan">
+            <label for="specialInstructionsFood">Special Instructions:</label>
+            <textarea id="specialInstructionsFood" name="specialInstructionsFood" placeholder="Any specific handling or storage instructions?"></textarea>
+          </div>
+        </div> 
+        <label for="time-slot">Preferred Time Slot: <span class="required">*</span></label>
+        <select id="time-slot" name="time-slot" required>
+          <option value="" disabled selected>Select Time Slot</option>
+          <option value="morning">Morning (8:00 AM - 12:00 PM)</option>
+          <option value="afternoon">Afternoon (12:00 PM - 4:00 PM)</option>
+          <option value="evening">Evening (4:00 PM - 8:00 PM)</option>
+        </select>
+
+          <label for="message">Additional Message (optional):</label>
+          <textarea id="message" name="message" rows="3"></textarea>
+          <input type="submit" value="Submit Post" id="submitPostButton">
+        </form>
+        <div id="errorMessage" style="display: none; color: red;">Please fill in all required fields.</div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+
+<script>
+  
+  $(document).ready(function () {
+   // jquery for toggle sub menus
+   $(".sub-btn").click(function () {
+          $(this).next(".sub-menu").slideToggle();
+          $(this).find(".dropdown").toggleClass("rotate");
+        });
+
+        // jquery for expand and collapse the sidebar on menu button click
+        $(".menu-btn").click(function () {
+          $(".side-bar").toggleClass("active");
+          $(".menu-btn i").toggleClass("fa-bars fa-times"); // Toggle the menu icon class
+          $(".menu-btn").css("visibility", "visible");
+        });
+
+        // Function to show password change form when "Change Password" is clicked
+        $("#change-password-btn").click(function () {
+          $(".password-form").show();
+          $(".background-title").show();
+        });
+
+        // Add event listener to "Education" link to navigate to educational posts page
+        $(".menu .item:nth-child(2) .sub-item:nth-child(1)").click(function () {
+          window.location.href = "educational_posts.html"; // Replace with the URL of your educational posts page
+        });
+      
+    // Enable field editing when "Edit Profile" is clicked
+    $(".edit-profile-btn").click(function () {
+      if ($(this).text().includes("Edit Profile")) {
+        $("#edit-profilePic").click(function() {
+          $("#profileImageInput").click();
+        });
+        $(".edit-field, #edit-profilePic").show();
+        $(this).text('Done').addClass('edit-profile-btn-done').removeClass('edit-profile-btn'); // Change button text to "Done"
+        $(this).html('<i class="fas fa-save"></i> Save Changes');
+        $('.success-message').hide(); // Ensure the success message is hidden when starting edits
+      } 
+      else {
+        $(".edit-field, #edit-profilePic").each(function () {
+          var fieldId = $(this).attr("id").replace("edit-", "");
+          if ($("#input-" + fieldId).length > 0) {
+            var value = $("#input-" + fieldId).val();
+            $("#" + fieldId).text(value);
+            $("#input-" + fieldId).remove();
+          }
+          $(this).hide();
+        });
+        $(this).html('<i class="fas fa-pencil-alt"></i> Edit Profile').addClass('edit-profile-btn').removeClass('edit-profile-btn-done');
+        $('.success-message').text("Edit Done Successfully").fadeIn(500).delay(3000).fadeOut(500);
+      }
+    });
+
+    // Convert span to input for editing on pen click
+    $(document).on("click", ".edit-field", function () {  
+      var fieldId = $(this).attr("id").replace("edit-", "");
+      var content = $("#" + fieldId).text();
+      $("#" + fieldId).html('<input type="text" id="input-' + fieldId + '" value="' + content + '">');
+      $(this).hide();
+    });
+
+    $("#profileImageInput").change(function() {
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          $('#profileImage').attr('src', e.target.result); // Update the profile picture
+        };
+        reader.readAsDataURL(this.files[0]); // Convert image file to base64 string
+      }
+    });
+  
+    //ADD POST DETAILS
+    $(document).on('click', '.add-post-btn, .submit-post-btn ', function() {
+      if ($(this).hasClass('add-post-btn')) {
+        $(' #postContainer').show();
+        var containerOffset = $('#postContainer').offset().top;
+        $('html, body').animate({scrollTop: containerOffset}, 500); 
+        $(this).addClass('submit-post-btn').removeClass('add-post-btn');
+        $(this).html('<i class="fas fa-times"></i> Close');
+      } 
+      else {
+        var postContent = $('#postContent').val();
+        console.log("Post content: ", postContent);
+        $(this).addClass('add-post-btn').removeClass('submit-post-btn');
+        $(this).html('<i class="fas fa-plus"></i> Add Post');
+        $('#postContainer').hide();
+        $('#postContent').val('');
+        
+      }
+    });
+
+    // Check for category selection before submitting post
+    $('.submit-post-btn').click(function() {
+      if (!$('input[name="role"]:checked').val()) {
+        $('#errorMessage').text("Please choose a category.").show();
+        return false; // prevent form submission
+      }
+      $('#errorMessage').hide();
+      $('.success-message').text("Post Submitted Successfully").fadeIn(500).delay(3000).fadeOut(500);
+
+        $(this).addClass('add-post-btn');
+        $('add-post-btn').html('<i class="fas fa-plus"></i> Add Post');
+    });
+
+
+    let notificationCount = 0; // Counter for notifications
+const maxNotifications = 5; // Maximum number of notifications
+
+$(".show-notifications-btn").click(function () { 
+  $(".notifications-container").toggle();   
+  var buttonText = $(this).text().includes("Show") ? "Close Notifications" : "Show Notifications";
+    $(this).html('<i class="fas fa-bell"></i> ' + buttonText);
+  // Check if the maximum notification count has been reached
+  if (notificationCount < maxNotifications) {
+    // Calculate how many new notifications to generate
+    var remainingNotifications = maxNotifications - notificationCount;
+    // Array of different notification messages   
+    var notificationMessages = [
+    '<span class="notification-title" style="color: black;">Donor Arrival: </span>A donor has arrived to deliver a donation. Please be prepared to receive it.',
+  '<span class="notification-title" style="color: black;">Donation Received: </span>You have received a donation from a generous donor!',
+  '<span class="notification-title" style="color: black;">Acknowledgment: </span>Thank you for your valuable contribution. It will positively impact our cause.',
+  '<span class="notification-title" style="color: black;">New Request: </span>We have received a new donation request. Please review it at your earliest convenience.',
+  '<span class="notification-title" style="color: black;">Donor Inquiry: </span>We have received an inquiry from a potential donor. Please follow up promptly.'
+    ];
+
+    // Loop to create and append multiple notifications, up to the remaining notifications
+    for (var i = 0; i < remainingNotifications; i++) {
+      // Randomly select a message from the array
+      var randomIndex = Math.floor(Math.random() * notificationMessages.length);
+      var randomMessage = notificationMessages[randomIndex];
+
+      // Create each notification
+      var notification = $('<div class="notification">' +
+        '<span class="notification-body">' + randomMessage + '</span>' +
+        '<span class="close-notification">&times;</span>' +
+        '</div>');
+
+      // Append each notification to the notifications container
+      $(".notifications-container").append(notification);
+      notificationCount++; // Increment notification count
+
+      // Check if the maximum notification count has been reached after generating each notification
+      if (notificationCount === maxNotifications) {
+        break; // Stop generating new notifications
+      }
+    }
+  }
+  updateNotificationCounter(); // Update the counter display
+});
+
+
+      // Close notification on click (outside the "Show Notifications" button click handler)
+      $(document).on("click", ".close-notification", function () {
+        $(this).parent().remove();
+        notificationCount--; // Decrement notification count
+        updateNotificationCounter(); // Update the counter display
+      });
+        // Function to update the notification counter display
+        function updateNotificationCounter() {
+        $(".notification-counter").text(notificationCount);
+
+        // Check if there are no notifications remaining, then reset the counter
+        if (notificationCount === 0) {
+          resetNotificationCounter();
+        }
+      }
+      // Function to reset the notification counter
+      function resetNotificationCounter() {
+        notificationCount = 0;
+        $(".notification-counter").text(notificationCount);
+      }
+
+      
+
+
+
+    $('#applicationForm').submit(function(event) {
+        // Prevent the default form submission
+        event.preventDefault();
+
+        // Serialize the form data.
+        var formData = $(this).serialize();
+
+        // Perform the AJAX request
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: formData,
+            error: function() {
+              // Handle errors here, if the server returns failure
+              var postContent = $('#postContent').val();
+              console.log("Post content: ", postContent);
+              $(this).addClass('add-post-btn').removeClass('submit-post-btn');
+              $(this).html('<i class="fas fa-plus"></i> Add Post');
+              $('#postContainer').hide();
+              $('#postContent').val('');
+              window.location.href = "postSuccess.html";
+              $('.success-message').text("Post Submitted Successfully").fadeIn(500).delay(3000).fadeOut(500);
+              $('#postContainer').hide();
+              $('#postContainer').find('input[type="text"], input[type="number"], textarea').val('');
+        $('#postContainer').find('input[type="file"]').val(null); // Special case for file inputs
+        $('#postContainer').find('select').val($('#postContainer').find('select option:first').val()); // Reset select menus to the first option
+        $('#postContainer').find('input[type="radio"], input[type="checkbox"]').prop('checked', false); // Uncheck all radios and checkboxes
+         
+        $('.field-container').hide(); // This will hide all subfields
+
+            }
+        });
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get all specific fields sections
+    var medicalSuppliesFields = document.getElementById("medicalSuppliesFields");
+    var schoolSuppliesFields = document.getElementById("schoolSuppliesFields");
+    var bloodDonationsFields = document.getElementById("bloodDonationsFields");
+    var clothesFields = document.getElementById("clothesFields");
+    var toysFields = document.getElementById("toysFields");
+    var foodFields = document.getElementById("foodFields");
+    var roleRadios = document.querySelectorAll('input[name="role"]');
+    
+    // Function to hide all fields
+    function hideAllFields() {
+      medicalSuppliesFields.style.display = 'none';
+      schoolSuppliesFields.style.display = 'none';
+      bloodDonationsFields.style.display = 'none';
+      clothesFields.style.display = 'none';
+      toysFields.style.display = 'none';
+      foodFields.style.display = 'none';
+    }
+    
+    // Function to show fields based on selection
+    function showFields() {
+      hideAllFields();
+      switch (this.value) {
+        case 'medicalSupplies':
+        medicalSuppliesFields.style.display = 'block';
+        break;
+        case 'schoolsupplies':
+        schoolSuppliesFields.style.display = 'block';
+        break;
+        case 'blooddonations':
+        bloodDonationsFields.style.display = 'block';
+        break;
+        case 'clothes':
+        clothesFields.style.display = 'block';
+        break;
+        case 'toys':
+        toysFields.style.display = 'block';
+        break;
+        case 'food':
+        foodFields.style.display = 'block';
+        break;
+      }
+    }
+
+    // Initialize fields visibility
+    hideAllFields();
+
+    // Attach event listeners to each role radio input
+    roleRadios.forEach(function(radio) {
+      radio.addEventListener('change', showFields);
+    });
+
+  });
+
+
+</script> 
+</body></html>

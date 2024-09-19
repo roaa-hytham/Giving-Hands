@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giving Hands | All Requests</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+  <!-- Font Nunito -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <!-- CSS Stylesheet -->
+  <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+  <link rel="shortcut icon" href="imgs/favicon.ico" />
+  <link rel="stylesheet" href="style3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+    #give {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      /* Adjust as needed */
+      width: 65px;
+      /* Adjust width as needed */
+      height: auto;
+    }
+
+    .top-menu {
+      position: fixed;
+      top: 20px;
+      right: 0;
+      background-color: #404181;
+      padding: 10px 20px;
+      display: flex;
+      z-index: 1000;
+    }
+
+    .top-menu a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .top-menu .dropdown {
+      position: relative;
+    }
+
+    .top-menu .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 0;
+      background-color: #404181;
+      min-width: 120px;
+      z-index: 1000;
+    }
+
+    .top-menu .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .top-menu .dropdown-content a {
+      padding: 10px;
+      display: block;
+    }
+
+    .img {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      /* Adjust as needed */
+      width: 65px;
+      /* Adjust width as needed */
+      height: auto;
+    }
+
+    h1 {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      /* Adjust font weight as needed */
+      position: absolute;
+      top: 5px;
+      width: 20px;
+      right: 175px;
+      /* Adjust as needed */
+      color: white;
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    img {
+      width: 115px;
+    }
+
+    .card-body {
+      position: relative;
+      /* Set position relative for the card body */
+    }
+
+    .apply-btn,
+    .view-details-btn {
+      background-color: #404181;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      /* Adjust margin as needed */
+      align-self: flex-end;
+      /* Align buttons to the right */
+      position: absolute;
+      /* Position the buttons absolutely */
+      bottom: 20px;
+      /* Distance from the bottom */
+      right: 20px;
+      font-size: 15px;
+
+    }
+
+    .view-details-btn {
+      margin-left: 10px;
+      /* Add some space between the buttons */
+      bottom: 20px;
+      /* Distance from the bottom */
+      right: 175px;
+      /* Distance from the right */
+    }
+
+    .required {
+      color: red;
+      font-weight: bold;
+    }
+
+    .filter-form {
+      margin-top: 20px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      /* Use the same font family as the posts */
+      color: #333;
+      /* Use the same text color as the posts */
+      font-weight: bold;
+    }
+
+    .filter-form label,
+    .filter-form select,
+    .filter-form button {
+      margin-right: 10px;
+      font-size: 16px;
+      /* Increase font size */
+      color: #404181;
+      /* Use the same text color as the posts */
+    }
+
+    #filterButton {
+      padding: 8px 16px;
+      background-color: #404181;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .posts {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      /* Align items to the top */
+      margin-top: 20px;
+      /* Adjust margin-top as needed */
+      text-align: left;
+
+    }
+
+
+    .post {
+      width: 900px;
+      /* Adjust width as needed */
+      margin: 20px;
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+
+    }
+
+    .post img {
+      float: left;
+      /* Align image to the left */
+      margin-right: 20px;
+      /* Add spacing between image and text */
+      width: 145px;
+      /* Adjust image width as needed */
+      height: auto;
+      /* Maintain aspect ratio */
+      border-radius: 5px;
+    }
+
+    .post h2 {
+      margin-bottom: 10px;
+    }
+
+    .post p {
+      margin-bottom: 20px;
+    }
+
+    .post p.location a {
+      color: #404181;
+      /* Adjust link color as needed */
+      text-decoration: none;
+    }
+
+    .post p.location a:hover {
+
+      text-decoration: underline;
+      /* Add underline on hover */
+    }
+
+    /* .post p.description {
+        color: #333; /* Change the color to match the post text color */
+
+    */ #filterButton:hover {
+      background-color: #2c2c6e;
+      /* Change the background color on hover */
+    }
+
+    .donation-quantity {
+      margin-top: 10px;
+    }
+
+    .donation-quantity label {
+      margin-right: 10px;
+    }
+
+    .donation-quantity input {
+      width: 60px;
+      padding: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .donate-button {
+      margin-top: 10px;
+    }
+
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 20% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      text-align: left;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      right: 10px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .details {
+      font-weight: bold;
+    }
+
+    .search-container {
+      position: fixed;
+      top: 100px;
+      /* Adjust top distance according to your design */
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .search-wrapper {
+      position: relative;
+    }
+
+    #searchInput {
+      padding: 10px 35px 10px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 250px;
+      color: black;
+    }
+
+    .fa-search {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #888;
+      cursor: pointer;
+    }
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="header-content"></div>
+    <h1 style="font-size: 2em;">Giving Hands</h1>
+    <img id="give" src="img/logo2.png" alt="logo" class="img" />
+  </header>
+
+  <div class="search-container">
+    <div class="search-wrapper">
+      <input type="text" id="searchInput" placeholder="Search for category..." autocomplete="off">
+      <i class="fas fa-search"></i>
+    </div>
+  </div>
+  <section id="list">
+    <section id="list" class="gap-bottom">
+      <div class="container">
+        <h2 id="title" style="text-align: center; font-weight: bold; position: relative;">Requests</h2>
+
+        <div class="side-bar">
+          <div class="menu-btn"></div>
+          <div class="menu">
+            <div class="item">
+              <a href="homedonorloggedin.html"><i class="fas fa-home"></i>Home</a>
+            </div>
+            <div class="item">
+              <a href="DonorProfileN.html"><i class="fas fa-user"></i>My Profile</a>
+            </div>
+            <div class="item">
+              <a class="sub-btn"
+                ><i class="fas fa-gift"></i>Donation Requests<i
+                  class="fas fa-angle-right dropdown"
+                ></i
+              ></a>
+              <div class="sub-menu">
+                <a href="donor.html" class="sub-item">All Requests</a>
+                <a href="School.html" class="sub-item">School Supplies</a>
+                <a href="Medical.html" class="sub-item">Medical Supplies</a>
+                <a href="Blood.html" class="sub-item">Blood Donations</a>
+                <a href="Clothes.html" class="sub-item">Clothes Donations</a>
+                <a href="Food.html" class="sub-item">Food Donations</a>
+                <a href="Toy.html" class="sub-item">Toys Donations</a>
+              </div>
+            </div>
+            <div class="item">
+              <a class="sub-btn"
+                ><i class="fas fa-heart"></i>Volunteer Now<i
+                  class="fas fa-angle-right dropdown"
+                ></i
+              ></a>
+              <div class="sub-menu">
+                <a href="medicalPosts.html" class="sub-item">Doctor</a>
+                <a href="educational_posts.html" class="sub-item">Teacher</a>
+              </div>
+            </div>
+            <div class="item">
+              <a href="OrganizationsDonorN.html"
+                ><i class="fas fa-building"></i>View All Organizations</a
+              >
+            </div>
+            <div class="item">
+              <a href="DonorHistoryN.html"
+                ><i class="fas fa-history"></i> MyDonations</a
+              >
+            </div>
+            <div class="item">
+              <a href="password.html"><i class="fas fa-lock"></i>Change Password</a>
+            </div>
+            <div class="item">
+              <a href="HomepageGeneral.html"><i class="fas fa-sign-out-alt"></i>LogOut</a>
+            </div>
+            <div class="item">
+              <a href="homedonorloggedin.html#contact"><i class="fas fa-info-circle"></i>Contact Us</a>
+            </div>
+          </div>
+        </div>
+
+
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Dropdown Menu</title>
+        </head>
+
+
+        <div class="row justify-content-center" style="
+              width: 780px;
+              display: flex; /* flex-direction: column; */ /* align-items: center; */
+              margin-left: auto;
+              margin-right: auto;
+            ">
+          <div class="posts">
+            <div class="post" data-type="Stationary">
+
+              <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <i class="fas fa-book-open fa-5x mr-2"></i>
+                </div>
+                <div class="col">
+
+                  <h2>Mohamed Naguib School </h2>
+                  <p><strong>Type :</strong> Stationary </p>
+
+                  <div class="donation-quantity">
+                    <label for="quantity"><strong><span class="required">*</span> Quantity :</strong></label>
+                    <input type="number" id="quantity1" name="quantity" min="1" required>
+                  </div>
+                  <p class="donateNow alert" id="alert1"></p>
+                  <button class="view-details-btn" data-target="#postDetailsModal1">View Details</button>
+                  <button class="apply-btn" onclick="donateNow(1)">Donate Now</button>
+                </div>
+              </div>
+            </div>
+
+            <div id="postDetailsModal1" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>
+                <h2>Mohamed Naguib School</h2>
+                </p>
+                <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                  <span class="mt-1">01234567880</span>
+                  <br>
+                </p>
+                <p>
+                  <i class="far fa-envelope mr-2 mt-1"></i>
+                  <span class="mt-1">Mohamed@gmail.com</span>
+                  <br>
+                </p>
+                <p>
+                  <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                  <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+                  <br>
+                </p>
+                <p><span class="details">Name: </span>Notebooks</p>
+                <p><span class="details">Quantity needed: </span><span id="num1">37</span><span id="type1">
+                    Notebooks</span></p>
+              </div>
+
+            </div>
+            <div class="posts">
+
+
+
+              <div class="post" data-age="13" data-gender="female" data-season="spring">
+
+
+                <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <i class="fas fa-tshirt fa-5x mr-2"></i>
+                  </div>
+                  <div class="col">
+
+                    <h2>El-Yousr Orphanage </h2>
+                    <p><strong>Age :</strong> 13 </p>
+                    <p><strong>Gender :</strong> Female </p>
+                    <p><strong>Season :</strong> Spring </p>
+
+                    <div class="donation-quantity">
+                      <label for="quantity"><strong><span class="required">*</span> Quantity
+                          :</strong></label>
+                      <input type="number" id="quantity2" name="quantity" min="1" required>
+                    </div>
+                    <p class="donateNow alert" id="alert2"></p>
+                    <button class="view-details-btn" data-target="#postDetailsModal2">View
+                      Details</button>
+                    <button class="apply-btn" onclick="donateNow(2)">Donate Now</button>
+                  </div>
+                </div>
+              </div>
+
+              <div id="postDetailsModal2" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <p>
+                  <h2>El-Yousr Orphanage</h2>
+                  </p>
+                  <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                    <span class="mt-1">01234567899</span>
+                    <br>
+                  </p>
+                  <p>
+                    <i class="far fa-envelope mr-2 mt-1"></i>
+                    <span class="mt-1">El-Yousr@gmail.com</span>
+                    <br>
+                  </p>
+                  <p>
+                    <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                    <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+                    <br>
+                  </p>
+                  <p><span class="details">Type: </span>T-shirts</p>
+                  <p><span class="details">Age: </span>13 years old</p>
+                  <p><span class="details">Gender: </span>Female</p>
+                  <p><span class="details">Season: </span>Spring</p>
+                  <p><span class="details">Material: </span>Cotton</p>
+                  <p><span class="details">Quantity needed: </span><span id="num2">5</span> <span id="type2">
+                      T-shirts</span>
+                  </p>
+                </div>
+
+              </div>
+
+
+              <div class="posts">
+
+
+                <div class="post" data-type="Book">
+
+
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <i class="fas fa-book-open fa-5x mr-2"></i>
+                    </div>
+                    <div class="col">
+
+                      <h2>Hassan Helmy School </h2>
+                      <p><strong>Type :</strong> Book </p>
+
+                      <div class="donation-quantity">
+                        <label for="quantity"><strong><span class="required">*</span> Quantity :</strong></label>
+                        <input type="number" id="quantity3" name="quantity" min="1" required>
+                      </div>
+                      <p class="donateNow alert" id="alert3"></p>
+                      <button class="view-details-btn" data-target="#postDetailsModal3">View Details</button>
+                      <button class="apply-btn" onclick="donateNow(3)">Donate Now</button>
+
+                    </div>
+                  </div>
+                </div>
+
+
+                <div id="postDetailsModal3" class="modal">
+                  <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>
+                    <h2>Hassan Helmy School</h2>
+                    </p>
+                    <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                      <span class="mt-1">01234567830</span>
+                      <br>
+                    </p>
+                    <p>
+                      <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">Helmy@gmail.com</span>
+                      <br>
+                    </p>
+                    <p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+                      <br>
+                    </p>
+                    <img src="img/book.jpg" alt="Where the Wild Things Are, Maurice Sendak" class="details-img">
+                    <br>
+                    <p><span class="details">Book Name : </span>Where the Wild Things Are</p>
+                    <p><span class="details">Author : </span>Maurice Sendak</p>
+                    <p><span class="details">Language : </span>English</p>
+                    <p><span class="details">Edition : </span>Anniversary Edition (2012)</p>
+                    <p><span class="details">Short Summary : </span>"Where the Wild Things Are" is a classic children's
+                      picture
+                      book that follows the imaginative journey of a young boy named Max. When Max misbehaves and is
+                      sent to bed
+                      without supper, he escapes to a world of his own creation inhabited by wild creatures. In this
+                      magical land,
+                      Max becomes the king of the Wild Things and experiences thrilling adventures before ultimately
+                      realizing the
+                      comfort of home and the love of family. The story beautifully explores themes of imagination,
+                      childhood
+                      emotions, and the power of love and reconciliation.
+                    </p>
+                    <p><span class="details">Quantity needed : </span><span id="num3">15</span><span id="type3">
+                        Books</span></p>
+                  </div>
+
+
+                </div>
+
+
+
+
+
+
+                <div class="posts">
+                  <div class="post" data-hospital="Kasr El Ainy Hospital" data-governorate="Cairo"
+                    data-area="Abu Zaabal">
+                    <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <i class="fas fa-heartbeat fa-5x mr-2"></i>
+                      </div>
+                      <div class="col">
+
+                        <h2>Kasr El Ainy Hospital </h2>
+                        <p><strong>Governorate :</strong> Cairo </p>
+                        <p><strong>Area :</strong> Abu Zaabal </p>
+
+                        <button class="view-details-btn" data-target="#postDetailsModal4">View Details</button>
+                        <a href="DonorFormToDonateN.html" class="sub-item"><button class="apply-btn">Donate
+                            Now</button></a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="postDetailsModal4" class="modal">
+                    <div class="modal-content">
+                      <span class="close">&times;</span>
+                      <p>
+                      <h2>Kasr El Ainy Hospital</h2>
+                      </p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01234567900</span>
+                        <br>
+                      </p>
+                      <p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                        <span class="mt-1">Kasr-Ainy@gmail.com</span>
+                        <br>
+                      </p>
+                      <p>
+                        <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                        <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+                        <br>
+                      </p>
+                      <p><span class="details">Patient name : </span>Mariam Hany</p>
+                      <p><span class="details">Blood type : </span>AB+</p>
+                      <p><span class="details">Hospital name : </span>Kasr El Ainy Hospital</p>
+                      <p><span class="details">Hospital area : </span> Abu Zaabal</p>
+                      <p><span class="details">Government : </span>Cairo</p>
+                      <p><span class="details">Hospital address : </span>50 Makram Ebeid Street</p>
+                    </div>
+
+                  </div>
+
+
+                  <div class="posts">
+                    <div class="post" data-category="medication" data-use="painkiller">
+                      <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                      <div class="row align-items-center">
+                        <div class="col-auto">
+                          <i class="fas fa-hospital-user fa-5x mr-2"></i>
+                        </div>
+                        <div class="col">
+
+                          <h2>Assiut Hospital </h2>
+                          <p><strong>Category :</strong> Medication </p>
+                          <p><strong>Medical Use :</strong> Pain Killer </p>
+
+                          <div class="donation-quantity">
+                            <label for="quantity"><strong><span class="required">*</span> Quantity :</strong></label>
+                            <input type="number" id="quantity5" name="quantity" min="1" required>
+                          </div>
+                          <p class="donateNow alert" id="alert5"></p>
+                          <button class="view-details-btn" data-target="#postDetailsModal5">View Details</button>
+                          <button class="apply-btn" onclick="donateNow(5)">Donate Now</button>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div id="postDetailsModal5" class="modal">
+                      <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>
+                        <h2>Assiut Hospital</h2>
+                        </p>
+                        <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                          <span class="mt-1">01055567800</span>
+                          <br>
+                        </p>
+                        <p>
+                          <i class="far fa-envelope mr-2 mt-1"></i>
+                          <span class="mt-1">Assiut@gmail.com</span>
+                          <br>
+                        </p>
+                        <p>
+                          <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                          <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+                          <br>
+                        </p>
+                        <img src="img/PK.png" alt="Pain Killer" class="details-img">
+                        <p><span class="details">Type : </span>Medicine</p>
+                        <p><span class="details">Name : </span>Pain Killer</p>
+                        <p><span class="details">Use : </span>Relieve pain</p>
+                        <p><span class="details">Quantity needed : </span><span id="num5">10</span><span id="type5">
+                            Medications</span>
+                      </div>
+
+                    </div>
+                    <div class="posts">
+
+                      <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                      <div class="post" data-age="3" data-gender="female" data-category="stuffed toys">
+                        <div class="row align-items-center">
+                          <div class="col-auto">
+                            <i class="fas fa-gamepad fa-5x mr-2"></i>
+                          </div>
+                          <div class="col">
+
+                            <h2>Rahma Orphanage </h2>
+                            <p><strong>Age :</strong> 3 </p>
+                            <p><strong>Gender :</strong> Female </span></p>
+                            <p><strong>Category :</strong> Stuffed Toys</p>
+                            <div class="donation-quantity">
+                              <label for="quantity"><strong><span class="required">*</span> Quantity :</strong></label>
+                              <input type="number" id="quantity6" name="quantity" min="1" required>
+                            </div>
+                            <p class="donateNow alert" id="alert6"></p>
+                            <button class="view-details-btn" data-target="#postDetailsModal6">View Details</button>
+                            <button class="apply-btn" onclick="donateNow(6)">Donate Now</button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div id="postDetailsModal6" class="modal">
+                        <div class="modal-content">
+                          <span class="close">&times;</span>
+                          <p>
+                          <h2>Rahma Orphanage</h2>
+                          </p>
+                          <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                            <span class="mt-1">01234567800</span>
+                            <br>
+                          </p>
+                          <p>
+                            <i class="far fa-envelope mr-2 mt-1"></i>
+                            <span class="mt-1">Rahma@gmail.com</span>
+                            <br>
+                          </p>
+                          <p>
+                            <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                            <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+                            <br>
+                          </p>
+                          <img src="img/animToy.png" alt="Animal toys" class="details-img">
+                          <p><span class="details">Type: </span>Animal toys</p>
+                          <!-- <p><span class="details">Age: </span>3 years old</p>
+                          <p><span class="details">Gender: </span>Female</p>
+                          <p><span class="details">Category: </span>Exploratory toys</p> -->
+                          <p><span class="details">Quantity needed: </span><span id="num6">3</span><span id="type6">
+                              Toys</span></p>
+
+                          </p>
+                        </div>
+
+                      </div>
+
+
+
+
+                      <div class="posts">
+                        <div class="post" data-hospital="Menoufia Hospital" data-governorate="Menoufia"
+                          data-area="Shibin Al Kawm">
+
+
+
+                          <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                          <div class="row align-items-center">
+                            <div class="col-auto">
+                              <i class="fas fa-heartbeat fa-5x mr-2"></i>
+                            </div>
+                            <div class="col">
+
+                              <h2>Menoufia Hospital </h2>
+                              <p><strong>Governorate :</strong> Menoufia </p>
+                              <p><strong>Area :</strong> Shibin Al Kawm </p>
+
+                              <button class="view-details-btn" data-target="#postDetailsModal7">View Details</button>
+                              <a href="DonorFormToDonateN.html" class="sub-item"><button class="apply-btn">Donate
+                                  Now</button></a>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div id="postDetailsModal7" class="modal">
+                          <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>
+                            <h2>Menoufia Hospital</h2>
+                            </p>
+                            <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                              <span class="mt-1">01234567806</span>
+                              <br>
+                            </p>
+                            <p>
+                              <i class="far fa-envelope mr-2 mt-1"></i>
+                              <span class="mt-1">Menoufia@gmail.com</span>
+                              <br>
+                            </p>
+                            <p>
+                              <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                              <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+                              <br>
+                            </p>
+                            <p><span class="details">Patient name : </span>Ahmed Mohamed</p>
+                            <p><span class="details">Blood type : </span>O+</p>
+                            <p><span class="details">Hospital name : </span>Menoufia Hospital</p>
+                            <p><span class="details">Hospital area : </span>Shibin Al Kawm</p>
+                            <p><span class="details">Government : </span>Menoufia</p>
+                            <p><span class="details">Hospital address : 25 Shalaby Street</span></p>
+                          </div>
+
+                        </div>
+
+
+
+
+                        <div class="posts">
+
+                          <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                          <div class="post" data-category="fruits and vegetables">
+                            <div class="row align-items-center">
+                              <div class="col-auto">
+                                <i class="fas fa-utensils fa-5x mr-2"></i>
+                              </div>
+                              <div class="col">
+
+                                <h2>Hayat Orphanage</h2>
+                                <p><strong>Category :</strong> Fruits and Vegetables </p>
+
+                                <div class="donation-quantity">
+                                  <label for="quantity"><strong><span class="required">*</span> Quantity
+                                      :</strong></label>
+                                  <input type="number" id="quantity8" name="quantity" min="1" required>
+                                </div>
+                                <p class="donateNow alert" id="alert8"></p>
+                                <button class="view-details-btn" data-target="#postDetailsModal8">View Details</button>
+                                <button class="apply-btn" onclick="donateNow(8)">Donate Now</button>
+
+                              </div>
+                            </div>
+                          </div>
+
+                          <div id="postDetailsModal8" class="modal">
+                            <div class="modal-content">
+                              <span class="close">&times;</span>
+                              <p>
+                              <h2>Hayat Orphanage</h2>
+                              </p>
+                              <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                                <span class="mt-1">01234567809</span>
+                                <br>
+                              </p>
+                              <p>
+                                <i class="far fa-envelope mr-2 mt-1"></i>
+                                <span class="mt-1">Hayat@gmail.com</span>
+                                <br>
+                              </p>
+                              <p>
+                                <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+                                <br>
+                              </p>
+                              <p><span class="details">Item name: </span>Oranges</p>
+                              <p><span class="details">Quantity needed: </span><span id="num8">3</span> <span
+                                  id="type8">KG</span></p>
+                              </p>
+                            </div>
+
+                          </div>
+
+
+                          <div class="posts">
+
+
+                            <div class="post" data-hospital="Tanta Hospital" data-governorate="El-Gharbia"
+                              data-area="Tanta">
+
+
+                              <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                              <div class="row align-items-center">
+                                <div class="col-auto">
+                                  <i class="fas fa-heartbeat fa-5x mr-2"></i>
+                                </div>
+                                <div class="col">
+
+                                  <h2>Tanta Hospital </h2>
+                                  <p><strong>Governorate :</strong> El-Gharbia </p>
+                                  <p><strong>Area :</strong> Tanta </p>
+
+                                  <button class="view-details-btn" data-target="#postDetailsModal9">View
+                                    Details</button>
+                                  <a href="DonorFormToDonateN.html" class="sub-item"><button class="apply-btn">Donate
+                                      Now</button></a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div id="postDetailsModal9" class="modal">
+                              <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>
+                                <h2>Tanta Hospital</h2>
+                                </p>
+                                <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                                  <span class="mt-1">01234567803</span>
+                                  <br>
+                                </p>
+                                <p>
+                                  <i class="far fa-envelope mr-2 mt-1"></i>
+                                  <span class="mt-1">Tanta@gmail.com</span>
+                                  <br>
+                                </p>
+                                <p>
+                                  <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                  <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+                                  <br>
+                                </p>
+                                <p><span class="details">Patient name : </span>Nada Yasser</p>
+                                <p><span class="details">Blood type : </span>A-</p>
+                                <p><span class="details">Hospital name : </span>Tanta Hospital</p>
+                                <p><span class="details">Hospital area : </span>Tanta</p>
+                                <p><span class="details">Government : </span>El-Gharbia</p>
+                                <p><span class="details">Hospital address : 30 Ahmed Assem Street</span></p>
+                              </div>
+
+                            </div>
+
+
+                            <div class="posts">
+
+
+                              <div class="post" data-type="Stationary">
+
+
+                                <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                                <div class="row align-items-center">
+                                  <div class="col-auto">
+                                    <i class="fas fa-book-open fa-5x mr-2"></i>
+                                  </div>
+                                  <div class="col">
+
+                                    <h2>Talaat Harb School </h2>
+                                    <p><strong>Type :</strong> Stationary </p>
+                                    <div class="donation-quantity">
+                                      <label for="quantity"><strong><span class="required">*</span> Quantity
+                                          :</strong></label>
+                                      <input type="number" id="quantity10" name="quantity" min="1" required>
+                                    </div>
+                                    <p class="donateNow alert" id="alert10"></p>
+                                    <button class="view-details-btn" data-target="#postDetailsModal10">View
+                                      Details</button>
+                                    <button class="apply-btn" onclick="donateNow(10)">Donate Now</button>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div id="postDetailsModal10" class="modal">
+                                <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                  <p>
+                                  <h2>Talaat Harb School</h2>
+                                  </p>
+                                  <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                                    <span class="mt-1">01299567800</span>
+                                    <br>
+                                  </p>
+                                  <p>
+                                    <i class="far fa-envelope mr-2 mt-1"></i>
+                                    <span class="mt-1">TalaatHarb@gmail.com</span>
+                                    <br>
+                                  </p>
+                                  <p>
+                                    <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                    <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+                                    <br>
+                                  </p>
+                                  <p><span class="details">Name: </span>Rulers</p>
+                                  <p><span class="details">Quantity needed: </span><span id="num10">44</span><span
+                                      id="type10">
+                                      Rulers</span></p>
+                                </div>
+
+                              </div>
+
+
+                              <div class="posts">
+
+
+
+                                <div class="post" data-age="5" data-gender="male" data-season="winter">
+
+
+                                  <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                                  <div class="row align-items-center">
+                                    <div class="col-auto">
+                                      <i class="fas fa-tshirt fa-5x mr-2"></i>
+                                    </div>
+                                    <div class="col">
+
+                                      <h2>Dar Al-Ahlam Orphanage </h2>
+                                      <p><strong>Age :</strong> 5 </p>
+                                      <p><strong>Gender :</strong> Male </p>
+                                      <p><strong>Season :</strong> Winter </p>
+                                      <div class="donation-quantity">
+                                        <label for="quantity"><strong><span class="required">*</span> Quantity
+                                            :</strong></label>
+                                        <input type="number" id="quantity11" name="quantity" min="1" required>
+                                      </div>
+                                      <p class="donateNow alert" id="alert11"></p>
+                                      <button class="view-details-btn" data-target="#postDetailsModal11">View
+                                        Details</button>
+                                      <button class="apply-btn" onclick="donateNow(11)">Donate Now</button>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div id="postDetailsModal11" class="modal">
+                                  <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <p>
+                                    <h2>Dar Al-Ahlam Orphanage</h2>
+                                    </p>
+                                    <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                                      <span class="mt-1">01234887800</span>
+                                      <br>
+                                    </p>
+                                    <p>
+                                      <i class="far fa-envelope mr-2 mt-1"></i>
+                                      <span class="mt-1">Al-Ahlam@gmail.com</span>
+                                      <br>
+                                    </p>
+                                    <p>
+                                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                      <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+                                      <br>
+                                    </p>
+                                    <p><span class="details">Type: </span>Pants</p>
+                                    <p><span class="details">Age: </span>5 years old</p>
+                                    <p><span class="details">Gender: </span>Male</p>
+                                    <p><span class="details">Season: </span>Winter</p>
+                                    <p><span class="details">Material: </span>Denim</p>
+                                    <p><span class="details">Quantity needed: </span><span id="num11">8</span><span
+                                        id="type11">
+                                        Pants</span></p>
+                                  </div>
+
+                                </div>
+
+
+
+
+                                <div class="col-12 col-md-6 col-lg-12 my-2 content">
+                                  <div class=" posts">
+                                    <div class="post" data-category="medication" data-use="bacterial infection">
+                                      <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                                      <div class="row align-items-center">
+                                        <div class="col-auto">
+                                          <i class="fas fa-hospital-user fa-5x mr-2"></i>
+                                        </div>
+                                        <div class="col">
+
+                                          <h2>Abu El-Reesh Hospital </h2>
+                                          <p><strong>Category :</strong> Medication </p>
+                                          <p><strong>Medical Use :</strong> Bacterial Infection </p>
+                                          <div class="donation-quantity">
+                                            <label for="quantity"><strong><span class="required">*</span> Quantity
+                                                :</strong></label>
+                                            <input type="number" id="quantity12" name="quantity" min="1" required>
+                                          </div>
+                                          <p class="donateNow alert" id="alert12"></p>
+                                          <button class="view-details-btn" data-target="#postDetailsModal12">View
+                                            Details</button>
+                                          <button class="apply-btn" onclick="donateNow(12)">Donate Now</button>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div id="postDetailsModal12" class="modal">
+                                      <div class="modal-content">
+                                        <span class="close">&times;</span>
+                                        <p>
+                                        <h2>Abu El-Reesh Hospital</h2>
+                                        </p>
+                                        <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                                          <span class="mt-1">01239967800</span>
+                                          <br>
+                                        </p>
+                                        <p>
+                                          <i class="far fa-envelope mr-2 mt-1"></i>
+                                          <span class="mt-1">El-Reesh@gmail.com</span>
+                                          <br>
+                                        </p>
+                                        <p>
+                                          <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                          <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA"
+                                            target="_blank">Location</a>
+                                          <br>
+                                        </p>
+                                        <img src="img/BIM.png" alt="Bacterial Infection" class="details-img">
+                                        <p><span class="details">Type : </span>Medicine</p>
+                                        <p><span class="details">Name : </span>Bacterial Infection</p>
+                                        <p><span class="details">Use : </span>Treat illnesses caused by bacteria</p>
+                                        <p><span class="details">Quantity needed : </span><span id="num12">7</span><span
+                                            id="type12">
+                                            Medications</span>
+                                      </div>
+
+                                    </div>
+
+
+
+
+                                    <div class="posts">
+
+                                      <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                                      <div class="post" data-age="6" data-gender="male" data-category="cars">
+                                        <div class="row align-items-center">
+                                          <div class="col-auto">
+                                            <i class="fas fa-gamepad fa-5x mr-2"></i>
+                                          </div>
+                                          <div class="col">
+
+                                            <h2>Kawthar Orphanage</h2>
+                                            <p><strong>Age :</strong> 6 </p>
+                                            <p><strong>Gender :</strong> Male </span></p>
+                                            <p><strong>Category :</strong> Cars</p>
+                                            <div class="donation-quantity">
+                                              <label for="quantity"><strong><span class="required">*</span> Quantity
+                                                  :</strong></label>
+                                              <input type="number" id="quantity13" name="quantity" min="1" required>
+                                            </div>
+                                            <p class="donateNow alert" id="alert13"></p>
+                                            <button class="view-details-btn" data-target="#postDetailsModal13">View
+                                              Details</button>
+                                            <button class="apply-btn" onclick="donateNow(13)">Donate Now</button>
+
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div id="postDetailsModal13" class="modal">
+                                        <div class="modal-content">
+                                          <span class="close">&times;</span>
+                                          <p>
+                                          <h2>Kawthar Orphanage</h2>
+                                          </p>
+                                          <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                                            <span class="mt-1">01234537800</span>
+                                            <br>
+                                          </p>
+                                          <p>
+                                            <i class="far fa-envelope mr-2 mt-1"></i>
+                                            <span class="mt-1">Kawthar@gmail.com</span>
+                                            <br>
+                                          </p>
+                                          <p>
+                                            <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                            <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA"
+                                              target="_blank">Location</a>
+                                            <br>
+                                          </p>
+                                          <img src="img/cars.png" alt="Cars" class="details-img">
+                                          <p><span class="details">Type : </span> Cars</p>
+                                          <!-- <p><span class="details">Age: </span>3 years old</p>
+                                        <p><span class="details">Gender: </span>Female</p>
+                                        <p><span class="details">Category: </span>Exploratory toys</p> -->
+                                          <p><span class="details">Quantity needed : </span><span id="num13">
+                                              2</span><span id="type13"> Toys</span></p>
+                                        </div>
+
+                                      </div>
+
+
+                                      <div class="posts">
+                                        <div class="post" data-category="medical devices">
+                                          <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                                          <div class="row align-items-center">
+                                            <div class="col-auto">
+                                              <i class="fas fa-hospital-user fa-5x mr-2"></i>
+                                            </div>
+                                            <div class="col">
+
+                                              <h2>Dar Al Fouad Hospital </h2>
+                                              <p><strong>Category :</strong> Medical Devices </p>
+
+                                              <div class="donation-quantity">
+                                                <label for="quantity"><strong><span class="required">*</span> Quantity
+                                                    :</strong></label>
+                                                <input type="number" id="quantity14" name="quantity" min="1" required>
+                                              </div>
+                                              <p class="donateNow alert" id="alert14"></p>
+                                              <button class="view-details-btn" data-target="#postDetailsModal14">View
+                                                Details</button>
+                                              <button class="apply-btn" onclick="donateNow(14)">Donate Now</button>
+
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div id="postDetailsModal14" class="modal">
+                                          <div class="modal-content">
+                                            <span class="close">&times;</span>
+                                            <p>
+                                            <h2>Dar Al Fouad Hospital</h2>
+                                            </p>
+                                            <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                                              <span class="mt-1">01234567833</span>
+                                              <br>
+                                            </p>
+                                            <p>
+                                              <i class="far fa-envelope mr-2 mt-1"></i>
+                                              <span class="mt-1">Al-Fouad@gmail.com</span>
+                                              <br>
+                                            </p>
+                                            <p>
+                                              <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                              <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA"
+                                                target="_blank">Location</a>
+                                              <br>
+                                            </p>
+                                            <img src="img/thermo.webp" alt="Thermometer" class="details-img">
+                                            <p><span class="details">Type : </span>Thermometer</p>
+                                            <p><span class="details">Use : </span>Measure body temperature accurately
+                                            </p>
+                                            <p><span class="details">Quantity needed : </span><span
+                                                id="num14">7</span><span id="type14">
+                                                Thermometers</span>
+                                          </div>
+
+                                        </div>
+
+                                        <div class="posts">
+
+                                          <div class="post" data-type="Book">
+
+
+                                            <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                                            <div class="row align-items-center">
+                                              <div class="col-auto">
+                                                <i class="fas fa-book-open fa-5x mr-2"></i>
+                                              </div>
+                                              <div class="col">
+
+                                                <h2>Gamal Abdel Nasser School </h2>
+                                                <p><strong>Type :</strong> Book </p>
+                                                <div class="donation-quantity">
+                                                  <label for="quantity"><strong><span class="required">*</span> Quantity
+                                                      :</strong></label>
+                                                  <input type="number" id="quantity15" name="quantity" min="1" required>
+                                                </div>
+                                                <p class="donateNow alert" id="alert15"></p>
+                                                <button class="view-details-btn" data-target="#postDetailsModal15">View
+                                                  Details</button>
+                                                <button class="apply-btn" onclick="donateNow(15)">Donate Now</button>
+
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div id="postDetailsModal15" class="modal">
+                                            <div class="modal-content">
+                                              <span class="close">&times;</span>
+                                              <p>
+                                              <h2>Gamal Abdel Nasser School</h2>
+                                              </p>
+                                              <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                                                <span class="mt-1">01234567800</span>
+                                                <br>
+                                              </p>
+                                              <p>
+                                                <i class="far fa-envelope mr-2 mt-1"></i>
+                                                <span class="mt-1">GamalAbdelNasser@gmail.com</span>
+                                                <br>
+                                              </p>
+                                              <p>
+                                                <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                                <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA"
+                                                  target="_blank">Location</a>
+                                                <br>
+                                              </p>
+                                              <img src="img/book2.jpg"
+                                                alt="الفارس الصغير, محمد حسنين هيكل (Al-Faris As-Saghir, Mohamed Hassanein Heikal)"
+                                                class="details-img">
+                                              <br>
+                                              <p><span class="details">Book Name : </span>"الفارس الصغير" (Al-Faris
+                                                As-Saghir)</p>
+                                              <p><span class="details">Author : </span>محمد حسنين هيكل (Mohamed
+                                                Hassanein Heikal)</p>
+                                              <p><span class="details">Language : </span>Arabic</p>
+                                              <p><span class="details">Edition : </span>First Edition (2010)</p>
+                                              <p><span class="details">Short Summary : </span>"الفارس الصغير" (Al-Faris
+                                                As-Saghir), which translates
+                                                to "The Little Knight," is a heartwarming story about a young boy named
+                                                Omar who dreams of becoming a
+                                                brave knight. Despite his small size, Omar's determination and courage
+                                                lead him on an extraordinary
+                                                adventure where he must face challenges and overcome obstacles to prove
+                                                himself worthy of knighthood.
+                                                Along the way, he learns important lessons about bravery, friendship,
+                                                and the true meaning of heroism.
+                                                This beautifully illustrated book inspires young readers to believe in
+                                                themselves and pursue their
+                                                dreams, no matter how big or small.
+                                              </p>
+                                              <p><span class="details">Quantity needed : </span><span
+                                                  id="num15">16</span><span id="type15">
+                                                  Books</span></p>
+                                            </div>
+
+                                          </div>
+
+
+                                          <div class="posts">
+
+                                            <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                                            <div class="post" content-data-age="8" data-gender="male"
+                                              data-category="board games">
+                                              <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                  <i class="fas fa-gamepad fa-5x mr-2"></i>
+                                                </div>
+                                                <div class="col">
+
+                                                  <h2>Dar El Tarbiah Orphanage</h2>
+                                                  <p><strong>Age :</strong> 8 </p>
+                                                  <p><strong>Gender :</strong> Male </span></p>
+                                                  <p><strong>Category :</strong> Board Games</p>
+                                                  <div class="donation-quantity">
+                                                    <label for="quantity"><strong><span class="required">*</span>
+                                                        Quantity :</strong></label>
+                                                    <input type="number" id="quantity16" name="quantity" min="1"
+                                                      required>
+                                                  </div>
+                                                  <p class="donateNow alert" id="alert16"></p>
+                                                  <button class="view-details-btn"
+                                                    data-target="#postDetailsModal16">View
+                                                    Details</button>
+                                                  <button class="apply-btn" onclick="donateNow(16)">Donate Now</button>
+                                                </div>
+
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div id="postDetailsModal16" class="modal">
+                                            <div class="modal-content">
+                                              <span class="close">&times;</span>
+                                              <p>
+                                              <h2>Dar El Tarbiah Orphanage</h2>
+                                              </p>
+                                              <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                                                <span class="mt-1">01134567800</span>
+                                                <br>
+                                              </p>
+                                              <p>
+                                                <i class="far fa-envelope mr-2 mt-1"></i>
+                                                <span class="mt-1">Tarbiah@gmail.com</span>
+                                                <br>
+                                              </p>
+                                              <p>
+                                                <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                                <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA"
+                                                  target="_blank">Location</a>
+                                                <br>
+                                              </p>
+                                              <img src="img/BuildBcks.png" alt="Building Blocks" class="details-img">
+                                              <p><span class="details">Type : </span>Building Blocks</p>
+                                              <!-- <p><span class="details">Age: </span>3 years old</p>
+                                            <p><span class="details">Gender: </span>Female</p>
+                                            <p><span class="details">Category: </span>Exploratory toys</p> -->
+                                              <p><span class="details">Quantity needed : </span><span
+                                                  id="num16">4</span><span id="type16"> Toys</span>
+                                              </p>
+                                              </p>
+                                            </div>
+
+                                          </div>
+
+                                          <div class="posts">
+
+                                            <div class="post" data-type="Stationary">
+
+
+                                              <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                  <i class="fas fa-book-open fa-5x mr-2"></i>
+                                                </div>
+                                                <div class="col">
+
+                                                  <h2>Nile School </h2>
+                                                  <p><strong>Type :</strong> Stationary </p>
+                                                  <div class="donation-quantity">
+                                                    <label for="quantity"><strong><span class="required">*</span>
+                                                        Quantity :</strong></label>
+                                                    <input type="number" id="quantity17" name="quantity" min="1"
+                                                      required>
+                                                  </div>
+                                                  <p class="donateNow alert" id="alert17"></p>
+                                                  <button class="view-details-btn"
+                                                    data-target="#postDetailsModal17">View
+                                                    Details</button>
+                                                  <button class="apply-btn" onclick="donateNow(17)">Donate Now</button>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <div id="postDetailsModal17" class="modal">
+                                              <div class="modal-content">
+                                                <span class="close">&times;</span>
+                                                <p>
+                                                <h2>Nile School</h2>
+                                                </p>
+                                                <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                                                  <span class="mt-1">01234522800</span>
+                                                  <br>
+                                                </p>
+                                                <p>
+                                                  <i class="far fa-envelope mr-2 mt-1"></i>
+                                                  <span class="mt-1">Nile@gmail.com</span>
+                                                  <br>
+                                                </p>
+                                                <p>
+                                                  <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                                  <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA"
+                                                    target="_blank">Location</a>
+                                                  <br>
+                                                </p>
+                                                <p><span class="details">Name: </span>Calculators</p>
+                                                <p><span class="details">Quantity needed: </span><span
+                                                    id="num17">14</span><span id="type17">
+                                                    Calculators</span></p>
+                                              </div>
+
+                                            </div>
+
+
+                                            <div class="posts">
+
+                                              <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                                              <div class="post" data-category="baked goods">
+                                                <div class="row align-items-center">
+                                                  <div class="col-auto">
+                                                    <i class="fas fa-utensils fa-5x mr-2"></i>
+                                                  </div>
+                                                  <div class="col">
+
+                                                    <h2>Banati Orphanage</h2>
+                                                    <p><strong>Category :</strong> Baked Goods </p>
+
+                                                    <div class="donation-quantity">
+                                                      <label for="quantity"><strong><span class="required">*</span>
+                                                          Quantity :</strong></label>
+                                                      <input type="number" id="quantity18" name="quantity" min="1"
+                                                        required>
+                                                    </div>
+                                                    <p class="donateNow alert" id="alert18"></p>
+                                                    <button class="view-details-btn"
+                                                      data-target="#postDetailsModal18">View Details</button>
+                                                    <button class="apply-btn" onclick="donateNow(18)">Donate
+                                                      Now</button>
+
+                                                  </div>
+                                                </div>
+                                              </div>
+
+                                              <div id="postDetailsModal18" class="modal">
+                                                <div class="modal-content">
+                                                  <span class="close">&times;</span>
+                                                  <p>
+                                                  <h2>Banati Orphanage</h2>
+                                                  </p>
+                                                  <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                                                    <span class="mt-1">01234567770</span>
+                                                    <br>
+                                                  </p>
+                                                  <p>
+                                                    <i class="far fa-envelope mr-2 mt-1"></i>
+                                                    <span class="mt-1">Banati@gmail.com</span>
+                                                    <br>
+                                                  </p>
+                                                  <p>
+                                                    <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                                    <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA"
+                                                      target="_blank">Location</a>
+                                                    <br>
+                                                  </p>
+                                                  <p><span class="details">Item name: </span>Bread</p>
+                                                  <p><span class="details">Quantity needed: </span><span
+                                                      id="num18">10</span> <span id="type18">loaves</span></p>
+                                                  </p>
+                                                </div>
+
+                                              </div>
+
+
+
+                                              <div class="col-12 col-md-6 col-lg-12 my-2 content">
+                                                <div class="post" data-category="medical devices">
+                                                  <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                                                  <div class="row align-items-center">
+                                                    <div class="col-auto">
+                                                      <i class="fas fa-hospital-user fa-5x mr-2"></i>
+                                                    </div>
+                                                    <div class="col">
+
+                                                      <h2>Imbaba General Hospital </h2>
+                                                      <p><strong>Category :</strong> Medical Devices </p>
+
+                                                      <div class="donation-quantity">
+                                                        <label for="quantity"><strong><span class="required">*</span>
+                                                            Quantity :</strong></label>
+                                                        <input type="number" id="quantity19" name="quantity" min="1"
+                                                          required>
+                                                      </div>
+                                                      <p class="donateNow alert" id="alert19"></p>
+                                                      <button class="view-details-btn"
+                                                        data-target="#postDetailsModal19">View Details</button>
+                                                      <button class="apply-btn" onclick="donateNow(19)">Donate
+                                                        Now</button>
+
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+                                                <div id="postDetailsModal19" class="modal">
+                                                  <div class="modal-content">
+                                                    <span class="close">&times;</span>
+                                                    <p>
+                                                    <h2>Imbaba General Hospital</h2>
+                                                    </p>
+                                                    <p class="mt-3 card-text info"><i
+                                                        class="fas fa-phone mr-2 mt-1"></i>
+                                                      <span class="mt-1">01234567857</span>
+                                                      <br>
+                                                    </p>
+                                                    <p>
+                                                      <i class="far fa-envelope mr-2 mt-1"></i>
+                                                      <span class="mt-1">Imbaba@gmail.com</span>
+                                                      <br>
+                                                    </p>
+                                                    <p>
+                                                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                                      <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA"
+                                                        target="_blank">Location</a>
+                                                      <br>
+                                                    </p>
+                                                    <img src="img/BPM.webp" alt="Blood Pressure Monitor"
+                                                      class="details-img">
+                                                    <p><span class="details">Type : </span>Blood Pressure Monitors</p>
+                                                    <p><span class="details">Use : </span>Measure the pressure of blood
+                                                      flowing through the arteries </p>
+                                                    <p><span class="details">Quantity needed : </span><span
+                                                        id="num19">3</span><span id="type19">
+                                                        Monitors</span>
+                                                  </div>
+
+                                                </div>
+
+                                                <div class="posts">
+
+                                                  <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                                                  <div class="post" content data-category="fresh meals">
+                                                    <div class="row align-items-center">
+                                                      <div class="col-auto">
+                                                        <i class="fas fa-utensils fa-5x mr-2"></i>
+                                                      </div>
+                                                      <div class="col">
+
+                                                        <h2>Dar El-Orman Orphanage</h2>
+                                                        <p><strong>Category :</strong> Fresh Meals </p>
+
+                                                        <div class="donation-quantity">
+                                                          <label for="quantity"><strong><span class="required">*</span>
+                                                              Quantity :</strong></label>
+                                                          <input type="number" id="quantity20" name="quantity" min="1"
+                                                            required>
+                                                        </div>
+                                                        <p class="donateNow alert" id="alert20"></p>
+                                                        <button class="view-details-btn"
+                                                          data-target="#postDetailsModal20">View Details</button>
+                                                        <button class="apply-btn" onclick="donateNow(20)">Donate
+                                                          Now</button>
+                                                      </div>
+
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+                                                <div id="postDetailsModal20" class="modal">
+                                                  <div class="modal-content">
+                                                    <span class="close">&times;</span>
+                                                    <p>
+                                                    <h2>Dar El-Orman Orphanage</h2>
+                                                    </p>
+                                                    <p class="mt-3 card-text info"><i
+                                                        class="fas fa-phone mr-2 mt-1"></i>
+                                                      <span class="mt-1">01255567800</span>
+                                                      <br>
+                                                    </p>
+                                                    <p>
+                                                      <i class="far fa-envelope mr-2 mt-1"></i>
+                                                      <span class="mt-1">Orman@gmail.com</span>
+                                                      <br>
+                                                    </p>
+                                                    <p>
+                                                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                                      <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA"
+                                                        target="_blank">Location</a>
+                                                      <br>
+                                                    </p>
+                                                    <p><span class="details">Item name: </span>Meat</p>
+                                                    <p><span class="details">Quantity needed: </span><span
+                                                        id="num20">2</span> <span id="type20">KG</span></p>
+                                                    </p>
+                                                  </div>
+
+                                                </div>
+
+
+                                                <div class="posts">
+
+                                                  <div class="post" data-hospital="Al-Hussein Hospital"
+                                                    data-governorate="Cairo" data-area="Al Azhar">
+
+                                                    <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                                                    <div class="row align-items-center">
+                                                      <div class="col-auto">
+                                                        <i class="fas fa-heartbeat fa-5x mr-2"></i>
+                                                      </div>
+                                                      <div class="col">
+
+                                                        <h2>Al-Hussein Hospital </h2>
+                                                        <p><strong>Governorate :</strong> Cairo </p>
+                                                        <p><strong>Area :</strong> Al Azhar </p>
+
+                                                        <button class="view-details-btn"
+                                                          data-target="#postDetailsModal21">View Details</button>
+                                                        <a href="DonorFormToDonateN.html" class="sub-item"><button
+                                                            class="apply-btn">Donate Now</button></a>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+
+                                                  <div id="postDetailsModal21" class="modal">
+                                                    <div class="modal-content">
+                                                      <span class="close">&times;</span>
+                                                      <p>
+                                                      <h2>Al-Hussein Hospital</h2>
+                                                      </p>
+                                                      <p class="mt-3 card-text info"><i
+                                                          class="fas fa-phone mr-2 mt-1"></i>
+                                                        <span class="mt-1">01234567890</span>
+                                                        <br>
+                                                      </p>
+                                                      <i class="far fa-envelope mr-2 mt-1"></i>
+                                                      <span class="mt-1">Al-Hussein@gmail.com</span>
+                                                      <br></p>
+                                                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                                      <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA"
+                                                        target="_blank">Location</a>
+                                                      <br></p>
+                                                      <p><span class="details">Patient name : </span>Aya Alaam</p>
+                                                      <p><span class="details">Blood type : </span>O+</p>
+                                                      <p><span class="details">Hospital name : </span>Al-Hussein
+                                                        Hospital</p>
+                                                      <p><span class="details">Hospital area : </span>Al Azhar</p>
+                                                      <p><span class="details">Government : </span>Cairo</p>
+                                                      <p><span class="details">Hospital address : 24 Mostafa Al-Nahas
+                                                          Street</span></p>
+                                                    </div>
+
+                                                  </div>
+
+
+
+
+                                                  <div class="posts">
+
+                                                    <div class="post" data-age="7" data-gender="female"
+                                                      data-season="spring">
+                                                      <!-- <div class="col-12 col-md-6 col-lg-12 my-2 content" data-age="3" data-gender="female" data-category="stuffed toys" > -->
+                                                      <div class="row align-items-center">
+                                                        <div class="col-auto">
+                                                          <i class="fas fa-tshirt fa-5x mr-2"></i>
+                                                        </div>
+                                                        <div class="col">
+
+                                                          <h2>Dar Elona Orphanage </h2>
+                                                          <p><strong>Age :</strong> 7</p>
+                                                          <p><strong>Gender :</strong> Female </p>
+                                                          <p><strong>Season :</strong> Spring </p>
+                                                          <div class="donation-quantity">
+                                                            <label for="quantity"><strong><span
+                                                                  class="required">*</span>
+                                                                Quantity :</strong></label>
+                                                            <input type="number" id="quantity22" name="quantity" min="1"
+                                                              required>
+                                                          </div>
+                                                          <p class="donateNow alert" id="alert22"></p>
+                                                          <button class="view-details-btn"
+                                                            data-target="#postDetailsModal22">View
+                                                            Details</button>
+                                                          <button class="apply-btn" onclick="donateNow(22)">Donate
+                                                            Now</button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+
+                                                    <div id="postDetailsModal22" class="modal">
+                                                      <div class="modal-content">
+                                                        <span class="close">&times;</span>
+                                                        <p>
+                                                        <h2>Dar Elona Orphanage</h2>
+                                                        </p>
+                                                        <p class="mt-3 card-text info"><i
+                                                            class="fas fa-phone mr-2 mt-1"></i>
+                                                          <span class="mt-1">01234333800</span>
+                                                          <br>
+                                                        </p>
+                                                        <p>
+                                                          <i class="far fa-envelope mr-2 mt-1"></i>
+                                                          <span class="mt-1">Elona@gmail.com</span>
+                                                          <br>
+                                                        </p>
+                                                        <p>
+                                                          <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                                                          <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA"
+                                                            target="_blank">Location</a>
+                                                          <br>
+                                                        </p>
+                                                        <p><span class="details">Type: </span>Dresses</p>
+                                                        <p><span class="details">Age: </span>7 years old</p>
+                                                        <p><span class="details">Gender: </span>Female</p>
+                                                        <p><span class="details">Season: </span>Spring</p>
+                                                        <p><span class="details">Material: </span>Cotton</p>
+                                                        <p><span class="details">Quantity needed: </span><span
+                                                            id="num22">7</span><span id="type22">
+                                                            Dresses</span></p>
+                                                      </div>
+
+                                                    </div>
+
+
+
+
+    </section>
+  </section>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      //jquery for toggle sub menus
+      $(".sub-btn").click(function () {
+        $(this).next(".sub-menu").slideToggle();
+        $(this).find(".dropdown").toggleClass("rotate");
+      });
+
+      //jquery for expand and collapse the sidebar
+      $(".menu-btn").click(function () {
+                  $(".side-bar").toggleClass("active");
+                  $(".menu-btn i").toggleClass("fa-bars fa-times"); // Toggle the menu icon class
+                  $(".menu-btn").css("visibility", "visible");
+                });
+
+      $(".close-btn").click(function () {
+        $(".side-bar").removeClass("active");
+        $(".menu-btn").css("visibility", "visible");
+      });
+
+      // Function to show password change form when "Change Password" is clicked
+      $("#change-password-btn").click(function () {
+        $(".password-form").show();
+        $(".background-title").show();
+      });
+
+      $("#search-item").click(function () {
+        $(".password-form").show();
+        $(".background-title").show();
+      });
+
+      $("#search-item").click(function () {
+        $(".password-form").show();
+        $(".background-title").show();
+      });
+
+
+    });
+
+    // Function to change password (you can implement the logic here)
+    function changePassword() {
+      // Validate if new password matches confirm password
+      var newPassword = $("#new-password").val();
+      var confirmPassword = $("#confirm-password").val();
+      if (newPassword !== confirmPassword) {
+        alert("New password and confirm password must match!");
+        return;
+      }
+      if (newPassword.length < 8) {
+        alert("New password must be at least 8 characters long!");
+        return;
+      }
+      // Add your password change logic here
+      $("#success-message").text("Password changed successfully!");
+    }
+
+    $("#searchInput").keydown(function (event) {
+      console.log("search");
+      if (event.key === "Enter") {
+        searchCategory($(this).val());
+      }
+    });
+    // Event listener for Enter key press in search input
+    $(".fa-search").click(function () {
+      console.log("search");
+      searchCategory($("#searchInput").val());
+    });
+
+
+    function searchCategory() {
+      const searchInputValue = document.getElementById('searchInput').value.trim().toLowerCase();
+      if (searchInputValue == "toy") {
+        // Redirect to the selected fruit's page
+        window.location.href = "Toy.html";
+      }
+      else if (searchInputValue == "food") {
+        // Redirect to the selected fruit's page
+        window.location.href = "Food.html";
+      }
+      else if (searchInputValue == "clothes") {
+        // Redirect to the selected fruit's page
+        window.location.href = "Clothes.html";
+      }
+      else if (searchInputValue == "medical") {
+        // Redirect to the selected fruit's page
+        window.location.href = "Medical.html";
+      }
+      else if (searchInputValue == "school") {
+        // Redirect to the selected fruit's page
+        window.location.href = "School.html";
+      }
+      else if (searchInputValue == "blood") {
+        // Redirect to the selected fruit's page
+        window.location.href = "Blood.html";
+      }
+    }
+
+    function donateNow(number) {
+      var paragraph = document.getElementById("alert" + number);
+      paragraph.textContent = "";
+      var itemType = document.getElementById("type" + number);
+      var items = itemType.textContent;
+      var quantityInput = document.getElementById("quantity" + number);
+      var quantity = parseInt(quantityInput.value);
+      var spanElement = document.getElementById("num" + number);
+      var maxquantity = parseInt(spanElement.textContent);
+      if (quantity <= maxquantity & quantity > 0) {
+        paragraph.textContent = "Thank you for donating " + quantity + " " + items + "!";
+        paragraph.style.color = "green";
+        window.location.href = 'DonorFormToDonateN.html';
+      }
+      else {
+        if (quantity > maxquantity) {
+          paragraph.textContent = "Sorry, you can't donate more than " + maxquantity + " " + items + ".";
+          paragraph.style.color = "red";
+        }
+        else {
+          paragraph.textContent = "Please enter a valid quantity (atleast 1).";
+          paragraph.style.color = "red";
+        }
+      }
+    }
+
+    // Modal script
+    // Get the modal
+    const modals = document.querySelectorAll(".modal");
+
+    // Get the <span> element that closes the modal
+    const spans = document.getElementsByClassName("close");
+
+    // When the user clicks the button, open the modal
+    const viewDetailsButtons = document.querySelectorAll(".view-details-btn");
+
+    const viewDetailsButtonsArray = Array.from(viewDetailsButtons);
+
+    viewDetailsButtonsArray.forEach((button, index) => {
+      button.onclick = () => {
+        modals[index].style.display = "block";
+      };
+    });
+
+    const spansArray = Array.from(spans);
+
+    // When the user clicks on <span> (x), close the modal
+    spansArray.forEach((span, index) => {
+      span.onclick = () => {
+        modals[index].style.display = "none";
+      };
+    });
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = (event) => {
+      modals.forEach((modal) => {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+    };
+
+  </script>
+</body>
+
+</html>

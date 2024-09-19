@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidebar menu With Sub-menus | Using HTML, CSS & JQuery</title>
+  <link rel="stylesheet" href="style3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    .top-menu {
+        position: fixed;
+        top: 20px;
+        right: 0;
+        background-color: #404181;
+        padding: 10px 20px;
+        display: flex;
+        z-index: 1000;
+      }
+      .top-menu a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+      }
+      .top-menu .dropdown {
+        position: relative;
+      }
+      .top-menu .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 30px;
+        right: 0;
+        background-color: #404181;
+        min-width: 120px;
+        z-index: 1000;
+      }
+      .top-menu .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .top-menu .dropdown-content a {
+        padding: 10px;
+        display: block;
+      }
+      .img {
+        position: absolute;
+        top: 10px;
+        right: 15px; /* Adjust as needed */
+        width: 65px; /* Adjust width as needed */
+        height: auto;
+      }
+      h1 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700; /* Adjust font weight as needed */
+        position: absolute;
+        top: 5px;
+        width: 20px;
+        right: 175px; /* Adjust as needed */
+        color: white;
+        margin: 0;
+      }
+
+      .item {
+        margin-top: 0px; /* Adjust the margin-top value as needed */
+      }
+     /* New CSS styles for Donation History */
+     body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px; 
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .donation-item {
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    .donation-item:last-child {
+      border-bottom: none;
+    }
+
+    .donation-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .donation-status {
+      font-weight: bold;
+      color: green;
+    }
+
+    .donation-details p {
+      margin: 5px 0;
+    }
+
+    .donation-actions {
+      text-align: right;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      background-color: #404181;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #404181;
+    }
+
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+      .modal-content p {
+     margin-bottom: 7px; /* Set the margin between lines */
+    }
+
+.modal-content h4 {
+  color:#080808;
+ font-weight: bold;
+     }
+
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.post h3 {
+        margin-bottom: 10px;
+      }
+
+img {
+        width: 115px;
+      }
+
+      .modal-content a {
+    color: inherit; /* This makes the link color inherit the surrounding text color */
+    text-decoration: none; /* Removes underline from links */
+}
+
+.modal-content a:hover, .modal-content a:focus {
+    text-decoration: underline; /* Adds underline on hover for better user interaction feedback */
+    color: #000; /* Optional: change color on hover */
+}
+
+.profile-details p {
+    margin: 10px 0;
+  }
+
+  .profile-details .title {
+  color: #333; /* Dark gray color for text */
+  font-weight: bold;
+  }
+
+  .profile-details .title i {
+  color: #274071; /* Blue color for icons */
+  }
+
+  .profile-details .description {
+  color: #777; /* Lighter gray color for description text */
+  }
+
+  .edit-field {
+      font-size: smaller; /* Make the pen sign smaller */
+      color: #333; /* Text color */
+      background-color: transparent; /* Transparent background */
+      border: none; /* Remove border */
+      cursor: pointer; /* Cursor style */
+      display:none;
+      margin-left: 5px; /* Add some space to the left of the pen */
+    }
+    .edit-picture-icon {
+    position: absolute;
+    right:20px;
+    bottom: 10px;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: smaller; /* Make the pen sign smaller */
+      color: #333; /* Text color */
+      background-color: transparent; /* Transparent background */
+      border: none; /* Remove border */
+      cursor: pointer; /* Cursor style */
+      display:none;
+}
+.success-message {
+    color: green;
+    font-size: 16px;
+    display: none; /* Initially hidden */
+    margin-top: 10px;
+  }
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="header-content"></div>
+    <h1>Giving Hands</h1>
+    <img src="img/logo2.png" alt="logo" class="img" />
+  </header>
+
+  <div class="side-bar">
+    <div class="menu-btn"></div>
+    <div class="menu">
+      <div class="item">
+        <a href="adminhome.html"><i class="fas fa-home"></i>Home</a>
+      </div>
+      <div class="item">
+        <a href="CreatePost.html"><i class="fas fa-user"></i>My Profile</a>
+      </div>
+      <div class="item">
+        <a class="sub-btn"><i class="fas fa-file-alt"></i>My Posts<i class="fas fa-angle-right dropdown"></i></a>
+        <div class="sub-menu">
+          <a href="ShowAllPosts.html" class="sub-item">Covered</a>
+          <a href="uncovPosts.html" class="sub-item">Uncovered</a>
+        </div>
+      </div> 
+      <div class="item">
+        <a href="changePassORG.html"><i class="fas fa-lock"></i>Change Password</a>
+      </div>
+      <div class="item">
+        <a href="HomepageGeneral.html" class="sub-item">
+          <i class="fas fa-sign-out-alt"></i>Log Out
+        </a>
+      </div>
+      <div class="item">
+        <a href="OrgRepHome.html#contact"
+          ><i class="fas fa-info-circle"></i>Contact Us</a
+        >
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <h2>Covered Posts</h2>
+    <div class="donation-item">
+        <div class="donation-details">
+          <div class="profile-details">
+            <p><i class="fas fa-hashtag"></i><strong> Donation ID:</strong> #54321</p>
+            <p><i class="fas fa-calendar-alt"></i><strong> Date:</strong> April 15, 2024</p>
+            <p><i class="fas fa-tag"></i><strong> Category:</strong> Donation</p>
+            <p><i class="fas fa-user"></i><strong> Donor:</strong> <a href="Donor1Profile.html">Ahmed Malek</a></p>
+        </div>
+        <div class="donation-status">In progress</div>
+    </div>
+    <div class="donation-actions"> 
+        <a class="btn" data-target="#postDetailsModal2">View details</a>
+        <a href="TrackinggORG.html" class="btn">Track Donation</a>
+    </div>
+    <div id="postDetailsModal2" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>
+        <h3>Rahma Orphanage</h3>
+        </p>
+        <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+          <span class="mt-1">01234567800</span>
+          <br>
+        </p>
+        <p>
+          <i class="far fa-envelope mr-2 mt-1"></i>
+          <span class="mt-1">Rahma@gmail.com</span>
+          <br>
+        </p>
+        <p>
+          <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+          <a href="https://maps.app.goo.gl/xoarjmPAN8vZ5cLLA" target="_blank">Location</a>
+          <br>
+        </p>
+        <img src="img/animToy.png" alt="Animal toys" class="details-img">
+        <p><span class="details">Type: </span>Animal toys</p>
+        <!-- <p><span class="details">Age: </span>3 years old</p>
+          <p><span class="details">Gender: </span>Female</p>
+          <p><span class="details">Category: </span>Exploratory toys</p> -->
+        <p><span class="details">Quantity needed: </span><span id="num1">3</span> toys</p>
+
+        </p>
+      </div>
+</div>
+    <div class="donation-item">
+        <div class="donation-details">
+            <div class="profile-details">
+                <p><i class="fas fa-hashtag"></i><strong> Donation ID:</strong> #94321</p>
+                <p><i class="fas fa-calendar-alt"></i><strong> Date:</strong> February 9, 2024</p>
+                <p><i class="fas fa-tag"></i><strong> Category:</strong> Volunteer "Teacher"</p>
+                <p><i class="fas fa-user"></i><strong> Donor:</strong> <a href="TeacherProfile.html">Gamila Awad</a></p>
+            </div>
+            <div class="donation-status">Completed</div>
+        </div>
+        <div id="postDetailsModal2" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <div class="profile-image-container" style="position: relative; display: inline-block;">
+                <img src="img/BuildBcks.png" alt="Profile Picture" class="profile-picture" id="profileImage" />
+                <input type="file" id="profileImageInput" style="display: none;" accept="image/*" />
+                <i class="fas fa-pen edit-picture-icon" id="edit-profilePic"></i> 
+              </div>
+              <p><strong><span class="title"> Type:</span></strong> <span class="description" id="firstName">Building blocks</span> <i class="fas fa-pen edit-field" id="edit-firstName"></i></p>
+              <p><strong><span class="title"> Age:</span></strong> <span class="description" id="lastName">8 years old</span> <i class="fas fa-pen edit-field" id="edit-lastName"></i></p>
+              <p><strong><span class="title"> Gender:</span></strong> <span class="description" id="gender">Male</span> <i class="fas fa-pen edit-field" id="edit-gender"></i></p>
+              <p><strong><span class="title"> Category:</span></strong> <span class="description" id="email">Building toys</span> <i class="fas fa-pen edit-field" id="edit-email"></i></p>
+              <p><strong><span class="title"> Quantity needed:</span></strong> <span class="description" id="password">3 toys</span> <i class="fas fa-pen edit-field" id="edit-password"></i></p>
+              <div class="success-message"></div>
+            </div>
+          </div>
+    </div>
+
+
+    <div class="donation-item">
+      <div class="donation-details">
+          <div class="profile-details">
+              <p><i class="fas fa-hashtag"></i><strong> Donation ID:</strong> #81268</p>
+              <p><i class="fas fa-calendar-alt"></i><strong> Date:</strong> May 2, 2024</p>
+              <p><i class="fas fa-tag"></i><strong> Category:</strong> Volunteer "Doctor"</p>
+              <p><i class="fas fa-user"></i><strong> Donor:</strong> <a href="DoctorProfile.html">Dr. Essam Omar</a></p>
+          </div>
+          <div class="donation-status">Completed</div>
+      </div>
+
+      <div id="postDetailsModal3" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+            <p><h4>Case details</h4></p>
+              <i class="far fa-user"></i>
+              <span class="mt-1">Ahmed Medhat</span>
+              <br></p>
+              <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+              <span class="mt-1">014434228890</span>
+              <br></p>
+              <i class="fas fa-birthday-cake"></i>
+              <span class="mt-1">8 years old</span>
+              <br></p>
+              <i class="fas fa-venus-mars"></i>
+              <span class="mt-1">Male</span>
+              <br></p>
+              <i class="fas fa-weight"></i>
+              <span class="mt-1">25kg</span>
+              <br></p>
+              <i class="far fa-envelope mr-2 mt-1"></i>
+              <span class="mt-1">magdi@gmail.com</span>
+              <br></p>
+              <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+              <a href="https://www.google.com/maps/place/10+Salah+Salem+St,+Mansh%C3%AEyet+el+Bakri,+Nasr+City,+Cairo+Governorate+4460020/@30.0781337,31.3119785,17z/data=!3m1!4b1!4m6!3m5!1s0x14583e35ad61c075:0xc1a630e86bb6c53b!8m2!3d30.0781337!4d31.3119785!16s%2Fg%2F11hdkgzc_v?entry=ttu"
+               target="_blank">10 Salah Salem St., Nasr City, Cairo, Egypt</a>
+              <br></p>
+              <i class="fas fa-info-circle"></i><span class="mt2-1">
+              Ahmed Medhat is an 8-year-old male child diagnosed with cancer.
+              He requires specialized pediatric oncology treatment and care.
+              <br></p>
+        </div>
+      </div>
+
+
+
+    <!-- Add more donation items as needed -->
+</div>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      // jquery for toggle sub menus
+      $(".sub-btn").click(function () {
+          $(this).next(".sub-menu").slideToggle();
+          $(this).find(".dropdown").toggleClass("rotate");
+        });
+
+        // jquery for expand and collapse the sidebar on menu button click
+        $(".menu-btn").click(function () {
+          $(".side-bar").toggleClass("active");
+          $(".menu-btn i").toggleClass("fa-bars fa-times"); // Toggle the menu icon class
+          $(".menu-btn").css("visibility", "visible");
+        });
+
+        // Function to show password change form when "Change Password" is clicked
+        $("#change-password-btn").click(function () {
+          $(".password-form").show();
+          $(".background-title").show();
+        });
+
+        // Add event listener to "Education" link to navigate to educational posts page
+        $(".menu .item:nth-child(2) .sub-item:nth-child(1)").click(function () {
+          window.location.href = "educational_posts.html"; // Replace with the URL of your educational posts page
+        });
+
+      // Handling opening modals
+    $(".btn").click(function() {
+        var targetModal = $(this).attr("data-target");
+        $(targetModal).show();  // Changed fadeIn to show for simplicity
+    });
+
+    // Handling closing modals by clicking on the close button
+    $(".modal .close").click(function() {
+        $(this).closest(".modal").hide();  // Changed fadeOut to hide for simplicity
+    });
+
+    // Clicking outside the modal content closes the modal
+    $(window).click(function(event) {
+        if ($(event.target).hasClass('modal')) {
+            $('.modal').hide();  // Changed fadeOut to hide for simplicity
+        }
+    });
+
+     // Enable field editing when "Edit Profile" is clicked
+     $(".edit-profile-btn").click(function () {
+      if ($(this).text().includes("Edit Post")) {
+        $("#edit-profilePic").click(function() {
+          $("#profileImageInput").click();
+        });
+        $(".edit-field, #edit-profilePic").show();
+        $(this).text('Done').addClass('edit-profile-btn-done').removeClass('edit-profile-btn'); // Change button text to "Done"
+        $(this).html('<i class="fas fa-save"></i> Save Changes');
+        $('.success-message').hide(); // Ensure the success message is hidden when starting edits
+      } 
+      else {
+        $(".edit-field, #edit-profilePic").each(function () {
+          var fieldId = $(this).attr("id").replace("edit-", "");
+          if ($("#input-" + fieldId).length > 0) {
+            var value = $("#input-" + fieldId).val();
+            $("#" + fieldId).text(value);
+            $("#input-" + fieldId).remove();
+          }
+          $(this).hide();
+        });
+        $(this).html('<i class="fas fa-pencil-alt"></i> Edit Post').addClass('edit-profile-btn').removeClass('edit-profile-btn-done');
+        $('.success-message').text("Edit Done Successfully").fadeIn(500).delay(3000).fadeOut(500);
+      }
+    });
+
+    // Convert span to input for editing on pen click
+    $(document).on("click", ".edit-field", function () {  
+      var fieldId = $(this).attr("id").replace("edit-", "");
+      var content = $("#" + fieldId).text();
+      $("#" + fieldId).html('<input type="text" id="input-' + fieldId + '" value="' + content + '">');
+      $(this).hide();
+    });
+
+    $("#profileImageInput").change(function() {
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          $('#profileImage').attr('src', e.target.result); // Update the profile picture
+        };
+        reader.readAsDataURL(this.files[0]); // Convert image file to base64 string
+      }
+    });
+
+  });
+
+  </script>
+</body>
+</html>

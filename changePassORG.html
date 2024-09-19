@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar menu With Sub-menus | Using HTML, CSS & JQuery</title>
+    <link rel="stylesheet" href="style3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      charset="utf-8"
+    ></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      #give {
+        position: absolute;
+        top: 10px;
+        right: 15px; /* Adjust as needed */
+        width: 65px; /* Adjust width as needed */
+        height: auto;
+      }
+      .top-menu {
+        position: fixed;
+        top: 20px;
+        right: 0;
+        background-color: #404181;
+        padding: 10px 20px;
+        display: flex;
+        z-index: 1000;
+      }
+      h1 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700; /* Adjust font weight as needed */
+        position: absolute;
+        top: 5px;
+        width: 20px;
+        right: 175px; /* Adjust as needed */
+        color: white;
+        margin: 0;
+        font-size: 1rem;
+      }
+      body {
+        overflow: hidden;
+      }
+      .password-form {
+        margin-top: -240px; /* Increase margin to extend beyond the border */
+        padding: 40px; /* Increase padding to extend beyond the border */
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        margin-left: 70px;
+      }
+
+      .password-form input {
+        display: block;
+        margin-bottom: 20px;
+        width: calc(100% - 16px);
+        padding: 8px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        height: 40px;
+      }
+
+      .password-form label {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .password-form button {
+        background-color: #404181;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      .password-form button:hover {
+        background-color: #404181;
+      }
+
+      .background-title {
+        margin-top: -847px;
+        position: absolute;
+        padding: 48px;
+        border-radius: 10px;
+        color: black;
+      }
+
+      .success-message {
+        color: green;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+      .error-message {
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="header-content"></div>
+      <h1 style="font-size: 2em">Giving Hands</h1>
+      <img id="give" src="img/logo2.png" alt="logo" class="img" />
+    </header>
+
+    <div class="side-bar">
+      <div class="menu-btn"></div>
+      <div class="menu">
+        <div class="item">
+          <a href="OrgRepHome.html"><i class="fas fa-home"></i>Home</a>
+        </div>
+        <div class="item">
+          <a href="CreatePost.html"><i class="fas fa-user"></i>My Profile</a>
+        </div>
+        <div class="item">
+          <a class="sub-btn"><i class="fas fa-file-alt"></i>My Posts<i class="fas fa-angle-right dropdown"></i></a>
+          <div class="sub-menu">
+            <a href="ShowAllPosts.html" class="sub-item">Covered</a>
+            <a href="uncovPosts.html" class="sub-item">Uncovered</a>
+          </div>
+        </div> 
+        <div class="item">
+          <a href="changePassORG.html"><i class="fas fa-lock"></i>Change Password</a>
+        </div>
+        <div class="item">
+          <a href="HomepageGeneral.html" class="sub-item">
+            <i class="fas fa-sign-out-alt"></i>Log Out
+          </a>
+        </div>
+        <div class="item">
+          <a href="OrgRepHome.html#contact"
+            ><i class="fas fa-info-circle"></i>Contact Us</a
+          >
+        </div>
+      </div>
+    </div>
+    <section class="main">
+      <div class="password-form">
+        <label for="current-password">Current Password:</label>
+        <input type="password" id="current-password" name="current-password" />
+        <label for="new-password">New Password:</label>
+        <input type="password" id="new-password" name="new-password" />
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" />
+        <button onclick="changePassword()">Submit</button>
+        <div
+          class="error-message"
+          id="error-message"
+          style="color: red !important"
+        ></div>
+        <div class="success-message" id="success-message"></div>
+      </div>
+      <div class="background-title" id="change-password-title">
+        <h2>Change Password</h2>
+      </div>
+      <!-- Title -->
+    </section>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+        // jquery for toggle sub menus
+        $(".sub-btn").click(function () {
+          $(this).next(".sub-menu").slideToggle();
+          $(this).find(".dropdown").toggleClass("rotate");
+        });
+
+        // jquery for expand and collapse the sidebar on menu button click
+        $(".menu-btn").click(function () {
+          $(".side-bar").toggleClass("active");
+          $(".menu-btn i").toggleClass("fa-bars fa-times"); // Toggle the menu icon class
+          $(".menu-btn").css("visibility", "visible");
+        });
+
+        // Function to show password change form when "Change Password" is clicked
+        $("#change-password-btn").click(function () {
+          $(".password-form").show();
+          $(".background-title").show();
+        });
+
+        // Add event listener to "Education" link to navigate to educational posts page
+        $(".menu .item:nth-child(2) .sub-item:nth-child(1)").click(function () {
+          window.location.href = "educational_posts.html"; // Replace with the URL of your educational posts page
+        });
+      });
+
+      // Function to change password
+      function changePassword() {
+        // Validate if new password matches confirm password
+        var newPassword = $("#new-password").val();
+        var currPassword = $("#current-password").val();
+        var confirmPassword = $("#confirm-password").val();
+
+        var errorMessages = [];
+
+        if (newPassword !== confirmPassword) {
+          errorMessages.push("New password and confirm password must match!");
+        }
+        if (newPassword === currPassword) {
+          errorMessages.push(
+            "New password must be different from current Password"
+          );
+        }
+        if (newPassword.length < 8) {
+          errorMessages.push(
+            "New password must be at least 8 characters long!"
+          );
+        }
+
+        // If there are any error messages, display them and return
+        if (errorMessages.length > 0) {
+          $("#error-message").text(errorMessages.join("\n"));
+          $("#success-message").text(""); // Clear success message
+          return;
+        }
+
+        // If no errors, display success message and clear error messages
+        $("#success-message").text("Password changed successfully!");
+        $("#error-message").text("");
+
+        // Redirect after 1 second if success message is present
+        if ($("#success-message").text() === "Password changed successfully!") {
+          setTimeout(function () {
+            window.location.href = "HomepageGeneral.html";
+          }, 1000);
+        }
+      }
+    </script>
+  </body>
+</html>

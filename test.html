@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar menu With Sub-menus | Using HTML, CSS & JQuery</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Font Nunito -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Animate CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <!-- CSS Stylesheet -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+    <link rel="shortcut icon" href="imgs/favicon.ico" />
+    <link rel="stylesheet" href="style3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      charset="utf-8"
+    ></script>
+    <style>
+       @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+      #give {
+        position: absolute;
+        top: 10px;
+        right: 15px; /* Adjust as needed */
+        width: 65px; /* Adjust width as needed */
+        height: auto;
+      }
+      .top-menu {
+        position: fixed;
+        top: 20px;
+        right: 0;
+        background-color: #404181;
+        padding: 10px 20px;
+        display: flex;
+        z-index: 1000;
+      }
+      h1 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700; /* Adjust font weight as needed */
+        position: absolute;
+        top: 5px;
+        width: 20px;
+        right: 175px; /* Adjust as needed */
+        color: white;
+        margin: 0;
+        font-size: 1rem;
+      }
+      img {
+        width: 115px;
+      }
+      .card-body {
+        position: relative; /* Set position relative for the card body */
+      }
+
+      .view-details-btn {
+        position: absolute; /* Set position absolute for the button */
+        top: 10px; /* Adjust bottom distance */
+        right: 10px; /* Adjust right distance */
+        cursor: pointer;
+      }
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+      .close {
+    color: #706f6f;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 16px;
+    cursor: pointer;
+      }
+    .search-container {
+  position: fixed;
+  top: 100px; /* Adjust top distance according to your design */
+  right: 20px;
+  z-index: 1000;
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+#searchInput {
+  padding: 10px 35px 10px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 250px;
+}
+
+.fa-search {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #888;
+  cursor: pointer;
+}
+.confirm-reject
+.reject-btn{
+  width: 100px;
+}
+.reject-btn {
+  position: absolute; /* Set position absolute for the buttons */
+  bottom: 10px; 
+      right: 10px; /* Adjust bottom distance */
+}    
+.confirm-reject,
+.close-modal {
+  color: #fff;
+  background-color: #dc3545;
+  padding: 8px 16px;
+  cursor: pointer;
+  /* Remove the border property */
+  border: none;
+  border-radius: .25rem;
+}
+
+.confirm-reject {
+  position: absolute;
+  bottom: 10px;
+  right: 120px;
+}
+
+.confirm-reject {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.confirm-reject:hover {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.close-modal {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+ .filter-form {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .filter-form label,
+      .filter-form select,
+      .filter-form button {
+        margin-right: 10px;
+        font-size: 16px; /* Increase font size */
+        
+      }
+       #filterButton {
+  background-color: #404181; /* Match color with apply button */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Increase padding for larger button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px; /* Adjust margin as needed */
+}
+   .view-details-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #404181;
+    border: none; /* Remove the border */
+    outline: none !important; /* Remove the outline */
+    cursor: pointer;
+}
+
+.view-details-btn:hover,
+.view-details-btn:active,
+.view-details-btn:focus {
+    background-color: #404181 !important;
+    border: none; /* Remove the border */
+    outline: none !important; /* Remove the outline */
+    cursor: pointer;
+}
+button:focus {
+  outline: none;
+}
+
+    </style>
+  </head>
+  <body>
+       <header>
+      <div class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="header-content"></div>
+      <h1 style="font-size: 2em;">Giving Hands</h1>
+      <img id="give" src="img/logo2.png" alt="logo" class="img" />
+    </header>
+    <h3 style="text-align: center; margin-top: 40px; font-weight: bold;">Registered Organizations</h3>
+    <div class="filter-form" style="margin-top: 20px; margin-bottom: 20px;">
+      <label for="subject">Type:</label>
+      <select id="subjectFilter">
+        <option value="Select Subject">Select Organization-type</option>
+        <option value="mosque">Mosque</option>
+        <option value="church">Church</option>
+        <option value="non profit organization">Non profit organization</option>
+        <option value="hospital">Hospital</option>
+        <option value="school">School</option>
+        <!-- Add more options as needed -->
+      </select>
+      
+      <label for="governorate">Governorate:</label>
+      <select id="governorateFilter" >
+        <option value="Seect Governorate">Select Governorate</option>
+        <option value="Alexandria">Alexandria</option>
+        <option value="Aswan">Aswan</option>
+        <option value="Asyut">Asyut</option>
+        <option value="Beheira">Beheira</option>
+        <option value="Cairo">Cairo</option>
+        <option value="Dakahlia">Dakahlia</option>
+        <option value="Damietta">Damietta</option>
+        <option value="Faiyum">Faiyum</option>
+        <option value="Gharbia">Gharbia</option>
+        <option value="Giza">Giza</option>
+  
+    </select>
+
+    <label for="area">Area:</label>
+    <select id="areaFilter">
+      <option value="">Select Area</option>
+      <!-- Options will be populated dynamically based on the selected governorate -->
+    </select>
+    <button id="filterButton">Filter</button>
+  </div>
+    <div class="side-bar">
+      <div class="close-btn">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="menu">
+        <div class="item">
+          <a href="adminprofile.html"><i class="fa-regular fa-user"></i>Profile</a>
+        </div>
+        <div class="item">
+          <a href="dashboard.html"><i class="fas fa-desktop"></i>Dashboard</a>
+        </div>
+        <div class="item">
+          <a class="sub-btn"
+            ><i class="fas fa-eye"></i>View Requests<i
+              class="fas fa-angle-right dropdown"
+            ></i
+          ></a>
+          <div class="sub-menu">
+            <a href="orgReq.html" class="sub-item"><i class="fas fa-user-group"></i>Organizations</a>
+            <a href="donorreq.html" class="sub-item"><i class="fas fa-user"></i>Donors</a>
+          </div>
+        </div>
+        <div class="item">
+          <a class="sub-btn"
+            ><i class="fas fa-eye"></i>View Registered<i
+              class="fas fa-angle-right dropdown"
+            ></i
+          ></a>
+          <div class="sub-menu">
+            <a href="organizations.html" class="sub-item"><i class="fas fa-user-group"></i>Organizations</a>
+            <a href="donors.html" class="sub-item"><i class="fas fa-user"></i>Donors</a>
+          </div>
+         <div class="item">
+          <a href="password.html" class="sub-item" id="change-password-btn">
+              <i class="fas fa-lock"></i> Change Password
+              <!-- Lock icon added here -->
+            </a>
+        </div>
+         <div class="item">
+           <a href="index.html" class="sub-item">
+              <i class="fas fa-angle-left"></i>Log Out
+            </a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="posts">
+
+      <div class="post" data-subject="Science" data-area="6th of October" data-governorate="Giza">
+        <img src="img/mosque.png" alt="edu5" />
+        <h2>Ibn Tulun</h2>
+        <p><strong>Governorate:</strong> Cairo</p>
+        <p><strong>Area:</strong> El Sayeda Zeinab</span></p>
+        <p><strong>Type:</strong> Mosque</p>
+        <button class="view-details-btn" data-target="#postDetailsModal1">View Details</button>
+        <button class="apply-btn">Delete</button>
+      </div>
+      <div class="post" data-subject="Science" data-area="6th of October" data-governorate="Giza">
+        <img src="img/school.png" alt="edu5" />
+        <h2>Modern English School</h2>
+        <p><strong>Governorate:</strong> Cairo</p>
+        <p><strong>Area:</strong> New Cairo</span></p>
+        <p><strong>Type:</strong> School</p>
+        <button class="view-details-btn" data-target="#postDetailsModal2">View Details</button>
+        <button class="apply-btn">Delete</button>
+      </div>
+      <div class="post" data-subject="Science" data-area="6th of October" data-governorate="Giza">
+        <img src="img/school.png" alt="edu5" />
+        <h2>Merryland International School</h2>
+        <p><strong>Governorate:</strong>Cairo</p>
+        <p><strong>Area:</strong> New Cairo</span></p>
+        <p><strong>Type:</strong> School</p>
+        <button class="view-details-btn" data-target="#postDetailsModal3">View Details</button>
+        <button class="apply-btn">Delete</button>
+      </div>
+      <div class="post" data-subject="Science" data-area="6th of October" data-governorate="Giza">
+        <img src="img/hospital.png" alt="edu5" />
+        <h2>Queens Hospital</h2>
+        <p><strong>Governorate:</strong>  Cairo </p>
+        <p><strong>Area:</strong>  New Cairo </span></p>
+        <p><strong>Type:</strong> Hospital </p>
+        <button class="view-details-btn" data-target="#postDetailsModal4">View Details</button>
+        <button class="apply-btn">Delete</button>
+      </div>
+      <div class="post" data-subject="Science" data-area="6th of October" data-governorate="Giza">
+        <img src="img/church.png" alt="edu5" />
+        <h2>St. George's Church</h2>
+        <p><strong>Governorate:</strong> Cairo </p>
+        <p><strong>Area:</strong> Old Cairo </span></p>
+        <p><strong>Type:</strong> Church</p>
+        <button class="view-details-btn" data-target="#postDetailsModal5">View Details</button>
+        <button class="apply-btn">Delete</button>
+      </div>
+      <div class="post" data-subject="Science" data-area="6th of October" data-governorate="Giza">
+        <img src="img/ngo.png" alt="edu5" />
+        <h2>Ahl Masr</h2>
+        <p><strong>Governorate:</strong> Cairo </p>
+        <p><strong>Area:</strong> New Cairo </span></p>
+        <p><strong>Type:</strong> Non Profit Organization</p>
+        <button class="view-details-btn" data-target="#postDetailsModal6">View Details</button>
+        <button class="apply-btn">Delete</button>
+      </div>
+      <div class="post" data-subject="Science" data-area="6th of October" data-governorate="Giza">
+        <img src="img/mosque.png" alt="edu5" />
+        <h2>Naser Mosque</h2>
+        <p><strong>Governorate:</strong> Alexandria </p>
+        <p><strong>Area:</strong> Sidi Gaber </span></p>
+        <p><strong>Type:</strong> Mosque</p>
+        <button class="view-details-btn" data-target="#postDetailsModal7">View Details</button>
+        <button class="apply-btn">Delete</button>
+      </div>
+      <div class="post" data-subject="Science" data-area="6th of October" data-governorate="Giza">
+        <img src="img/hospital.png" alt="edu5" />
+        <h2>Cleopatra Specialized Hospital</h2>
+        <p><strong>Governorate:</strong> Giza </p>
+        <p><strong>Area:</strong> Haram </span></p>
+        <p><strong>Type:</strong> Hospital</p>
+        <button class="view-details-btn" data-target="#postDetailsModal8">View Details</button>
+        <button class="apply-btn">Delete</button>
+      </div>
+
+      <div id="postDetailsModal1" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>Ibn Tulun</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01234567800</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">IbnTulun@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/7SgRUSsdet1aPJx47" target="_blank">  Ahmed Ibn Tolon Sq., Tolon, El Sayeda Zeinab, Cairo Governorate 4261342</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> The Mosque of Ibn Tulun (Arabic: مسجد إبن طولون, romanized: Masjid Ibn Ṭūlūn) is located in Cairo, Egypt. It is one of the oldest mosques in Egypt as well as the whole of Africa surviving in its full original form, and is the largest mosque in Cairo in terms of land area. It is built around an open square courtyard which allows natural light to travel through. Ibn Tulun Mosque features ancient architecture styles of Egypt, its decorations being created from carved stucco and wood.This mosque is a popular tourist attraction.</span>
+                      <br>
+                    </p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+      <div id="postDetailsModal2" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>Modern English  School</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01234789800</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">MES@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/VmQHoMKanfCLm4mD7" target="_blank"> New Cairo 1, Cairo Governorate 11835</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis numquam alias laboriosam nulla explicabo accusantium omnis quidem, earum quam harum eius nostrum eum facere ducimus, necessitatibus officiis nihil inventore commodi.</span>
+                      <br>
+                    </p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+      <div id="postDetailsModal3" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>MerryLand International School</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01914567800</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">MerryLand@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/1xix2rAcjSS4sHWBA" target="_blank"> 2 El Nakhil Compound, Ring Rd, 11865</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum nihil doloribus consectetur vitae atque ipsum labore perferendis, voluptatum sed veritatis minus commodi harum. Esse necessitatibus dolore distinctio rem odio.</span>
+                      <br>
+                    </p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+      <div id="postDetailsModal4" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>Queens Hospital</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01910567800</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">Queens@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/hk7ZgGezhFkvfQfBA" target="_blank"> HCC bldg., Tesaeen St, (behind Air Force Hospital، 90 N Teseen St, New Cairo 1</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum nihil doloribus consectetur vitae atque ipsum labore perferendis, voluptatum sed veritatis minus commodi harum. Esse necessitatibus dolore distinctio rem odio.</span>
+                      <br>
+                    </p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+      <div id="postDetailsModal5" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>St. George's Church</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01914567853</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">St.GeorgeChurch@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/vP3WCsoNHGxNLKjn7" target="_blank"> 264J+G28، مار جرجس، كوم غراب، مصر القديمة، محافظة القاهرة‬،, Old Cairo</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum nihil doloribus consectetur vitae atque ipsum labore perferendis, voluptatum sed veritatis minus commodi harum. Esse necessitatibus dolore distinctio rem odio.</span>
+                      <br>
+                    </p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+      </div>
+      <div id="postDetailsModal6" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>Ahl Masr</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01914569800</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">AhlMasr@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/PCeJt5BgvL4LxLiMA" target="_blank">المجاورة 4،5 اسكان الشباب بجوار مسجد السويدي, Cairo Governorate </a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum nihil doloribus consectetur vitae atque ipsum labore perferendis, voluptatum sed veritatis minus commodi harum. Esse necessitatibus dolore distinctio rem odio.</span>
+                      <br>
+                    </p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+            <div id="postDetailsModal7" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>Naser Mosque</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01914567805</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">NaserMosque@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/JdA21M8gahKbty7H8" target="_blank"> 6W7V+W9H, Izbat Saed, Qesm Sidi Gaber, Alexandria Governorate 5432064</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum nihil doloribus consectetur vitae atque ipsum labore perferendis, voluptatum sed veritatis minus commodi harum. Esse necessitatibus dolore distinctio rem odio.</span>
+                      <br>
+                    </p>
+          <!-- Add more details as needed -->
+        </div>
+          </div>
+      <div id="postDetailsModal8" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p><h2>Cleopatra Specialized Hospital</h2></p>
+                      <p class="mt-3 card-text info"><i class="fas fa-phone mr-2 mt-1"></i>
+                        <span class="mt-1">01284567800</span>
+                        <br></p>
+                        <i class="far fa-envelope mr-2 mt-1"></i>
+                      <span class="mt-1">CSH@gmail.com</span>
+                      <br></p>
+                      <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                      <a href="https://maps.app.goo.gl/Gkjsum2KnshPgaoL8" target="_blank"> 3 rokn el safa الهرم, street, Giza Governorate</a>
+                      <br></p>
+                      <i class="fas fa-info-circle"></i><span class="mt2-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dolorum nihil doloribus consectetur vitae atque ipsum labore perferendis, voluptatum sed veritatis minus commodi harum. Esse necessitatibus dolore distinctio rem odio.</span>
+                      <br>
+                    </p>
+          <!-- Add more details as needed -->
+        </div>
+        
+      </div>
+
+
+            <!-- Add more details as needed -->
+          
+       
+        <div id="acceptModal1" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Accept Confirmation</h2>
+    <p>Are you sure you want to accept this?</p>
+    <!-- Accept Logic Here -->
+  </div>
+</div>
+ <div class="search-container">
+  <div class="search-wrapper">
+    <input type="text" style="border: none; outline: none;" id="searchInput" placeholder="Search by name">
+    <i class="fas fa-search"></i>
+  </div>
+</div>
+
+<div id="rejectConfirmationModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Delete Confirmation</h2>
+    <p>Are you sure you want to permanantly Delete this organization?</p>
+    <button class="confirm-reject" style="
+    margin-right: -33px;
+    width: 63px;
+    height: 31px;
+    text-align: center;
+    line-height: 13px;
+">Yes</button>
+    <button class=" close-modal" style="
+    margin-right: 5px;
+    width: 63px;
+    height: 31px;
+    text-align: center;
+    line-height: 13px;
+">No</button>
+  </div>
+   
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    // jQuery for toggle sub menus
+    $(".sub-btn").click(function () {
+      $(this).next(".sub-menu").slideToggle();
+      $(this).find(".dropdown").toggleClass("rotate");
+    });
+
+    // jQuery for expand and collapse the sidebar
+    $(".menu-btn").click(function () {
+      $(".side-bar").addClass("active");
+      $(".menu-btn").css("visibility", "hidden");
+    });
+
+    $(".close-btn").click(function () {
+      $(".side-bar").removeClass("active");
+      $(".menu-btn").css("visibility", "visible");
+    });
+
+    // Function to show password change form when "Change Password" is clicked
+    $("#change-password-btn").click(function () {
+      $(".password-form").show();
+      $(".background-title").show();
+    });
+
+    // Function to change password (you can implement the logic here)
+    function changePassword() {
+      // Validate if new password matches confirm password
+      var newPassword = $("#new-password").val();
+      var confirmPassword = $("#confirm-password").val();
+      if (newPassword !== confirmPassword) {
+        alert("New password and confirm password must match!");
+        return;
+      }
+      if (newPassword.length < 8) {
+        alert("New password must be at least 8 characters long!");
+        return;
+      }
+      // Add your password change logic here
+      $("#success-message").text("Password changed successfully!");
+    }
+
+    // Function to toggle PDF display
+    $(".view-details-btn").click(function () {
+      // Get the target modal
+      var targetModal = $(this).data("target");
+
+      // Display the target modal
+      $(targetModal).fadeIn();
+    });
+
+    // Event listener for closing the modal
+    $(".close").click(function () {
+      $(".modal").fadeOut();
+    });
+
+    // Function to toggle PDF display
+    $("#pdfIcon").click(function () {
+      $("#pdfContainer").toggle();
+    });
+
+    $("#pdfIcon1").click(function () {
+      $("#pdfContainer1").toggle();
+    });
+
+    // Function to toggle accept modal
+    $(".accept-btn").click(function () {
+      // Get the parent card element
+      var card = $(this).closest('.card');
+      card.find('.accept-btn').remove();
+      card.find('.reject-btn').remove();
+      card.css('width', ''); 
+      // Explicitly set the width to the initial width of the card
+      card.width(card.width());
+      card.css('margin-left', 'auto');
+      card.css('margin-right', 'auto');
+      card.css('margin-bottom', '20px');
+      card.appendTo('#acceptedRequests');
+    });
+
+    // $(".reject-btn").click(function () {
+    //   // Remove the parent card element
+    //   $(this).closest('.card').remove();
+    // });
+     $(".reject-btn").click(function () {
+    $("#rejectConfirmationModal").fadeIn();
+     var cardToRemove = $(this).closest('.card');
+    // Store the card reference in a data attribute of the modal
+    $("#rejectConfirmationModal").data("cardToRemove", cardToRemove);
+  });
+
+  // Close the modal when the user clicks on the "No" button
+  $(".close-modal").click(function () {
+    $("#rejectConfirmationModal").fadeOut();
+  });
+
+  // Handle the rejection action when the user clicks on the "Yes" button
+  $(".confirm-reject").click(function () {
+    // Place your logic to delete the organization here
+    // For now, let's just remove the card from the DOM
+   var cardToRemove = $("#rejectConfirmationModal").data("cardToRemove");
+  // Remove the card from the DOM
+  
+  cardToRemove.remove();
+  // Close the confirmation modal
+  $("#rejectConfirmationModal").fadeOut();
+  });
+
+    // Function to close modals
+    $(".close").click(function () {
+      $(".modal").fadeOut();
+    });
+    function filterOrganizations(searchTerm) {
+  // Convert the search term to lowercase for case-insensitive matching
+  var searchText = searchTerm.toLowerCase();
+
+  // Loop through each organization card
+  $(".content").each(function () {
+    var card = $(this);
+    var name = card.find(".card-title.name").text().toLowerCase();
+
+    // Check if the organization name contains the search term
+    if (name.includes(searchText)) {
+      card.show();
+    } else {
+      card.hide();
+    }
+  });
+}
+
+    // Event listener for Enter key press in search input
+    $("#searchInput").keydown(function (event) {
+      if (event.key === "Enter") {
+        filterOrganizations($(this).val());
+      }
+    });
+    // Event listener for Enter key press in search input
+    $(".fa-search").click(function () {
+    filterOrganizations($("#searchInput").val());
+  });
+  });
+  
+</script> 
+    <script>
+        $("#filterButton").click(function () {
+    var organizationFilter = $("#subjectFilter").val().toLowerCase();
+    var governorateFilter = $("#governorateFilter").val().toLowerCase();
+    var areaFilter = $("#areaFilter").val().toLowerCase();
+
+    $(".content").each(function () {
+      var content = $(this);
+      var contentOrganization = content.find(".card-subtitle span:contains('Type')").next().text().toLowerCase();
+      var contentGovernorate = content.find(".card-subtitle span:contains('Governorate')").next().text().toLowerCase();
+      var contentArea = content.find(".card-subtitle span:contains('Area')").next().text().toLowerCase();
+
+      var organizationMatch = organizationFilter === "select type" || contentOrganization.toLowerCase() === organizationFilter.toLowerCase();
+      var governorateMatch = governorateFilter === "select governorate" || contentGovernorate === governorateFilter;
+      var areaMatch = areaFilter === "select area" || contentArea === areaFilter;
+
+      if (organizationMatch && governorateMatch && areaMatch) {
+        content.show();
+      } else {
+        content.hide();
+      }
+    });
+  });
+ const areasData = {
+        Alexandria: ["Select Area", "Smouha", "Sporting", "Miami", "Roushdy", "Montaza", "San Stefano", "Sidi Gaber", "Agami", "El Mandara", "Al Ibrahimia"],
+        Cairo: ["Select Area", "Downtown Cairo", "El Mokattam", "El Obour City", "El Sayeda Zeinab", "Old Cairo", "New Cairo", "Manial","Maadi", "Nasr City", "Shubra", "Zamalek"],
+        Aswan:["Select Area", "No Available Areas"],
+        Asyut:["Select Area", "No Available Areas"],
+        Beheira:["Select Area", "No Available Areas"],
+        Dakahlia:["Select Area", "No Available Areas"],
+        Damietta:["Select Area", "No Available Areas"],
+        Faiyum:["Select Area", "No Available Areas"],
+        Gharbia:["Select Area", "No Available Areas"],
+        Giza:["Select Area", "6th of October", "Mohandessin", "Dokki", "Agouza", "Imbaba", "Haram","Badrashin", "Sheikh Zayed City"]
+ 
+      };
+    // Function to populate areas based on selected governorate
+  function populateAreas() {
+    const governorateSelect = document.getElementById("governorateFilter");
+    const areaSelect = document.getElementById("areaFilter");
+    const selectedGovernorate = governorateSelect.options[governorateSelect.selectedIndex].value;
+
+    // Clear existing options
+    areaSelect.innerHTML = "";
+
+    // Populate options based on selected governorate
+    areasData[selectedGovernorate].forEach(area => {
+      const option = document.createElement("option");
+      option.value = area;
+      option.textContent = area;
+      areaSelect.appendChild(option);
+    });
+  }
+
+  // Event listener for governorate select change
+  document.getElementById("governorateFilter").addEventListener("change", populateAreas);
+    </script>
+ </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Maps Example</title>
+    <style>
+      /* Style for the map container */
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Icon to trigger opening the map -->
+    <i id="open-map" class="fa-solid fa-map-marker-plus"></i>
+
+    <!-- Container for the map -->
+    <div id="map"></div>
+
+    <!-- Address field -->
+    <input
+      type="text"
+      id="address"
+      placeholder="Address"
+      style="margin-top: 10px; width: 100%"
+    />
+
+    <!-- Load FontAwesome library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+
+    <script>
+      var map;
+      var marker;
+      var geocoder;
+
+      // Function to initialize the map
+      function initMap() {
+        // Coordinates for the initial map center
+        var initialCoords = { lat: 30.0444, lng: 31.2357 }; // Cairo
+
+        // Create a map object and specify the DOM element for display
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: initialCoords,
+          zoom: 12, // Adjust the zoom level as needed
+        });
+
+        // Marker for pinning locations
+        marker = new google.maps.Marker({
+          map: map,
+          draggable: true, // Allow the marker to be dragged
+        });
+
+        // Initialize Geocoder
+        geocoder = new google.maps.Geocoder();
+
+        // Event listener for when the marker is dragged
+        marker.addListener("dragend", function (event) {
+          getAddress(event.latLng);
+        });
+
+        // Event listener for when the map is clicked
+        map.addListener("click", function (event) {
+          placeMarker(event.latLng);
+          getAddress(event.latLng);
+        });
+      }
+
+      // Function to place a marker at a specific location
+      function placeMarker(location) {
+        marker.setPosition(location);
+        map.panTo(location);
+        getAddress(location);
+      }
+
+      // Function to get address from coordinates
+      function getAddress(latLng) {
+        geocoder.geocode({ location: latLng }, function (results, status) {
+          if (status === "OK") {
+            if (results[0]) {
+              document.getElementById("address").value =
+                results[0].formatted_address;
+            } else {
+              console.log("No results found");
+            }
+          } else {
+            console.log("Geocoder failed due to: " + status);
+          }
+        });
+      }
+
+      // Function to open the map when the icon is clicked
+      document
+        .getElementById("open-map")
+        .addEventListener("click", function () {
+          // Check if the Google Maps API has already been loaded
+          if (typeof google === "object" && typeof google.maps === "object") {
+            // If already loaded, initialize the map
+            initMap();
+          } else {
+            // If not loaded, dynamically load the Google Maps API
+            var script = document.createElement("script");
+            script.src =
+              "https://maps.googleapis.com/maps/api/js?key=AIzaSyB3LMFSJD2MXnfWdYMGc58FOwE6QQLJF5w&callback=initMap";
+            document.head.appendChild(script);
+          }
+        });
+    </script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3LMFSJD2MXnfWdYMGc58FOwE6QQLJF5w&callback=initMap"
+      async
+      defer
+    ></script>
+  </body>
+</html>
